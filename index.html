@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UBA Vive Talentos</title>
+    <!-- Fuentes: Montserrat y Open Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Paleta de colores solicitada */
+        :root {
+            --azul-rey: #003B8E;
+            --azul-marino: #001F4D;
+            --dorado: #C99A2E;
+            --blanco: #FFFFFF;
+            --gris-claro: #F5F7FA;
+            --gris-texto: #4A4A4A;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', sans-serif; color: var(--gris-texto); background-color: var(--blanco); }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-marino); }
+        a { text-decoration: none; }
+        
+        /* Navegación */
+        header { background-color: var(--blanco); padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        .logo { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 700; color: var(--azul-rey); }
+        .logo span { color: var(--dorado); }
+        .nav-links a { margin: 0 15px; color: var(--gris-texto); font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--dorado); }
+        .btn-login { color: var(--azul-rey); font-weight: 600; margin-right: 15px; }
+        .btn-register { background-color: var(--dorado); color: var(--blanco); padding: 10px 20px; border-radius: 8px; font-weight: 600; transition: background 0.3s; }
+        .btn-register:hover { background-color: #b58925; }
+
+        /* Sección Principal (Hero) */
+        .hero { display: flex; align-items: center; justify-content: space-between; padding: 80px 50px; background: linear-gradient(to right, var(--blanco) 50%, var(--gris-claro) 100%); }
+        .hero-text { max-width: 50%; }
+        .hero-text h1 { font-size: 48px; color: var(--azul-rey); margin-bottom: 20px; line-height: 1.2; }
+        .hero-text p { font-size: 18px; margin-bottom: 30px; line-height: 1.6; }
+        .btn-primary { background-color: var(--azul-rey); color: var(--blanco); padding: 15px 30px; border-radius: 8px; font-weight: 600; font-size: 16px; margin-right: 15px; transition: 0.3s; display: inline-block;}
+        .btn-primary:hover { background-color: var(--azul-marino); }
+        .btn-secondary { background-color: transparent; color: var(--azul-rey); padding: 13px 28px; border-radius: 8px; border: 2px solid var(--azul-rey); font-weight: 600; font-size: 16px; transition: 0.3s; display: inline-block;}
+        .btn-secondary:hover { background-color: var(--azul-rey); color: var(--blanco); }
+        .hero-image { max-width: 45%; text-align: center; }
+        .hero-image i { font-size: 200px; color: var(--dorado); opacity: 0.9; }
+
+        /* Beneficios */
+        .beneficios { display: flex; justify-content: space-around; padding: 60px 50px; background-color: var(--blanco); text-align: center; }
+        .beneficio-card { flex: 1; margin: 0 15px; padding: 30px 20px; background: var(--gris-claro); border-radius: 12px; transition: transform 0.3s; }
+        .beneficio-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .beneficio-card i { font-size: 40px; color: var(--azul-rey); margin-bottom: 15px; }
+        .beneficio-card h3 { font-size: 18px; margin-bottom: 10px; }
+        .beneficio-card p { font-size: 14px; }
+
+        /* Carreras */
+        .carreras-section { padding: 80px 50px; background-color: var(--azul-marino); color: var(--blanco); text-align: center; }
+        .carreras-section h2 { color: var(--blanco); font-size: 36px; margin-bottom: 50px; }
+        .carreras-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .carrera-card { background: var(--blanco); padding: 30px 20px; border-radius: 12px; color: var(--gris-texto); text-align: center; transition: 0.3s; border-bottom: 4px solid var(--dorado); }
+        .carrera-card:hover { transform: translateY(-10px); }
+        .carrera-card i { font-size: 50px; color: var(--dorado); margin-bottom: 20px; }
+        .carrera-card h3 { color: var(--azul-rey); font-size: 20px; margin-bottom: 15px; }
+        .carrera-card p { font-size: 14px; margin-bottom: 20px; line-height: 1.5; }
+        .carrera-card a { color: var(--azul-rey); font-weight: 600; text-decoration: none; border-bottom: 2px solid transparent; transition: 0.3s;}
+        .carrera-card a:hover { border-color: var(--dorado); color: var(--dorado); }
+
+        /* Footer */
+        footer { background-color: var(--blanco); padding: 30px; text-align: center; font-size: 14px; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">UBA<span>ViveTalentos</span></div>
+        <div class="nav-links">
+            <a href="#">Inicio</a>
+            <a href="#">¿Qué es?</a>
+            <a href="#">Carreras</a>
+            <a href="#">Actividades</a>
+            <a href="#">Portafolios</a>
+        </div>
+        <div>
+            <a href="#" class="btn-login">Iniciar Sesión</a>
+            <a href="#" class="btn-register">Registrarme</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Conecta tu talento con oportunidades reales.</h1>
+            <p>La plataforma digital universitaria donde tu creatividad, habilidades y proyectos cobran vida. Participa en retos, construye tu portafolio y destaca en la modalidad virtual.</p>
+            <a href="#" class="btn-primary">Registrarme</a>
+            <a href="#" class="btn-secondary">Explorar carreras</a>
+        </div>
+        <div class="hero-image">
+            <!-- Icono de un estudiante con birrete que sirve de imagen principal -->
+            <i class="fa-solid fa-user-graduate"></i>
+        </div>
+    </section>
+
+    <section class="beneficios">
+        <div class="beneficio-card">
+            <i class="fa-solid fa-users"></i>
+            <h3>Participación</h3>
+            <p>Conecta con compañeros y docentes en una comunidad activa.</p>
+        </div>
+        <div class="beneficio-card">
+            <i class="fa-solid fa-folder-open"></i>
+            <h3>Portafolio Digital</h3>
+            <p>Sube tus evidencias y muestra de lo que eres capaz.</p>
+        </div>
+        <div class="beneficio-card">
+            <i class="fa-solid fa-trophy"></i>
+            <h3>Retos y Simulaciones</h3>
+            <p>Pon a prueba tus conocimientos con proyectos prácticos.</p>
+        </div>
+        <div class="beneficio-card">
+            <i class="fa-solid fa-handshake"></i>
+            <h3>Oportunidades</h3>
+            <p>Conecta con instituciones y alianzas profesionales.</p>
+        </div>
+    </section>
+
+    <section class="carreras-section">
+        <h2>Explora las carreras</h2>
+        <div class="carreras-grid">
+            <div class="carrera-card">
+                <i class="fa-solid fa-bullhorn"></i>
+                <h3>Publicidad</h3>
+                <p>Crea campañas, diseña piezas gráficas y redacta copys de impacto.</p>
+                <a href="#">Ver actividades <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="carrera-card">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Administración</h3>
+                <p>Diseña modelos de negocio y lidera proyectos organizacionales.</p>
+                <a href="#">Ver actividades <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="carrera-card">
+                <i class="fa-solid fa-calculator"></i>
+                <h3>Contaduría</h3>
+                <p>Resuelve casos financieros, presupuestos y balances.</p>
+                <a href="#">Ver actividades <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="carrera-card">
+                <i class="fa-solid fa-microphone-lines"></i>
+                <h3>Comunicación</h3>
+                <p>Redacta noticias, guiones y diseña estrategias de medios.</p>
+                <a href="#">Ver actividades <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="carrera-card">
+                <i class="fa-solid fa-scale-balanced"></i>
+                <h3>Derecho</h3>
+                <p>Participa en simulacros de juicio y análisis jurídicos.</p>
+                <a href="#">Ver actividades <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="carrera-card">
+                <i class="fa-solid fa-brain"></i>
+                <h3>Psicología</h3>
+                <p>Crea campañas de bienestar y analiza casos clínicos.</p>
+                <a href="#">Ver actividades <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <div class="carrera-card">
+                <i class="fa-solid fa-laptop-code"></i>
+                <h3>Ingeniería en Sistemas</h3>
+                <p>Desarrolla prototipos, apps y resuelve retos lógicos.</p>
+                <a href="#">Ver actividades <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 UBA Vive Talentos. Proyecto Académico.</p>
+    </footer>
+
+</body>
+</html>
