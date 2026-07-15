@@ -13,9 +13,8 @@
         :root {
             --primary-blue: #002b5e;
             --secondary-blue: #004488;
-            --accent-red: #e63946;
             --accent-gold: #c99a2e;
-            --text-dark: #333333;
+            --text-dark: #1a1a1a;
             --text-light: #ffffff;
             --bg-light: #f8f9fa;
         }
@@ -164,21 +163,21 @@
             flex-wrap: wrap;
         }
         
-        .btn-red { 
-            background: var(--accent-red); 
-            color: white; 
+        .btn-gold { 
+            background: var(--accent-gold); 
+            color: var(--primary-blue); 
             padding: 16px 35px; 
             border-radius: 30px; 
-            font-weight: 700; 
+            font-weight: 800; 
             text-decoration: none; 
             transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
             display: inline-block;
-            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+            box-shadow: 0 4px 15px rgba(201, 154, 46, 0.3);
         }
-        .btn-red:hover { 
-            background: #d62828; 
+        .btn-gold:hover { 
+            background: #b58925; 
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(230, 57, 70, 0.6);
+            box-shadow: 0 6px 20px rgba(201, 154, 46, 0.5);
         }
         
         .btn-white {
@@ -328,7 +327,7 @@
         }
         .feature-card h3 i {
             font-size: 28px;
-            color: var(--accent-red); /* Contraste moderno */
+            color: var(--accent-gold); /* Íconos en dorado */
         }
         .feature-card p {
             color: #cbd5e1;
@@ -392,7 +391,7 @@
             <h1>Desarrolla tu potencial con nosotros</h1>
             <p><strong>UBA Vive Talentos</strong> es la plataforma que conecta tus capacidades con el futuro profesional. Ofrecemos oportunidades reales, proyectos académicos de impacto y conexión directa con el mundo laboral.</p>
             <div class="hero-buttons">
-                <a href="dashboard.html" class="btn-red">¡Sueña, haz que suceda!</a>
+                <a href="dashboard.html" class="btn-gold">¡Sueña, haz que suceda!</a>
                 <a href="registro.html" class="btn-white">! Preinscríbete Gratis Aquí !</a>
             </div>
         </div>
