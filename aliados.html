@@ -43,9 +43,15 @@
             transition: 0.3s;
             display: flex;
             flex-direction: column;
+            animation: fadeInGrid 0.4s ease-out;
         }
         .company-card:hover { transform: translateY(-5px); box-shadow: var(--sombra-hover); border-color: var(--azul-rey); }
         
+        @keyframes fadeInGrid {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .company-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
         .company-logo {
             width: 60px;
@@ -77,10 +83,12 @@
         .c-stat small { font-size: 10px; color: var(--gris-texto); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
         
         .company-actions { display: flex; gap: 10px; }
-        .btn-ver-empresa { flex: 1; text-align: center; padding: 12px 10px; border-radius: 8px; font-size: 13px; font-weight: 600; background: var(--gris-fondo); color: var(--azul-oscuro); transition: 0.3s; }
-        .btn-ver-empresa:hover { background: var(--azul-claro); color: var(--azul-rey); }
-        .btn-ver-retos { flex: 1; text-align: center; padding: 12px 10px; border-radius: 8px; font-size: 13px; font-weight: 700; background: var(--azul-oscuro); color: var(--blanco); transition: 0.3s; }
+        .btn-ver-empresa { flex: 1; text-align: center; padding: 12px 10px; border-radius: 8px; font-size: 13px; font-weight: 600; background: var(--gris-fondo); color: var(--azul-oscuro); border: none; cursor: pointer; transition: 0.3s; }
+        .btn-ver-empresa:hover { background: var(--gris-claro); }
+        .btn-ver-retos { flex: 1; text-align: center; padding: 12px 10px; border-radius: 8px; font-size: 13px; font-weight: 700; background: var(--azul-oscuro); color: var(--blanco); border: none; cursor: pointer; transition: 0.3s; font-family: 'Open Sans'; }
         .btn-ver-retos:hover { background: var(--azul-rey); box-shadow: 0 4px 10px rgba(0,59,142,0.2); }
+        
+        #no-results { display: none; text-align: center; padding: 40px; background: var(--blanco); border-radius: 12px; border: 1px dashed var(--gris-claro); width: 100%; grid-column: span 3; }
     </style>
 </head>
 <body>
@@ -99,7 +107,7 @@
         </nav>
         <div class="sidebar-footer-card">
             <h4><i class="fa-solid fa-star"></i> Tu talento impacta</h4>
-            <p>Sigue explorando, aprendiendo y conectando con oportunidades del mundo profesional.</p>
+            <p>Sigue exploring, aprendiendo y conectando con oportunidades del mundo profesional.</p>
         </div>
     </aside>
 
@@ -107,7 +115,7 @@
         <header class="topbar">
             <div class="search-bar">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Buscar empresas...">
+                <input type="text" id="global-search" placeholder="Buscar empresas...">
             </div>
             <div class="user-actions">
                 <div class="notification-icon">
@@ -126,35 +134,34 @@
             <p>Conoce las agencias, firmas y corporaciones que confían en el talento UBA. Explora sus perfiles, descubre su cultura organizacional y postúlate a los retos que tienen disponibles para tu carrera.</p>
         </div>
 
+        <!-- FILTROS CON ID PARA JAVASCRIPT -->
         <div class="filters-container">
             <div class="filter-group" style="flex-grow: 2;">
                 <label>Buscar por nombre</label>
-                <input type="text" placeholder="Ej. Agencia Impacto, LexCorp...">
+                <input type="text" id="name-filter" placeholder="Ej. Agencia Impacto, LexCorp...">
             </div>
             <div class="filter-group">
                 <label>Sector de la Empresa</label>
-                <select>
-                    <option>Todos los sectores</option>
-                    <option>Marketing y Publicidad</option>
-                    <option>Servicios Legales</option>
-                    <option>Tecnología y Software</option>
-                    <option>Finanzas y Contabilidad</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label>Oportunidades</label>
-                <select>
-                    <option>Todas</option>
-                    <option>Con Retos Activos</option>
-                    <option>Con Vacantes</option>
+                <select id="sector-filter">
+                    <option value="todos">Todos los sectores</option>
+                    <option value="marketing">Marketing y Publicidad</option>
+                    <option value="legal">Servicios Legales</option>
+                    <option value="tecnologia">Tecnología y Software</option>
+                    <option value="finanzas">Finanzas y Contabilidad</option>
                 </select>
             </div>
         </div>
 
-        <div class="companies-grid">
+        <div class="companies-grid" id="companies-container">
             
-            <!-- Empresa 1: Agencia de Marketing (Ideal para tu rubro) -->
-            <div class="company-card">
+            <!-- Mensaje de no resultados oculto por defecto -->
+            <div id="no-results">
+                <i class="fa-solid fa-building-circle-xmark" style="font-size: 40px; color: var(--gris-texto); margin-bottom: 10px;"></i>
+                <h4>No se encontraron empresas aliadas con esos criterios.</h4>
+            </div>
+            
+            <!-- Tarjeta 1: Agencia de Marketing (Con data-attributes) -->
+            <div class="company-card" data-nombre="agencia impacto digital" data-sector="marketing">
                 <div class="company-header">
                     <div class="company-logo" style="color: #E1306C;"><i class="fa-solid fa-bullhorn"></i></div>
                     <div class="company-info">
@@ -169,13 +176,13 @@
                     <div class="c-stat"><span>8</span><small>UBA Contratados</small></div>
                 </div>
                 <div class="company-actions">
-                    <button class="btn-ver-empresa"><i class="fa-regular fa-building"></i> Perfil</button>
-                    <a href="retos.html" style="flex: 1;"><button class="btn-ver-retos" style="width: 100%;">Ver Retos</button></a>
+                    <button class="btn-ver-empresa" onclick="window.location.href='perfil.html'"><i class="fa-regular fa-building"></i> Perfil</button>
+                    <button class="btn-ver-retos" onclick="window.location.href='retos.html?empresa=marketing'"><i class="fa-solid fa-flask"></i> Ver Retos</button>
                 </div>
             </div>
 
-            <!-- Empresa 2: Servicios Legales -->
-            <div class="company-card">
+            <!-- Tarjeta 2: Servicios Legales -->
+            <div class="company-card" data-nombre="lexcorp abogados" data-sector="legal">
                 <div class="company-header">
                     <div class="company-logo" style="color: #2C3E50;"><i class="fa-solid fa-scale-unbalanced"></i></div>
                     <div class="company-info">
@@ -190,13 +197,13 @@
                     <div class="c-stat"><span>12</span><small>UBA Contratados</small></div>
                 </div>
                 <div class="company-actions">
-                    <button class="btn-ver-empresa"><i class="fa-regular fa-building"></i> Perfil</button>
-                    <a href="retos.html" style="flex: 1;"><button class="btn-ver-retos" style="width: 100%;">Ver Retos</button></a>
+                    <button class="btn-ver-empresa" onclick="window.location.href='perfil.html'"><i class="fa-regular fa-building"></i> Perfil</button>
+                    <button class="btn-ver-retos" onclick="window.location.href='retos.html?empresa=derecho'"><i class="fa-solid fa-flask"></i> Ver Retos</button>
                 </div>
             </div>
 
-            <!-- Empresa 3: Contabilidad -->
-            <div class="company-card">
+            <!-- Tarjeta 3: Contabilidad -->
+            <div class="company-card" data-nombre="ecoclean soluciones" data-sector="finanzas">
                 <div class="company-header">
                     <div class="company-logo" style="color: #27AE60;"><i class="fa-solid fa-chart-line"></i></div>
                     <div class="company-info">
@@ -211,13 +218,13 @@
                     <div class="c-stat"><span>5</span><small>UBA Contratados</small></div>
                 </div>
                 <div class="company-actions">
-                    <button class="btn-ver-empresa"><i class="fa-regular fa-building"></i> Perfil</button>
-                    <a href="retos.html" style="flex: 1;"><button class="btn-ver-retos" style="width: 100%;">Ver Retos</button></a>
+                    <button class="btn-ver-empresa" onclick="window.location.href='perfil.html'"><i class="fa-regular fa-building"></i> Perfil</button>
+                    <button class="btn-ver-retos" onclick="window.location.href='retos.html?empresa=finanzas'"><i class="fa-solid fa-flask"></i> Ver Retos</button>
                 </div>
             </div>
 
-            <!-- Empresa 4: Tecnología -->
-            <div class="company-card">
+            <!-- Tarjeta 4: Tecnología -->
+            <div class="company-card" data-nombre="novatech innovacion" data-sector="tecnologia">
                 <div class="company-header">
                     <div class="company-logo" style="color: #2980B9;"><i class="fa-solid fa-code"></i></div>
                     <div class="company-info">
@@ -232,13 +239,13 @@
                     <div class="c-stat"><span>14</span><small>UBA Contratados</small></div>
                 </div>
                 <div class="company-actions">
-                    <button class="btn-ver-empresa"><i class="fa-regular fa-building"></i> Perfil</button>
-                    <a href="retos.html" style="flex: 1;"><button class="btn-ver-retos" style="width: 100%;">Ver Retos</button></a>
+                    <button class="btn-ver-empresa" onclick="window.location.href='perfil.html'"><i class="fa-regular fa-building"></i> Perfil</button>
+                    <button class="btn-ver-retos" onclick="window.location.href='retos.html?empresa=tecnologia'"><i class="fa-solid fa-flask"></i> Ver Retos</button>
                 </div>
             </div>
 
-            <!-- Empresa 5: Audiovisual -->
-            <div class="company-card">
+            <!-- Tarjeta 5: Audiovisual -->
+            <div class="company-card" data-nombre="cinearts producciones" data-sector="marketing">
                 <div class="company-header">
                     <div class="company-logo" style="color: #8E44AD;"><i class="fa-solid fa-video"></i></div>
                     <div class="company-info">
@@ -253,14 +260,52 @@
                     <div class="c-stat"><span>3</span><small>UBA Contratados</small></div>
                 </div>
                 <div class="company-actions">
-                    <button class="btn-ver-empresa"><i class="fa-regular fa-building"></i> Perfil</button>
-                    <a href="retos.html" style="flex: 1;"><button class="btn-ver-retos" style="width: 100%;">Ver Retos</button></a>
+                    <button class="btn-ver-empresa" onclick="window.location.href='perfil.html'"><i class="fa-regular fa-building"></i> Perfil</button>
+                    <button class="btn-ver-retos" onclick="window.location.href='retos.html?empresa=marketing'"><i class="fa-solid fa-flask"></i> Ver Retos</button>
                 </div>
             </div>
 
         </div>
-
     </main>
 
+    <!-- MOTOR DE FILTRADO EN TIEMPO REAL (JavaScript) -->
+    <script>
+        const nameFilter = document.getElementById('name-filter');
+        const sectorFilter = document.getElementById('sector-filter');
+        const companyCards = document.querySelectorAll('.company-card');
+        const noResults = document.getElementById('no-results');
+
+        function filterCompanies() {
+            const textValue = nameFilter.value.toLowerCase().trim();
+            const sectorValue = sectorFilter.value;
+            let visibleCardsCount = 0;
+
+            companyCards.forEach(card => {
+                const cardName = card.getAttribute('data-nombre');
+                const cardSector = card.getAttribute('data-sector');
+
+                const matchesName = cardName.includes(textValue);
+                const matchesSector = (sectorValue === 'todos' || cardSector === sectorValue);
+
+                if (matchesName && matchesSector) {
+                    card.style.display = 'flex';
+                    visibleCardsCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Mostrar aviso si no hay coincidencias
+            if (visibleCardsCount === 0) {
+                noResults.style.display = 'block';
+            } else {
+                noResults.style.display = 'none';
+            }
+        }
+
+        // Escuchar eventos de teclado y cambio de selector
+        nameFilter.addEventListener('input', filterCompanies);
+        sectorFilter.addEventListener('change', filterCompanies);
+    </script>
 </body>
 </html>
