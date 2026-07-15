@@ -2,129 +2,55 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Perfil - UBA Vive Talentos</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --azul-rey: #003B8E;
-            --azul-marino: #001F4D;
-            --dorado: #C99A2E;
-            --blanco: #FFFFFF;
-            --gris-fondo: #F5F7FA;
-            --gris-texto: #4A4A4A;
-            --gris-claro: #E0E5EC;
-        }
+        :root { --azul-rey: #003B8E; --azul-marino: #001F4D; --dorado: #C99A2E; --blanco: #FFFFFF; --gris-fondo: #F5F7FA; --gris-texto: #4A4A4A; --gris-claro: #E0E5EC; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Open Sans', sans-serif; color: var(--gris-texto); background-color: var(--gris-fondo); display: flex; }
-        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-marino); }
-        a { text-decoration: none; }
-
-        /* SIDEBAR */
-        .sidebar { width: 260px; background-color: var(--azul-marino); color: var(--blanco); height: 100vh; position: fixed; display: flex; flex-direction: column; padding: 20px; box-shadow: 4px 0 10px rgba(0,0,0,0.1); z-index: 100; }
-        .logo-container { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo-container h2 { color: var(--blanco); font-size: 20px; }
-        .logo-container h2 span { color: var(--dorado); }
-        .nav-menu { display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
-        .nav-menu a { display: flex; align-items: center; gap: 15px; padding: 12px 20px; color: var(--blanco); font-weight: 600; border-radius: 8px; transition: 0.3s; }
+        body { font-family: 'Open Sans', sans-serif; background-color: var(--gris-fondo); display: flex; }
+        .sidebar { width: 260px; background-color: var(--azul-marino); color: var(--blanco); height: 100vh; position: fixed; padding: 20px; }
+        .nav-menu a { display: flex; align-items: center; gap: 15px; padding: 12px 20px; color: var(--blanco); font-weight: 600; }
         .nav-menu a.activo { background-color: var(--dorado); color: var(--azul-marino); }
-
-        /* MAIN CONTENT */
-        .main-content { margin-left: 260px; width: calc(100% - 260px); padding: 30px 50px; min-height: 100vh; }
-
-        /* TOP BAR Y DROPDOWN */
-        .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .main-content { margin-left: 260px; width: calc(100% - 260px); padding: 30px 50px; }
+        
+        /* Dropdown CSS */
         .user-profile-container { position: relative; cursor: pointer; }
-        .user-profile-mini { display: flex; align-items: center; gap: 10px; background: white; padding: 8px 15px; border-radius: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        
-        /* Estilos del Dropdown */
-        .dropdown-menu { 
-            display: none; position: absolute; top: 110%; right: 0; background: white; 
-            width: 250px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); 
-            padding: 10px 0; z-index: 1000; border: 1px solid var(--gris-claro);
-        }
+        .dropdown-menu { display: none; position: absolute; right: 0; top: 110%; background: white; width: 220px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 10px; z-index: 1000; border: 1px solid var(--gris-claro); }
         .dropdown-menu.show { display: block; }
-        .dropdown-menu a { display: block; padding: 10px 20px; color: var(--gris-texto); font-size: 14px; }
-        .dropdown-menu a:hover { background-color: var(--gris-fondo); color: var(--azul-rey); }
-        .dropdown-divider { height: 1px; background: var(--gris-claro); margin: 5px 0; }
-
-        /* CABECERA PERFIL */
-        .profile-header { background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-rey) 100%); border-radius: 16px; padding: 40px; color: var(--blanco); display: flex; align-items: center; gap: 30px; margin-bottom: 30px; }
-        .profile-avatar { width: 150px; height: 150px; border-radius: 50%; background-color: var(--blanco); display: flex; justify-content: center; align-items: center; border: 4px solid var(--dorado); }
-        
-        /* GRID */
-        .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
-        .card { background-color: var(--blanco); border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 30px; }
-
+        .dropdown-menu a { display: block; padding: 10px; color: var(--gris-texto); text-decoration: none; font-size: 14px; }
+        .dropdown-menu a:hover { background-color: var(--gris-fondo); }
     </style>
 </head>
 <body>
-
     <aside class="sidebar">
-        <div class="logo-container">
-            <h2>UBA <span>ViveTalentos</span></h2>
-        </div>
+        <h2>UBA <span>ViveTalentos</span></h2>
         <nav class="nav-menu">
-            <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
-            <a href="perfil.html" class="activo"><i class="fa-regular fa-user"></i> Mi Perfil</a>
-            <a href="retos.html"><i class="fa-solid fa-flask"></i> Simulacros y Retos</a>
+            <a href="index.html">Inicio</a>
+            <a href="perfil.html" class="activo">Mi Perfil</a>
+            <a href="retos.html">Simulacros y Retos</a>
         </nav>
     </aside>
-
     <main class="main-content">
-        <header class="topbar">
-            <div class="search-bar"></div>
-            
-            <!-- CONTENEDOR DEL USUARIO CON DROPDOWN -->
-            <div class="user-profile-container" onclick="toggleMenu()">
-                <div class="user-profile-mini">
-                    <i class="fa-solid fa-user-circle" style="font-size: 30px; color: var(--azul-rey);"></i>
-                    <span>Yudresky P. <i class="fa-solid fa-angle-down"></i></span>
-                </div>
-
-                <!-- MENÚ DESPLEGABLE -->
+        <header style="display: flex; justify-content: flex-end;">
+            <div class="user-profile-container" onclick="document.getElementById('userDropdown').classList.toggle('show')">
+                <div style="background:white; padding:10px 20px; border-radius:30px; border: 1px solid #ddd;">Yudresky P. <i class="fa-solid fa-angle-down"></i></div>
                 <div class="dropdown-menu" id="userDropdown">
                     <a href="#"><i class="fa-solid fa-user-edit"></i> Editar Perfil</a>
-                    <a href="#"><i class="fa-solid fa-camera"></i> Agregar Foto de Perfil</a>
-                    <a href="#"><i class="fa-solid fa-share-nodes"></i> Redes Sociales</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#"><i class="fa-solid fa-star"></i> Ver Puntajes Acumulados</a>
-                    <a href="#"><i class="fa-solid fa-briefcase"></i> Ver Propuestas/Vacantes</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="index.html" style="color: #e74c3c;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+                    <a href="#"><i class="fa-solid fa-camera"></i> Foto de Perfil</a>
+                    <a href="vacantes.html"><i class="fa-solid fa-briefcase"></i> Ver Vacantes</a>
+                    <hr>
+                    <a href="index.html" style="color:red;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
                 </div>
             </div>
         </header>
-
-        <section class="profile-header">
-            <div class="profile-avatar"><i class="fa-solid fa-user" style="font-size: 60px; color: var(--azul-rey);"></i></div>
-            <div class="profile-info">
-                <h1>Yudresky Parra</h1>
-                <p>Estudiante de Comunicación Social | 3er Trimestre</p>
-            </div>
-        </section>
-        
-        <div class="profile-grid">
-            <div class="card"><h3><i class="fa-regular fa-address-card"></i> Sobre mí</h3></div>
-            <div class="card"><h3><i class="fa-solid fa-folder-open"></i> Portafolio Destacado</h3></div>
-        </div>
+        <h1>Mi Perfil</h1>
     </main>
-
     <script>
-        function toggleMenu() {
-            document.getElementById("userDropdown").classList.toggle("show");
-        }
-        // Cerrar menú si se hace clic fuera
         window.onclick = function(event) {
             if (!event.target.matches('.user-profile-container') && !event.target.matches('.fa-angle-down')) {
                 var dropdowns = document.getElementsByClassName("dropdown-menu");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
+                for (var i = 0; i < dropdowns.length; i++) { dropdowns[i].classList.remove('show'); }
             }
         }
     </script>
