@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Perfil - UBA Vive Talentos</title>
-    <!-- Fuentes: Montserrat (Títulos) y Open Sans (Textos) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Iconos de FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -18,274 +16,117 @@
             --gris-texto: #4A4A4A;
             --gris-claro: #E0E5EC;
         }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Open Sans', sans-serif; color: var(--gris-texto); background-color: var(--gris-fondo); display: flex; }
         h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-marino); }
         a { text-decoration: none; }
 
-        /* ================= SIDEBAR (Barra Lateral) ================= */
+        /* SIDEBAR */
         .sidebar { width: 260px; background-color: var(--azul-marino); color: var(--blanco); height: 100vh; position: fixed; display: flex; flex-direction: column; padding: 20px; box-shadow: 4px 0 10px rgba(0,0,0,0.1); z-index: 100; }
-        
         .logo-container { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo-container i { font-size: 40px; color: var(--blanco); margin-bottom: 10px; }
         .logo-container h2 { color: var(--blanco); font-size: 20px; }
         .logo-container h2 span { color: var(--dorado); }
-
         .nav-menu { display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
         .nav-menu a { display: flex; align-items: center; gap: 15px; padding: 12px 20px; color: var(--blanco); font-weight: 600; border-radius: 8px; transition: 0.3s; }
-        .nav-menu a i { font-size: 18px; width: 20px; text-align: center; }
-        
-        .nav-menu a:hover { background-color: rgba(255,255,255,0.1); }
         .nav-menu a.activo { background-color: var(--dorado); color: var(--azul-marino); }
 
-        .sidebar-footer-card { background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); padding: 20px; border-radius: 12px; border-left: 4px solid var(--dorado); margin-top: auto; }
-        .sidebar-footer-card h4 { color: var(--dorado); font-size: 14px; margin-bottom: 5px; }
-        .sidebar-footer-card p { font-size: 12px; color: rgba(255,255,255,0.8); }
-
-        /* ================= MAIN CONTENT (Área Central) ================= */
+        /* MAIN CONTENT */
         .main-content { margin-left: 260px; width: calc(100% - 260px); padding: 30px 50px; min-height: 100vh; }
 
-        /* Barra Superior (Top Bar) */
+        /* TOP BAR Y DROPDOWN */
         .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .search-bar { background-color: var(--blanco); padding: 10px 20px; border-radius: 20px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); width: 300px; }
-        .search-bar input { border: none; outline: none; background: transparent; width: 100%; font-family: 'Open Sans'; }
-        .search-bar i { color: #A0AABF; }
+        .user-profile-container { position: relative; cursor: pointer; }
+        .user-profile-mini { display: flex; align-items: center; gap: 10px; background: white; padding: 8px 15px; border-radius: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         
-        .user-actions { display: flex; align-items: center; gap: 15px; }
-        .notification-icon { position: relative; font-size: 20px; color: var(--azul-marino); cursor: pointer; margin-right: 10px;}
-        .notification-badge { position: absolute; top: -5px; right: -5px; background-color: #e74c3c; color: white; font-size: 10px; font-weight: bold; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
-        .user-profile-mini { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-        .user-profile-mini img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
-        .user-profile-mini span { font-weight: 600; color: var(--azul-marino); }
+        /* Estilos del Dropdown */
+        .dropdown-menu { 
+            display: none; position: absolute; top: 110%; right: 0; background: white; 
+            width: 250px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); 
+            padding: 10px 0; z-index: 1000; border: 1px solid var(--gris-claro);
+        }
+        .dropdown-menu.show { display: block; }
+        .dropdown-menu a { display: block; padding: 10px 20px; color: var(--gris-texto); font-size: 14px; }
+        .dropdown-menu a:hover { background-color: var(--gris-fondo); color: var(--azul-rey); }
+        .dropdown-divider { height: 1px; background: var(--gris-claro); margin: 5px 0; }
 
-        /* ================= CABECERA DEL PERFIL ================= */
-        .profile-header { background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-rey) 100%); border-radius: 16px; padding: 40px; color: var(--blanco); display: flex; align-items: center; gap: 30px; margin-bottom: 30px; position: relative; box-shadow: 0 10px 20px rgba(0,59,142,0.15); }
+        /* CABECERA PERFIL */
+        .profile-header { background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-rey) 100%); border-radius: 16px; padding: 40px; color: var(--blanco); display: flex; align-items: center; gap: 30px; margin-bottom: 30px; }
+        .profile-avatar { width: 150px; height: 150px; border-radius: 50%; background-color: var(--blanco); display: flex; justify-content: center; align-items: center; border: 4px solid var(--dorado); }
         
-        .profile-avatar { position: relative; }
-        .profile-avatar img { width: 150px; height: 150px; border-radius: 50%; border: 4px solid var(--dorado); object-fit: cover; }
-        .status-dot { width: 20px; height: 20px; background-color: #2ecc71; border: 3px solid var(--blanco); border-radius: 50%; position: absolute; bottom: 10px; right: 10px; }
-        
-        .profile-info { flex-grow: 1; }
-        .profile-info h1 { color: var(--blanco); font-size: 32px; margin-bottom: 5px; display: flex; align-items: center; gap: 10px; }
-        .profile-info h1 i { color: var(--dorado); font-size: 24px; }
-        .profile-subtitle { font-size: 16px; margin-bottom: 15px; color: rgba(255,255,255,0.9); }
-        .profile-subtitle strong { color: var(--dorado); }
-        
-        .profile-details { display: flex; gap: 20px; font-size: 14px; opacity: 0.8; margin-bottom: 20px; }
-        .profile-details span { display: flex; align-items: center; gap: 8px; }
-        
-        .profile-socials a { color: var(--blanco); font-size: 20px; margin-right: 15px; transition: 0.3s; opacity: 0.8; }
-        .profile-socials a:hover { color: var(--dorado); opacity: 1; }
-
-        /* ================= GRID DE CONTENIDO ================= */
+        /* GRID */
         .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
-
-        /* Columna Izquierda (Biografía y Habilidades) */
         .card { background-color: var(--blanco); border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 30px; }
-        .card-title { display: flex; align-items: center; gap: 10px; font-size: 18px; margin-bottom: 20px; color: var(--azul-marino); border-bottom: 1px solid var(--gris-claro); padding-bottom: 10px; }
-        .card-title i { color: var(--azul-rey); }
-        
-        .bio-text { font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
-        .quote-box { background-color: var(--gris-fondo); border-left: 4px solid var(--dorado); padding: 15px; font-style: italic; color: var(--azul-rey); font-size: 14px; border-radius: 0 8px 8px 0; }
-
-        .skill-item { margin-bottom: 15px; }
-        .skill-info { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 5px; color: var(--azul-marino); }
-        .skill-bar-bg { width: 100%; height: 8px; background-color: var(--gris-claro); border-radius: 4px; overflow: hidden; }
-        .skill-bar-fill { height: 100%; background-color: var(--azul-rey); border-radius: 4px; }
-        .skill-bar-fill.dorado { background-color: var(--dorado); }
-
-        /* Columna Derecha (Portafolio Destacado) */
-        .portfolio-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .btn-outline { border: 1px solid var(--azul-rey); color: var(--azul-rey); padding: 8px 15px; border-radius: 8px; font-size: 13px; font-weight: 600; transition: 0.3s; }
-        .btn-outline:hover { background-color: var(--azul-rey); color: var(--blanco); }
-
-        .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-        .project-card { border: 1px solid var(--gris-claro); border-radius: 12px; overflow: hidden; transition: 0.3s; }
-        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .project-img { height: 160px; background-color: #E2E8F0; position: relative; display: flex; justify-content: center; align-items: center; }
-        .project-img i { font-size: 40px; color: var(--azul-marino); opacity: 0.5; }
-        .project-tag { position: absolute; top: 10px; right: 10px; background-color: rgba(0,31,77,0.8); color: var(--blanco); font-size: 11px; padding: 4px 10px; border-radius: 12px; font-weight: 600; }
-        .project-info { padding: 15px; background-color: var(--blanco); }
-        .project-info h4 { color: var(--azul-marino); font-size: 16px; margin-bottom: 5px; }
-        .project-info p { font-size: 13px; color: var(--gris-texto); margin-bottom: 15px; }
-        .project-link { color: var(--azul-rey); font-weight: 600; font-size: 13px; display: flex; align-items: center; gap: 5px; }
-        .project-link:hover { color: var(--dorado); }
-
-        /* Insignias */
-        .badges-container { display: flex; gap: 15px; }
-        .badge-item { background-color: var(--gris-fondo); padding: 15px; border-radius: 12px; text-align: center; flex: 1; border: 1px solid var(--gris-claro); }
-        .badge-item i { font-size: 30px; color: var(--dorado); margin-bottom: 10px; }
-        .badge-item h5 { color: var(--azul-marino); font-size: 13px; margin-bottom: 5px; }
-        .badge-item p { font-size: 11px; color: var(--gris-texto); }
 
     </style>
 </head>
 <body>
 
-    <!-- MENÚ LATERAL (SIDEBAR) -->
     <aside class="sidebar">
         <div class="logo-container">
-            <i class="fa-solid fa-graduation-cap"></i>
             <h2>UBA <span>ViveTalentos</span></h2>
         </div>
-        
         <nav class="nav-menu">
             <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
-            <a href="que-es.html"><i class="fa-solid fa-circle-info"></i> ¿Qué es?</a>
-            <a href="#"><i class="fa-solid fa-compass"></i> Explorar carreras</a>
-            <!-- El botón "Mi Perfil" está activo -->
             <a href="perfil.html" class="activo"><i class="fa-regular fa-user"></i> Mi Perfil</a>
-            <a href="#"><i class="fa-solid fa-folder-open"></i> Mi Portafolio</a>
-            <a href="#"><i class="fa-solid fa-flask"></i> Simulacros y Retos</a>
+            <a href="retos.html"><i class="fa-solid fa-flask"></i> Simulacros y Retos</a>
         </nav>
-
-        <div class="sidebar-footer-card">
-            <h4><i class="fa-solid fa-star"></i> Tu talento impacta</h4>
-            <p>Mantén tu portafolio actualizado para conectar con empresas.</p>
-        </div>
     </aside>
 
-    <!-- ÁREA CENTRAL -->
     <main class="main-content">
-        
-        <!-- Top Bar -->
         <header class="topbar">
-            <div class="search-bar">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Buscar proyectos, talentos...">
-            </div>
-            <div class="user-actions">
-                <div class="notification-icon">
-                    <i class="fa-regular fa-bell"></i>
-                    <div class="notification-badge">2</div>
-                </div>
+            <div class="search-bar"></div>
+            
+            <!-- CONTENEDOR DEL USUARIO CON DROPDOWN -->
+            <div class="user-profile-container" onclick="toggleMenu()">
                 <div class="user-profile-mini">
-                    <i class="fa-solid fa-circle-user" style="font-size: 35px; color: var(--azul-rey);"></i>
-                    <span>Yudresky P. <i class="fa-solid fa-angle-down" style="font-size: 12px; margin-left: 5px;"></i></span>
+                    <i class="fa-solid fa-user-circle" style="font-size: 30px; color: var(--azul-rey);"></i>
+                    <span>Yudresky P. <i class="fa-solid fa-angle-down"></i></span>
+                </div>
+
+                <!-- MENÚ DESPLEGABLE -->
+                <div class="dropdown-menu" id="userDropdown">
+                    <a href="#"><i class="fa-solid fa-user-edit"></i> Editar Perfil</a>
+                    <a href="#"><i class="fa-solid fa-camera"></i> Agregar Foto de Perfil</a>
+                    <a href="#"><i class="fa-solid fa-share-nodes"></i> Redes Sociales</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#"><i class="fa-solid fa-star"></i> Ver Puntajes Acumulados</a>
+                    <a href="#"><i class="fa-solid fa-briefcase"></i> Ver Propuestas/Vacantes</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="index.html" style="color: #e74c3c;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
                 </div>
             </div>
         </header>
 
-        <!-- Cabecera del Perfil -->
         <section class="profile-header">
-            <div class="profile-avatar">
-                <!-- Ícono provisional si no hay foto subida -->
-                <div style="width: 150px; height: 150px; border-radius: 50%; background-color: var(--blanco); display: flex; justify-content: center; align-items: center; border: 4px solid var(--dorado);">
-                    <i class="fa-solid fa-user" style="font-size: 60px; color: var(--azul-rey);"></i>
-                </div>
-                <div class="status-dot"></div>
-            </div>
-            
+            <div class="profile-avatar"><i class="fa-solid fa-user" style="font-size: 60px; color: var(--azul-rey);"></i></div>
             <div class="profile-info">
-                <h1>Yudresky Parra <i class="fa-solid fa-circle-check" title="Perfil Verificado UBA"></i></h1>
-                <p class="profile-subtitle">Estudiante de <strong>Comunicación Social</strong> | 3er Trimestre</p>
-                
-                <div class="profile-details">
-                    <span><i class="fa-solid fa-location-dot"></i> San Antonio de los Altos, Miranda</span>
-                    <span><i class="fa-solid fa-envelope"></i> yudrybetan94@gmail.com</span>
-                </div>
-                
-                <div class="profile-socials">
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-behance"></i></a>
-                </div>
-            </div>
-            
-            <div style="background-color: rgba(255,255,255,0.1); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.2);">
-                <h3 style="color: var(--dorado); font-size: 28px; margin-bottom: 5px;">4</h3>
-                <p style="font-size: 13px; opacity: 0.9;">Proyectos en<br>Portafolio</p>
+                <h1>Yudresky Parra</h1>
+                <p>Estudiante de Comunicación Social | 3er Trimestre</p>
             </div>
         </section>
-
-        <!-- Grid de Contenido Inferior -->
+        
         <div class="profile-grid">
-            
-            <!-- Columna Izquierda (Biografía) -->
-            <div>
-                <div class="card">
-                    <h3 class="card-title"><i class="fa-regular fa-address-card"></i> Sobre mí</h3>
-                    <p class="bio-text">
-                        Apasionada por la comunicación estratégica y la creación de contenido con propósito. En la UBA San Antonio he descubierto cómo conectar las herramientas digitales con narrativas que inspiran a la comunidad universitaria.
-                    </p>
-                    <div class="quote-box">
-                        "Un profesional UBA nunca se detiene. Tu crecimiento es integral."
-                    </div>
-                </div>
-
-                <div class="card">
-                    <h3 class="card-title"><i class="fa-solid fa-bolt"></i> Habilidades Principales</h3>
-                    
-                    <div class="skill-item">
-                        <div class="skill-info"><span>Redacción Estratégica (Copywriting)</span> <span>90%</span></div>
-                        <div class="skill-bar-bg"><div class="skill-bar-fill dorado" style="width: 90%;"></div></div>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-info"><span>Creación de Guiones Audiovisuales</span> <span>85%</span></div>
-                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-info"><span>Gestión de Contenido (Community Management)</span> <span>80%</span></div>
-                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 80%;"></div></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Columna Derecha (Portafolio) -->
-            <div>
-                <div class="portfolio-header">
-                    <h3 class="card-title" style="border:none; margin:0;"><i class="fa-solid fa-folder-open"></i> Portafolio Destacado</h3>
-                    <a href="#" class="btn-outline">Añadir Proyecto +</a>
-                </div>
-
-                <div class="projects-grid" style="margin-bottom: 30px;">
-                    <!-- Proyecto 1 -->
-                    <div class="project-card">
-                        <div class="project-img">
-                            <i class="fa-solid fa-video"></i>
-                            <span class="project-tag">Guion / Reel</span>
-                        </div>
-                        <div class="project-info">
-                            <h4>El "Efecto Árbol"</h4>
-                            <p>Guion para campaña de bienestar universitario enfocada en neuroaprendizaje.</p>
-                            <a href="#" class="project-link">Ver guion completo <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Proyecto 2 -->
-                    <div class="project-card">
-                        <div class="project-img">
-                            <i class="fa-solid fa-pen-nib"></i>
-                            <span class="project-tag">Copywriting</span>
-                        </div>
-                        <div class="project-info">
-                            <h4>Campaña: La Brújula de tu Carrera</h4>
-                            <p>Estrategia de textos publicitarios (copys) para atracción de estudiantes en redes.</p>
-                            <a href="#" class="project-link">Ver campaña <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <h3 class="card-title"><i class="fa-solid fa-medal"></i> Reconocimientos UBA</h3>
-                <div class="badges-container">
-                    <div class="badge-item">
-                        <i class="fa-solid fa-award"></i>
-                        <h5>Talento Creativo</h5>
-                        <p>Otorgado por aportes en comunicación digital.</p>
-                    </div>
-                    <div class="badge-item">
-                        <i class="fa-solid fa-handshake"></i>
-                        <h5>Participación Activa</h5>
-                        <p>Colaborador en proyectos del 3er Trimestre.</p>
-                    </div>
-                </div>
-
-            </div>
+            <div class="card"><h3><i class="fa-regular fa-address-card"></i> Sobre mí</h3></div>
+            <div class="card"><h3><i class="fa-solid fa-folder-open"></i> Portafolio Destacado</h3></div>
         </div>
     </main>
 
+    <script>
+        function toggleMenu() {
+            document.getElementById("userDropdown").classList.toggle("show");
+        }
+        // Cerrar menú si se hace clic fuera
+        window.onclick = function(event) {
+            if (!event.target.matches('.user-profile-container') && !event.target.matches('.fa-angle-down')) {
+                var dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
