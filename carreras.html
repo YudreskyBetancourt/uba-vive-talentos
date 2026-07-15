@@ -114,5 +114,47 @@
             }
         });
     </script>
+    <script>
+    const baseDeDatos = [
+        { nombre: "Comunicación Social", url: "carreras.html", icono: "fa-microphone-lines" },
+        { nombre: "Derecho", url: "carreras.html", icono: "fa-scale-balanced" },
+        { nombre: "Ingeniería en Sistemas", url: "carreras.html", icono: "fa-code" },
+        { nombre: "Administración", url: "carreras.html", icono: "fa-chart-line" },
+        { nombre: "Simulacros y Retos", url: "retos.html", icono: "fa-flask" },
+        { nombre: "Empresas Aliadas", url: "aliados.html", icono: "fa-handshake" },
+        { nombre: "Mi Perfil", url: "perfil.html", icono: "fa-user" }
+    ];
+
+    const input = document.getElementById('global-search');
+    const results = document.getElementById('global-search-results');
+
+    input.addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        results.innerHTML = '';
+        
+        if(query.length > 0) {
+            const filtered = baseDeDatos.filter(i => i.nombre.toLowerCase().includes(query));
+            
+            if(filtered.length > 0) {
+                filtered.forEach(item => {
+                    results.innerHTML += `<a href="${item.url}" class="search-item"><i class="fa-solid ${item.icono}"></i><div><h4>${item.nombre}</h4></div></a>`;
+                });
+                results.classList.add('active');
+            } else {
+                results.innerHTML = '<span class="search-item">No se encontraron resultados</span>';
+                results.classList.add('active');
+            }
+        } else {
+            results.classList.remove('active');
+        }
+    });
+
+    // Cerrar el buscador si haces clic fuera de él
+    document.addEventListener('click', function(e) {
+        if (!input.contains(e.target) && !results.contains(e.target)) {
+            results.classList.remove('active');
+        }
+    });
+</script>
 </body>
 </html>
