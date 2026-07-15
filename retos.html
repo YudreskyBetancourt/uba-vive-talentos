@@ -3,42 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulacros y Retos - UBA Vive Talentos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Retos Académicos - UBA Vive Talentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .page-header { margin-bottom: 30px; }
-        .page-header h1 { font-size: 32px; margin-bottom: 10px; color: var(--azul-oscuro); display: flex; align-items: center; gap: 15px; }
-        .page-header h1 i { color: var(--dorado); }
-        .page-header p { font-size: 16px; color: var(--gris-texto); max-width: 800px; line-height: 1.6; }
+        .page-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
 
-        .filters { display: flex; gap: 15px; margin-bottom: 30px; border-bottom: 2px solid var(--gris-claro); padding-bottom: 15px; }
-        .filter-btn { background: none; border: none; font-size: 15px; font-weight: 600; color: var(--gris-texto); cursor: pointer; padding: 8px 15px; border-radius: 8px; transition: all 0.3s ease; font-family: 'Open Sans', sans-serif; }
-        .filter-btn.active { background-color: var(--azul-rey); color: var(--blanco); }
-        .filter-btn:hover:not(.active) { background-color: var(--gris-claro); }
+        .challenge-card {
+            background: var(--blanco);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--gris-claro);
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
 
-        .retos-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        .reto-card { background-color: var(--blanco); border-radius: 16px; overflow: hidden; box-shadow: var(--sombra-tarjeta); border: 1px solid var(--gris-claro); display: flex; flex-direction: column; transition: all 0.3s ease; }
-        .reto-card:hover { transform: translateY(-6px); box-shadow: var(--sombra-hover); border-color: var(--azul-rey); }
+        .challenge-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,43,94,0.1);
+            border-color: var(--accent-gold);
+        }
 
-        .video-container { width: 100%; height: 220px; background-color: var(--azul-oscuro); position: relative; overflow: hidden; }
-        .reto-tag { position: absolute; top: 15px; left: 15px; background-color: var(--dorado); color: var(--azul-oscuro); font-size: 12px; font-weight: bold; padding: 6px 14px; border-radius: 20px; z-index: 10; }
+        .challenge-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
 
-        .reto-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
-        .reto-content h3 { font-size: 20px; color: var(--azul-rey); margin-bottom: 12px; }
-        .reto-content .desc { font-size: 14px; line-height: 1.6; margin-bottom: 20px; color: var(--gris-texto); }
+        .company-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-        .reto-meta { background-color: var(--gris-fondo); padding: 18px; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--gris-claro); }
-        .meta-item { display: flex; margin-bottom: 10px; font-size: 13px; }
-        .meta-item strong { width: 130px; color: var(--azul-oscuro); display: flex; align-items: center; gap: 8px; font-weight: 700; }
-        .meta-item span { flex-grow: 1; color: var(--gris-texto); }
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background-color: var(--gris-fondo);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: var(--primary-blue);
+            border: 1px solid var(--gris-claro);
+            overflow: hidden;
+        }
 
-        .btn-participar { background-color: var(--azul-oscuro); color: var(--blanco); text-align: center; padding: 14px; border-radius: 8px; font-weight: 700; transition: all 0.3s ease; margin-top: auto; border: none; cursor: pointer; font-size: 14px; }
-        .btn-participar:hover { background-color: var(--azul-rey); }
+        .company-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .company-details h3 {
+            font-size: 18px;
+            color: var(--primary-blue);
+            margin-bottom: 4px;
+        }
+
+        .company-details p {
+            font-size: 13px;
+            color: var(--gris-texto);
+            font-weight: 600;
+        }
+
+        .challenge-badge {
+            background: #EBF4FF;
+            color: var(--primary-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .challenge-badge.urgent {
+            background: #FFF5F5;
+            color: #E53E3E;
+        }
+
+        .challenge-body h4 {
+            font-size: 18px;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .challenge-body p {
+            font-size: 14px;
+            color: var(--gris-texto);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .challenge-meta {
+            display: flex;
+            gap: 20px;
+            font-size: 13px;
+            color: var(--gris-texto);
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .challenge-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .challenge-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--gris-claro);
+        }
+
+        .reward-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--verde-exito);
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .btn-participar {
+            background: var(--primary-blue);
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-participar:hover {
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+        }
+
+        /* Sidebar Applications Panel */
+        .applications-panel {
+            background: var(--blanco);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--gris-claro);
+            height: fit-content;
+        }
+
+        .applications-panel h3 {
+            font-size: 18px;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--gris-claro);
+            padding-bottom: 10px;
+        }
+
+        .app-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--gris-claro);
+        }
+
+        .app-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .app-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .app-company {
+            font-size: 12px;
+            color: var(--gris-texto);
+            margin-bottom: 8px;
+        }
+
+        .app-status {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        .status-evaluating {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        .status-approved {
+            background: #D1FAE5;
+            color: #059669;
+        }
+
+        .hero-filters span {
+            background: transparent; 
+            color: white; 
+            padding: 8px 15px; 
+            border-radius: 20px; 
+            font-size: 13px; 
+            cursor: pointer; 
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .hero-filters span:hover, .hero-filters span.active {
+            background: rgba(255,255,255,0.2);
+            border-color: white;
+            font-weight: 600;
+        }
+
     </style>
 </head>
-<body>
+<body class="has-sidebar">
+
+    <aside class="sidebar">
+        <div class="logo-container">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <h2>UBA <span>ViveTalentos</span></h2>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="index.html" style="margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;"><i class="fa-solid fa-house"></i> Volver al Inicio</a>
+
+            <a href="dashboard.html" class=""><i class="fa-solid fa-chart-pie"></i> Mi Portafolio</a>
+            <a href="retos.html" class="activo"><i class="fa-solid fa-rocket"></i> Retos Académicos</a>
+            <a href="aliados.html"><i class="fa-solid fa-handshake"></i> Aliados Comerciales</a>
+            <a href="perfil.html" class=""><i class="fa-solid fa-user"></i> Mi Perfil</a>
+            
+            <a href="login.html" style="margin-top: auto; color: #f87171;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+        </nav>
+    </aside>
 
     <div class="top-bar">
         <span>San Joaquín de Turmero</span>
@@ -58,76 +273,201 @@
             <a href="index.html">Inicio</a>
             <a href="carreras.html">Carreras</a>
             <a href="aliados.html">Empresas</a>
-            <a href="login.html" class="btn-login">Mi Plataforma</a>
         </div>
     </nav>
 
-
-    
-
     <main class="main-content">
         
+        <!-- Cabecera de Retos -->
+        <section style="background: linear-gradient(135deg, var(--azul-rey) 0%, #001f42 100%); border-radius: 16px; padding: 40px 20px; display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 35px; box-shadow: 0 10px 25px rgba(0,59,142,0.1);">
+            <h1 style="color: var(--dorado); font-size: 36px; margin-bottom: 15px;"><i class="fa-solid fa-rocket"></i> Desafía tus límites</h1>
+            <p style="color: var(--blanco); font-size: 16px; max-width: 650px; opacity: 0.9; margin-bottom: 25px; line-height: 1.6;">Participa en retos propuestos por las empresas más importantes del país y consigue tu próxima gran oportunidad laboral, pasantía o contratación directa.</p>
+            
+            <div style="display: flex; gap: 10px; width: 100%; max-width: 700px; margin-bottom: 25px;">
+                <input type="text" placeholder="Buscar por área, carrera o empresa (Ej: Venevisión, Marketing...)" style="flex-grow: 1; padding: 15px 25px; border-radius: 30px; border: none; font-size: 15px; outline: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <button style="background: var(--dorado); color: var(--primary-blue); border: none; border-radius: 30px; padding: 0 35px; font-weight: 800; font-size: 15px; cursor: pointer; transition: 0.3s;"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+            </div>
+            
+            <div class="hero-filters" style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                <span class="active">Todas las Áreas</span>
+                <span>Audiovisual</span>
+                <span>Periodismo</span>
+                <span>Marketing Digital</span>
+                <span>Actuación</span>
+                <span>Locución</span>
+            </div>
+        </section>
 
-        <div class="page-header">
-            <h1><i class="fa-solid fa-flask"></i> Simulacros y Retos Prácticos</h1>
-            <p>Selecciona un desafío corporativo y sube la evidencia a tu portafolio digital.</p>
-        </div>
-
-        <div class="filters">
-            <button class="filter-btn active" data-filter="todos">Todos</button>
-            <button class="filter-btn" data-filter="marketing">Marketing</button>
-            <button class="filter-btn" data-filter="derecho">Derecho</button>
-            <button class="filter-btn" data-filter="finanzas">Finanzas</button>
-        </div>
-
-        <div class="retos-grid" id="retos-container">
-            <div class="reto-card" data-category="marketing">
-                <div class="video-container"><span class="reto-tag">Agencia Impacto Digital</span></div>
-                <div class="reto-content">
-                    <h3>Producción de Podcast & Campaña</h3>
-                    <p class="desc">Asume el rol de productor y copywriter. Diseña y ejecuta una campaña comunicacional real.</p>
-                    <div class="reto-meta">
-                        <div class="meta-item"><strong><i class="fa-solid fa-bullseye"></i> Objetivo:</strong><span>Podcast y estrategia de difusión.</span></div>
-                        <div class="meta-item"><strong><i class="fa-regular fa-clock"></i> Duración:</strong><span>2 Semanas</span></div>
+        <!-- Contenedor Principal de Retos y Mis Postulaciones -->
+        <div class="page-layout">
+            
+            <!-- Lista de Retos (Izquierda) -->
+            <div class="challenges-feed">
+                
+                <!-- Reto 1: Empresas Polar -->
+                <div class="challenge-card">
+                    <div class="challenge-header">
+                        <div class="company-info">
+                            <div class="company-logo" style="background: white;">
+                                <!-- Logo simulado con FontAwesome o inicial -->
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Logo_de_Empresas_Polar.png" alt="Polar" style="object-fit: contain; padding: 5px;">
+                            </div>
+                            <div class="company-details">
+                                <h3>Empresas Polar</h3>
+                                <p>Caracas / Modalidad Mixta</p>
+                            </div>
+                        </div>
+                        <span class="challenge-badge urgent"><i class="fa-solid fa-fire"></i> Urgente</span>
                     </div>
-                    <button class="btn-participar">Participar en este reto</button>
+                    <div class="challenge-body">
+                        <h4>Campaña Publicitaria "Joven Maltín" 2026</h4>
+                        <p>Buscamos estudiantes de Comunicación Social o Mercadeo para desarrollar una propuesta integral de campaña publicitaria orientada al público universitario. Incluye diseño de grilla, propuesta audiovisual y copys creativos.</p>
+                        <div class="challenge-meta">
+                            <span><i class="fa-solid fa-tag"></i> Marketing Digital / Audiovisual</span>
+                            <span><i class="fa-regular fa-calendar-xmark"></i> Cierre: 30 de Julio, 2026</span>
+                            <span><i class="fa-solid fa-user-group"></i> 14 Participando</span>
+                        </div>
+                    </div>
+                    <div class="challenge-footer">
+                        <div class="reward-info">
+                            <i class="fa-solid fa-briefcase"></i> Contratación Directa (Pasantía Pagada)
+                        </div>
+                        <button class="btn-participar">Participar</button>
+                    </div>
+                </div>
+
+                <!-- Reto 2: Venevisión -->
+                <div class="challenge-card">
+                    <div class="challenge-header">
+                        <div class="company-info">
+                            <div class="company-logo" style="background: white;">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Venevisi%C3%B3n_logo_%282006%29.svg/1024px-Venevisi%C3%B3n_logo_%282006%29.svg.png" alt="Venevision" style="object-fit: contain; padding: 5px;">
+                            </div>
+                            <div class="company-details">
+                                <h3>Venevisión</h3>
+                                <p>Caracas / Presencial</p>
+                            </div>
+                        </div>
+                        <span class="challenge-badge">Nuevo Reto</span>
+                    </div>
+                    <div class="challenge-body">
+                        <h4>Casting de Presentadores - Nuevo Magazine Matutino</h4>
+                        <p>¿Tienes talento frente a las cámaras? Envíanos tu reel de actuación o presentación (host). Estamos en la búsqueda de un rostro joven y fresco para nuestro nuevo programa de revista matutina.</p>
+                        <div class="challenge-meta">
+                            <span><i class="fa-solid fa-tag"></i> Actuación / Presentación TV</span>
+                            <span><i class="fa-regular fa-calendar-xmark"></i> Cierre: 15 de Agosto, 2026</span>
+                            <span><i class="fa-solid fa-user-group"></i> 45 Participando</span>
+                        </div>
+                    </div>
+                    <div class="challenge-footer">
+                        <div class="reward-info">
+                            <i class="fa-solid fa-star"></i> Contrato de Talento (1 año)
+                        </div>
+                        <button class="btn-participar">Enviar Reel</button>
+                    </div>
+                </div>
+
+                <!-- Reto 3: Unión Radio -->
+                <div class="challenge-card">
+                    <div class="challenge-header">
+                        <div class="company-info">
+                            <div class="company-logo" style="background: var(--azul-oscuro); color: white; font-weight: 800; font-size: 16px;">
+                                UR
+                            </div>
+                            <div class="company-details">
+                                <h3>Unión Radio</h3>
+                                <p>A nivel nacional / Remoto</p>
+                            </div>
+                        </div>
+                        <span class="challenge-badge">Destacado</span>
+                    </div>
+                    <div class="challenge-body">
+                        <h4>Producción de Micro Informativo "Generación Z"</h4>
+                        <p>Diseña, redacta el guion y graba la locución de un micro informativo de 2 minutos sobre tendencias tecnológicas en Venezuela. El reto consiste en entregar el audio final editado con efectos y cortinas musicales.</p>
+                        <div class="challenge-meta">
+                            <span><i class="fa-solid fa-tag"></i> Locución / Producción de Radio</span>
+                            <span><i class="fa-regular fa-calendar-xmark"></i> Cierre: 05 de Agosto, 2026</span>
+                            <span><i class="fa-solid fa-user-group"></i> 8 Participando</span>
+                        </div>
+                    </div>
+                    <div class="challenge-footer">
+                        <div class="reward-info">
+                            <i class="fa-solid fa-microphone"></i> Transmisión Nacional + Pasantía
+                        </div>
+                        <button class="btn-participar">Subir Audio</button>
+                    </div>
+                </div>
+
+                <!-- Reto 4: El Universal -->
+                <div class="challenge-card">
+                    <div class="challenge-header">
+                        <div class="company-info">
+                            <div class="company-logo" style="background: white; border: 1px solid #ccc;">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Logo_de_El_Universal_%28Venezuela%29.png" alt="El Universal" style="object-fit: contain; padding: 10px;">
+                            </div>
+                            <div class="company-details">
+                                <h3>Diario El Universal</h3>
+                                <p>Caracas / Modalidad Mixta</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="challenge-body">
+                        <h4>Reportaje de Investigación: El Impacto de la IA en la Educación</h4>
+                        <p>Reto periodístico: Escribe un reportaje de profundidad (mínimo 1500 palabras) sobre cómo la inteligencia artificial está moldeando el futuro de las universidades en Venezuela. Se evaluará investigación, redacción y fuentes.</p>
+                        <div class="challenge-meta">
+                            <span><i class="fa-solid fa-tag"></i> Periodismo / Redacción</span>
+                            <span><i class="fa-regular fa-calendar-xmark"></i> Cierre: 20 de Agosto, 2026</span>
+                            <span><i class="fa-solid fa-user-group"></i> 22 Participando</span>
+                        </div>
+                    </div>
+                    <div class="challenge-footer">
+                        <div class="reward-info">
+                            <i class="fa-solid fa-newspaper"></i> Publicación en Edición Impresa/Digital
+                        </div>
+                        <button class="btn-participar">Subir Reportaje</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Panel de Mis Postulaciones (Derecha) -->
+            <div>
+                <div class="applications-panel">
+                    <h3><i class="fa-solid fa-clipboard-list" style="color: var(--accent-gold);"></i> Mis Postulaciones</h3>
+                    
+                    <div class="app-item">
+                        <div class="app-title">Voz en Off para Documental Universitario</div>
+                        <div class="app-company"><i class="fa-solid fa-building" style="color: var(--gris-claro);"></i> Televen</div>
+                        <div class="app-status status-evaluating"><i class="fa-solid fa-spinner fa-spin"></i> En Evaluación</div>
+                    </div>
+
+                    <div class="app-item">
+                        <div class="app-title">Guion para Corto "Ciudad de Luces"</div>
+                        <div class="app-company"><i class="fa-solid fa-building" style="color: var(--gris-claro);"></i> Villa del Cine</div>
+                        <div class="app-status status-evaluating"><i class="fa-solid fa-spinner fa-spin"></i> En Evaluación</div>
+                    </div>
+
+                    <div class="app-item">
+                        <div class="app-title">Diseño de Grilla Instagram (Mes Aniversario)</div>
+                        <div class="app-company"><i class="fa-solid fa-building" style="color: var(--gris-claro);"></i> Farmatodo</div>
+                        <div class="app-status status-approved"><i class="fa-solid fa-check-double"></i> Reto Aprobado (¡Felicidades!)</div>
+                    </div>
+                    
+                    <button style="width: 100%; margin-top: 15px; background: transparent; border: 1px solid var(--primary-blue); color: var(--primary-blue); padding: 8px; border-radius: 8px; font-weight: 600; cursor: pointer;">Ver Historial Completo</button>
+                </div>
+
+                <!-- Tarjeta promocional -->
+                <div style="background: linear-gradient(135deg, var(--accent-gold) 0%, #a87e22 100%); border-radius: 16px; padding: 25px; color: white; margin-top: 25px; text-align: center; box-shadow: 0 5px 15px rgba(201,154,46,0.3);">
+                    <i class="fa-solid fa-ranking-star" style="font-size: 30px; margin-bottom: 10px;"></i>
+                    <h4 style="font-size: 18px; margin-bottom: 8px;">Top Talento de la Semana</h4>
+                    <p style="font-size: 13px; line-height: 1.5; margin-bottom: 15px;">Completa 3 retos este mes para ganar la insignia de Talento Destacado y aparecer en la página principal.</p>
+                    <button style="background: white; color: var(--accent-gold); border: none; border-radius: 20px; padding: 5px 15px; font-weight: 800; font-size: 12px; cursor: pointer;">Saber más</button>
                 </div>
             </div>
-            <div class="reto-card" data-category="derecho">
-                <div class="video-container"><span class="reto-tag">LexCorp Abogados</span></div>
-                <div class="reto-content">
-                    <h3>Simulacro de Juicio Oral</h3>
-                    <p class="desc">Analiza el expediente asignado, construye tus argumentos jurídicos y defiende tu postura en tiempo real.</p>
-                    <div class="reto-meta">
-                        <div class="meta-item"><strong><i class="fa-solid fa-bullseye"></i> Objetivo:</strong><span>Aplicar técnicas de litigación oral.</span></div>
-                        <div class="meta-item"><strong><i class="fa-regular fa-clock"></i> Duración:</strong><span>1 Sesión en Vivo</span></div>
-                    </div>
-                    <button class="btn-participar">Participar en este reto</button>
-                </div>
-            </div>
+
         </div>
+
     </main>
 
-    <script>
-        // Lógica de filtrado inteligente
-        const cards = document.querySelectorAll('.reto-card');
-        const buttons = document.querySelectorAll('.filter-btn');
-
-        function filterRetos(category) {
-            cards.forEach(card => {
-                card.style.display = (category === 'todos' || card.dataset.category === category) ? 'flex' : 'none';
-            });
-            buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.filter === category));
-        }
-
-        buttons.forEach(btn => btn.addEventListener('click', () => filterRetos(btn.dataset.filter)));
-
-        // Leer parámetro de la URL
-        window.onload = () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const emp = urlParams.get('empresa');
-            if(emp) filterRetos(emp);
-        };
-    </script>
 </body>
 </html>
