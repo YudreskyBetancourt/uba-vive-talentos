@@ -963,10 +963,15 @@ body.dark-mode .notif-badge {
         transform: translateX(0);
     }
     
-    .main-content {
+    .main-content, body.has-sidebar .main-content {
         margin-left: 0 !important;
         padding-top: 80px !important; /* Espacio para el fixed top-bar */
-        width: 100%;
+        width: 100% !important;
+    }
+    
+    body.has-sidebar .top-bar {
+        margin-left: 0 !important;
+        width: 100% !important;
     }
     
     /* Overlay para cuando el sidebar está abierto */
