@@ -82,4 +82,293 @@
             padding-bottom: 15px;
         }
         .profile-tabs a { color: var(--gris-texto); font-weight: 600; font-size: 15px; cursor: pointer; }
-        .profile-tabs a.activo { color: var(--azul-rey); border-bottom: 3
+        .profile-tabs a.activo { color: var(--azul-rey); border-bottom: 3px solid var(--dorado); padding-bottom: 15px; margin-bottom: -16px; }
+
+        .profile-grid-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
+        
+        .card-section {
+            background: var(--blanco);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--sombra-tarjeta);
+            border: 1px solid var(--gris-claro);
+            margin-bottom: 30px;
+        }
+        .card-title { font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+        
+        .skill-item { margin-bottom: 15px; }
+        .skill-header { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+        .skill-bar-bg { width: 100%; height: 8px; background-color: var(--gris-claro); border-radius: 4px; overflow: hidden; }
+        .skill-bar-fill { height: 100%; background-color: var(--azul-rey); border-radius: 4px; }
+        
+        .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .portfolio-item { border-radius: 12px; overflow: hidden; border: 1px solid var(--gris-claro); transition: 0.3s; cursor: pointer; }
+        .portfolio-item:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-color: var(--dorado); }
+        .portfolio-img { width: 100%; height: 120px; background-color: var(--azul-oscuro); display: flex; justify-content: center; align-items: center; position: relative; }
+        .portfolio-img i { font-size: 30px; color: var(--blanco); }
+        .portfolio-info { padding: 15px; }
+        .portfolio-info h4 { font-size: 14px; margin-bottom: 5px; color: var(--azul-oscuro); font-weight: 700; }
+        .portfolio-info p { font-size: 12px; color: var(--gris-texto); }
+
+        /* Transición suave para las pestañas del perfil */
+        .tab-content {
+            animation: fadeInTab 0.4s ease-out;
+        }
+        @keyframes fadeInTab {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo-container">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <h2>UBA <span>ViveTalentos</span></h2>
+        </div>
+        <nav class="nav-menu">
+            <a href="dashboard.html"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="carreras.html"><i class="fa-solid fa-compass"></i> Explorar carreras</a>
+            <a href="retos.html"><i class="fa-solid fa-flask"></i> Simulacros y retos</a>
+            <a href="aliados.html"><i class="fa-solid fa-handshake"></i> Empresas aliadas</a>
+            <a href="perfil.html" class="activo"><i class="fa-regular fa-user"></i> Mi Perfil</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <div class="user-actions">
+                <div class="user-profile-mini">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span>Yudresky P.</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="profile-hero">
+            <div class="avatar-container">
+                <i class="fa-solid fa-user-tie"></i>
+                <div class="status-dot"></div>
+            </div>
+            
+            <div class="profile-info">
+                <h1>Yudresky Parra <i class="fa-solid fa-circle-check" title="Perfil Verificado"></i></h1>
+                <p class="profile-subtitle">Estudiante de Comunicación Social | UBA | 7mo Trimestre</p>
+                <div class="profile-contact">
+                    <span><i class="fa-solid fa-location-dot"></i> Maracay, Venezuela</span>
+                    <span><i class="fa-regular fa-envelope"></i> yudresky.parra@uba.edu.ve</span>
+                </div>
+                <p class="profile-bio">Apasionada por contar historias que informan, conectan e inspiran. Me especializo en comunicación digital, producción audiovisual y narrativas multiplataforma con enfoque social. Soy organizada, creativa y me adapto fácilmente a equipos multidisciplinarios.</p>
+            </div>
+
+            <div class="profile-stats-row">
+                <div class="p-stat-box">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <h3>16</h3>
+                    <p>Proyectos</p>
+                </div>
+                <div class="p-stat-box">
+                    <i class="fa-solid fa-eye"></i>
+                    <h3>2,845</h3>
+                    <p>Visualizaciones</p>
+                </div>
+                <div class="p-stat-box">
+                    <i class="fa-solid fa-star"></i>
+                    <h3>98%</h3>
+                    <p>Valoración</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="profile-tabs">
+            <a class="tab-link activo" onclick="openTab(event, 'tab-resumen')">Resumen</a>
+            <a class="tab-link" onclick="openTab(event, 'tab-portafolio')">Portafolio</a>
+            <a class="tab-link" onclick="openTab(event, 'tab-proyectos')">Proyectos</a>
+            <a class="tab-link" onclick="openTab(event, 'tab-evidencias')">Evidencias</a>
+            <a class="tab-link" onclick="openTab(event, 'tab-reconocimientos')">Reconocimientos</a>
+        </div>
+
+        <div class="tabs-container">
+            
+            <div id="tab-resumen" class="tab-content" style="display: block;">
+                <div class="profile-grid-layout">
+                    
+                    <div>
+                        <div class="card-section">
+                            <h3 class="card-title"><i class="fa-regular fa-user"></i> Sobre mí</h3>
+                            <p style="font-size: 13px; line-height: 1.6;">Estudiante de Comunicación Social con enfoque en narrativas digitales. Me motiva investigar, crear y comunicar de forma que genere un impacto positivo.</p>
+                            <div style="background: var(--gris-fondo); padding: 15px; border-left: 3px solid var(--dorado); margin-top: 15px; font-style: italic; font-size: 13px;">
+                                "Creo en el poder de las historias bien contadas para transformar realidades."
+                            </div>
+                        </div>
+
+                        <div class="card-section">
+                            <h3 class="card-title"><i class="fa-solid fa-sliders"></i> Habilidades</h3>
+                            <div class="skill-item">
+                                <div class="skill-header"><span>Redacción y Storytelling</span> <span>95%</span></div>
+                                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 95%;"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-header"><span>Producción Audiovisual</span> <span>90%</span></div>
+                                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-header"><span>Edición de Video</span> <span>85%</span></div>
+                                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-header"><span>Comunicación Digital</span> <span>90%</span></div>
+                                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="card-section">
+                            <h3 class="card-title"><i class="fa-regular fa-star"></i> Portafolio Destacado <a href="#" style="font-size: 13px; color: var(--azul-rey);">Ver todo</a></h3>
+                            <div class="portfolio-grid">
+                                <div class="portfolio-item">
+                                    <div class="portfolio-img"><i class="fa-solid fa-microphone-lines"></i></div>
+                                    <div class="portfolio-info">
+                                        <h4>Podcast Documental</h4>
+                                        <p>Voces que inspiran</p>
+                                    </div>
+                                </div>
+                                <div class="portfolio-item">
+                                    <div class="portfolio-img" style="background-color: var(--dorado);"><i class="fa-solid fa-video"></i></div>
+                                    <div class="portfolio-info">
+                                        <h4>Reel Informativo</h4>
+                                        <p>Salud mental en jóvenes</p>
+                                    </div>
+                                </div>
+                                <div class="portfolio-item">
+                                    <div class="portfolio-img" style="background-color: #34495E;"><i class="fa-solid fa-bullhorn"></i></div>
+                                    <div class="portfolio-info">
+                                        <h4>Campaña Digital</h4>
+                                        <p>Cuida tu voz</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-section">
+                            <h3 class="card-title"><i class="fa-solid fa-award"></i> Reconocimientos y Evidencias</h3>
+                            <div style="display: flex; gap: 15px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--gris-claro);">
+                                <i class="fa-solid fa-trophy" style="color: var(--dorado); font-size: 24px;"></i>
+                                <div>
+                                    <h4 style="font-size: 14px; margin-bottom: 3px; color: var(--azul-oscuro); font-weight: 700;">Mención Honorífica</h4>
+                                    <p style="font-size: 12px; color: var(--gris-texto);">Mejor Proyecto Audiovisual - UBA 2024</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 15px; align-items: center; padding: 10px 0;">
+                                <i class="fa-solid fa-file-pdf" style="color: #E74C3C; font-size: 24px;"></i>
+                                <div>
+                                    <h4 style="font-size: 14px; margin-bottom: 3px; color: var(--azul-oscuro); font-weight: 700;">Certificado Taller de Podcast</h4>
+                                    <p style="font-size: 12px; color: var(--gris-texto);">PDF Documento Valido</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="tab-portafolio" class="tab-content" style="display: none;">
+                <div class="card-section">
+                    <h3 class="card-title"><i class="fa-solid fa-folder-open" style="color: var(--dorado); margin-right: 10px;"></i> Galería de Portafolio</h3>
+                    <p style="font-size: 14px; color: var(--gris-texto); margin-bottom: 20px;">Aquí podrás explorar todos los trabajos creativos, diseños y producciones audiovisuales en detalle.</p>
+                    <div class="portfolio-grid">
+                        <div class="portfolio-item"><div class="portfolio-img"><i class="fa-solid fa-image"></i></div><div class="portfolio-info"><h4>Identidad Visual</h4><p>Diseño de Marca</p></div></div>
+                        <div class="portfolio-item"><div class="portfolio-img" style="background-color: #E74C3C;"><i class="fa-solid fa-pen-nib"></i></div><div class="portfolio-info"><h4>Copywriting</h4><p>Textos Persuasivos</p></div></div>
+                        <div class="portfolio-item"><div class="portfolio-img" style="background-color: #27AE60;"><i class="fa-solid fa-camera"></i></div><div class="portfolio-info"><h4>Sesión Fotográfica</h4><p>Evento Institucional</p></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-proyectos" class="tab-content" style="display: none;">
+                <div class="card-section">
+                    <h3 class="card-title"><i class="fa-solid fa-briefcase" style="color: var(--dorado); margin-right: 10px;"></i> Proyectos Colaborativos</h3>
+                    <p style="font-size: 14px; color: var(--gris-texto); margin-bottom: 20px;">Lista de campañas, simulacros y retos corporativos desarrollados en equipo.</p>
+                    <div style="padding: 20px; border: 1px dashed var(--gris-claro); border-radius: 8px; text-align: center;">
+                        <i class="fa-solid fa-users-gear" style="font-size: 30px; color: var(--gris-claro); margin-bottom: 10px;"></i>
+                        <h4 style="font-size: 15px; color: var(--azul-oscuro);">Campaña Ecológica UBA</h4>
+                        <p style="font-size: 13px; color: var(--gris-texto);">Rol: Productora Audiovisual | Fecha: Junio 2026</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-evidencias" class="tab-content" style="display: none;">
+                <div class="card-section">
+                    <h3 class="card-title"><i class="fa-solid fa-file-pdf" style="color: var(--dorado); margin-right: 10px;"></i> Documentos y Evidencias</h3>
+                    <p style="font-size: 14px; color: var(--gris-texto); margin-bottom: 20px;">Descarga los respaldos académicos, guiones técnicos e informes de métricas.</p>
+                    <ul style="list-style: none;">
+                        <li style="display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid var(--gris-claro);">
+                            <div style="display: flex; gap: 15px; align-items: center;">
+                                <i class="fa-solid fa-file-lines" style="color: var(--azul-rey); font-size: 20px;"></i>
+                                <div><h4 style="font-size: 14px; color: var(--azul-oscuro);">Guion Técnico - Podcast</h4><p style="font-size: 12px; color: var(--gris-texto);">PDF • 2.4 MB</p></div>
+                            </div>
+                            <button style="background: none; border: none; color: var(--azul-rey); cursor: pointer; font-weight: bold;"><i class="fa-solid fa-download"></i></button>
+                        </li>
+                        <li style="display: flex; justify-content: space-between; padding: 15px 0;">
+                            <div style="display: flex; gap: 15px; align-items: center;">
+                                <i class="fa-solid fa-file-excel" style="color: #27AE60; font-size: 20px;"></i>
+                                <div><h4 style="font-size: 14px; color: var(--azul-oscuro);">Parrilla de Contenidos RRSS</h4><p style="font-size: 12px; color: var(--gris-texto);">XLSX • 1.1 MB</p></div>
+                            </div>
+                            <button style="background: none; border: none; color: var(--azul-rey); cursor: pointer; font-weight: bold;"><i class="fa-solid fa-download"></i></button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="tab-reconocimientos" class="tab-content" style="display: none;">
+                <div class="card-section">
+                    <h3 class="card-title"><i class="fa-solid fa-medal" style="color: var(--dorado); margin-right: 10px;"></i> Logros e Insignias</h3>
+                    <p style="font-size: 14px; color: var(--gris-texto); margin-bottom: 20px;">Historial de valoraciones otorgadas por docentes y empresas aliadas de la UBA.</p>
+                    <div style="display: flex; gap: 20px;">
+                        <div style="text-align: center; width: 100px;">
+                            <div style="width: 80px; height: 80px; background: #FFF9ED; border-radius: 50%; border: 2px solid var(--dorado); display: flex; justify-content: center; align-items: center; margin: 0 auto 10px auto;">
+                                <i class="fa-solid fa-star" style="color: var(--dorado); font-size: 30px;"></i>
+                            </div>
+                            <h4 style="font-size: 12px; color: var(--azul-oscuro);">Talento Top</h4>
+                        </div>
+                        <div style="text-align: center; width: 100px;">
+                            <div style="width: 80px; height: 80px; background: #EBF4FF; border-radius: 50%; border: 2px solid var(--azul-rey); display: flex; justify-content: center; align-items: center; margin: 0 auto 10px auto;">
+                                <i class="fa-solid fa-pen-nib" style="color: var(--azul-rey); font-size: 30px;"></i>
+                            </div>
+                            <h4 style="font-size: 12px; color: var(--azul-oscuro);">Mejor Copy</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function openTab(evt, tabName) {
+            evt.preventDefault(); // Evita que la página salte al hacer clic
+            
+            // 1. Ocultar todos los contenidos de las pestañas
+            var tabcontent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            
+            // 2. Quitar la clase "activo" de todos los enlaces de pestañas
+            var tablinks = document.getElementsByClassName("tab-link");
+            for (var i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" activo", "");
+            }
+            
+            // 3. Mostrar la pestaña seleccionada y poner el botón presionado en estado activo
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " activo";
+        }
+    </script>
+</body>
+</html>
