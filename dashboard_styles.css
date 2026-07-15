@@ -1,0 +1,176 @@
+
+        /* Estilos del Hero (importados del perfil) */
+        .profile-hero {
+            background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-rey) 100%);
+            border-radius: 16px;
+            padding: 40px;
+            color: var(--blanco);
+            display: flex;
+            gap: 30px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px rgba(0,59,142,0.1);
+            position: relative;
+        }
+        .avatar-container { position: relative; width: 150px; height: 150px; }
+        .avatar-container i.fa-user-tie {
+            width: 100%; height: 100%; border-radius: 50%;
+            border: 4px solid var(--dorado); background: var(--blanco);
+            display: flex; justify-content: center; align-items: center;
+            font-size: 60px; color: var(--azul-rey);
+        }
+        .status-dot {
+            position: absolute; bottom: 10px; right: 10px; width: 20px; height: 20px;
+            background-color: var(--verde-exito); border: 3px solid var(--azul-oscuro); border-radius: 50%;
+        }
+        .profile-info { flex-grow: 1; }
+        .profile-info h1 { color: var(--blanco); font-size: 28px; margin-bottom: 5px; display: flex; align-items: center; gap: 10px; }
+        .profile-info h1 i { color: var(--dorado); font-size: 20px; }
+        .profile-subtitle { font-size: 15px; margin-bottom: 15px; font-weight: 600; opacity: 0.9; }
+        .profile-contact { display: flex; gap: 20px; font-size: 13px; margin-bottom: 15px; opacity: 0.8; }
+        .profile-bio { font-size: 14px; line-height: 1.6; max-width: 800px; opacity: 0.9; margin-bottom: 20px; }
+        
+        .profile-stats-row { display: flex; gap: 15px; position: absolute; top: 40px; right: 40px; }
+        .p-stat-box {
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(5px);
+            padding: 15px; border-radius: 12px; text-align: center; min-width: 100px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .p-stat-box i { font-size: 20px; margin-bottom: 8px; color: var(--blanco); }
+        .p-stat-box h3 { color: var(--blanco); font-size: 18px; margin-bottom: 2px; }
+        .p-stat-box p { font-size: 10px; opacity: 0.8; text-transform: uppercase; }
+
+        /* Estilos de la Cuadrícula del Portafolio (Showcase) */
+        .showcase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--gris-claro);
+        }
+        .showcase-header h2 {
+            font-size: 24px;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .showcase-card {
+            background: var(--blanco);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            border: 1px solid var(--gris-claro);
+            position: relative;
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,43,94,0.15);
+            border-color: var(--accent-gold);
+        }
+
+        .showcase-img {
+            width: 100%;
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .showcase-img::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        .showcase-card:hover .showcase-img::before {
+            opacity: 0.9;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 60px;
+            height: 60px;
+            background: rgba(201, 154, 46, 0.9);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            opacity: 0;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding-left: 5px; /* Centrar icono de play visualmente */
+        }
+
+        .showcase-card:hover .play-overlay {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .showcase-content {
+            padding: 25px;
+        }
+
+        .showcase-content h3 {
+            color: var(--primary-blue);
+            font-size: 20px;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+        }
+
+        .showcase-card:hover .showcase-content h3 {
+            color: var(--accent-gold);
+        }
+
+        .showcase-content p {
+            color: var(--gris-texto);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .showcase-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--gris-claro);
+            padding-top: 15px;
+            font-size: 12px;
+            color: #94A3B8;
+            font-weight: 600;
+        }
+    
