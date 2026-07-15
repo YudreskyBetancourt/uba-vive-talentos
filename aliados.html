@@ -3,63 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explorar Talento UBA - Aliados</title>
+    <title>Directorio de Empresas - UBA Vive Talentos</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Estilos específicos para el Buscador de Talentos */
+        /* Estilos específicos para el Directorio de Empresas (Vista Estudiante) */
+        .page-header { margin-bottom: 30px; }
+        .page-header h1 { font-size: 32px; margin-bottom: 10px; color: var(--azul-oscuro); display: flex; align-items: center; gap: 15px; }
+        .page-header h1 i { color: var(--dorado); }
+        .page-header p { font-size: 16px; color: var(--gris-texto); max-width: 800px; line-height: 1.6; }
+
         .filters-container {
             background: var(--blanco);
             padding: 20px;
             border-radius: 12px;
             box-shadow: var(--sombra-tarjeta);
             margin-bottom: 30px;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+            display: flex;
             gap: 15px;
             border: 1px solid var(--gris-claro);
+            align-items: center;
         }
-        .filter-group { display: flex; flex-direction: column; }
+        .filter-group { flex-grow: 1; display: flex; flex-direction: column; }
         .filter-group label { font-size: 12px; font-weight: 700; color: var(--azul-oscuro); margin-bottom: 8px; }
         .filter-group select, .filter-group input { 
-            padding: 10px; border: 1px solid var(--gris-claro); border-radius: 8px; font-family: 'Open Sans'; font-size: 13px; color: var(--gris-texto); outline: none;
+            padding: 12px; border: 1px solid var(--gris-claro); border-radius: 8px; font-family: 'Open Sans'; font-size: 13px; color: var(--gris-texto); outline: none; background: #FAFCFF;
         }
+        .filter-group input:focus, .filter-group select:focus { border-color: var(--azul-rey); }
 
-        .talent-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+        .companies-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
         
-        .talent-card {
+        .company-card {
             background: var(--blanco);
             border-radius: 16px;
             padding: 25px;
-            box-shadow: var(--sombra-tarjeta);
             border: 1px solid var(--gris-claro);
+            box-shadow: var(--sombra-tarjeta);
             transition: 0.3s;
+            display: flex;
+            flex-direction: column;
         }
-        .talent-card:hover { transform: translateY(-3px); box-shadow: var(--sombra-hover); border-color: var(--dorado); }
+        .company-card:hover { transform: translateY(-5px); box-shadow: var(--sombra-hover); border-color: var(--azul-rey); }
         
-        .talent-header { display: flex; gap: 15px; margin-bottom: 15px; align-items: center; }
-        .talent-avatar { width: 60px; height: 60px; border-radius: 50%; background-color: var(--azul-rey); display: flex; justify-content: center; align-items: center; color: white; font-size: 24px; border: 2px solid var(--dorado); }
-        .talent-info h3 { font-size: 18px; margin-bottom: 4px; }
-        .talent-info p { font-size: 12px; color: var(--gris-texto); margin-bottom: 4px; }
-        .talent-status { font-size: 11px; font-weight: 700; color: var(--verde-exito); display: flex; align-items: center; gap: 5px; }
+        .company-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: var(--gris-fondo);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            color: var(--azul-rey);
+            border: 1px solid var(--gris-claro);
+        }
+        .company-info h3 { font-size: 18px; color: var(--azul-oscuro); margin-bottom: 4px; }
+        .company-info p { font-size: 12px; font-weight: 600; color: var(--dorado); }
         
-        .talent-tags { display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap; }
-        .talent-tags span { background: var(--gris-fondo); padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; color: var(--azul-oscuro); border: 1px solid var(--gris-claro); }
+        .company-desc { font-size: 13px; color: var(--gris-texto); line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
         
-        .mini-projects { display: flex; gap: 10px; margin-bottom: 20px; }
-        .mini-projects div { height: 60px; flex: 1; background: var(--azul-oscuro); border-radius: 8px; opacity: 0.8; }
-        .mini-projects div:nth-child(2) { background: var(--dorado); }
-        .mini-projects div:nth-child(3) { background: #34495E; }
-
-        .talent-actions { display: flex; gap: 10px; }
-        .talent-actions button { flex: 1; padding: 10px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; transition: 0.3s; font-family: 'Open Sans'; }
-        .btn-view { background: transparent; border: 1px solid var(--gris-claro); color: var(--azul-oscuro); }
-        .btn-view:hover { border-color: var(--azul-rey); color: var(--azul-rey); }
-        .btn-contact { background: transparent; border: 1px solid var(--gris-claro); color: var(--azul-oscuro); }
-        .btn-contact:hover { border-color: var(--azul-rey); color: var(--azul-rey); }
-        .btn-save { background: var(--dorado-brillante); border: none; color: var(--azul-oscuro); }
-        .btn-save:hover { background: var(--dorado); }
+        .company-stats {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--gris-fondo);
+            border-bottom: 1px solid var(--gris-fondo);
+            padding: 12px 0;
+            margin-bottom: 20px;
+        }
+        .c-stat { text-align: center; }
+        .c-stat span { display: block; font-size: 16px; font-weight: 700; color: var(--azul-oscuro); }
+        .c-stat small { font-size: 10px; color: var(--gris-texto); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+        
+        .company-actions { display: flex; gap: 10px; }
+        .btn-ver-empresa { flex: 1; text-align: center; padding: 12px 10px; border-radius: 8px; font-size: 13px; font-weight: 600; background: var(--gris-fondo); color: var(--azul-oscuro); transition: 0.3s; }
+        .btn-ver-empresa:hover { background: var(--azul-claro); color: var(--azul-rey); }
+        .btn-ver-retos { flex: 1; text-align: center; padding: 12px 10px; border-radius: 8px; font-size: 13px; font-weight: 700; background: var(--azul-oscuro); color: var(--blanco); transition: 0.3s; }
+        .btn-ver-retos:hover { background: var(--azul-rey); box-shadow: 0 4px 10px rgba(0,59,142,0.2); }
     </style>
 </head>
 <body>
@@ -70,15 +91,15 @@
             <h2>UBA <span>ViveTalentos</span></h2>
         </div>
         <nav class="nav-menu">
-            <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="dashboard.html"><i class="fa-solid fa-house"></i> Inicio</a>
             <a href="carreras.html"><i class="fa-solid fa-compass"></i> Explorar carreras</a>
             <a href="retos.html"><i class="fa-solid fa-flask"></i> Simulacros y retos</a>
             <a href="aliados.html" class="activo"><i class="fa-solid fa-handshake"></i> Empresas aliadas</a>
             <a href="perfil.html"><i class="fa-regular fa-user"></i> Mi Perfil</a>
         </nav>
-        <div class="sidebar-footer-card" style="background: var(--azul-rey);">
-            <h4><i class="fa-solid fa-briefcase"></i> Zona Empresa</h4>
-            <p>Conecta hoy con el talento que transforma el mañana.</p>
+        <div class="sidebar-footer-card">
+            <h4><i class="fa-solid fa-star"></i> Tu talento impacta</h4>
+            <p>Sigue explorando, aprendiendo y conectando con oportunidades del mundo profesional.</p>
         </div>
     </aside>
 
@@ -86,93 +107,154 @@
         <header class="topbar">
             <div class="search-bar">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Buscar por palabra clave...">
+                <input type="text" placeholder="Buscar empresas...">
             </div>
             <div class="user-actions">
+                <div class="notification-icon">
+                    <i class="fa-regular fa-bell"></i>
+                    <div class="notification-badge">3</div>
+                </div>
                 <div class="user-profile-mini">
-                    <i class="fa-solid fa-building"></i>
-                    <span>Mi Empresa Aliada</span>
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span>Yudresky P.</span>
                 </div>
             </div>
         </header>
 
-        <div class="page-header" style="margin-bottom: 20px;">
-            <div class="header-text">
-                <h1>Explorar portafolios de talento UBA</h1>
-                <p>Descubre estudiantes talentosos, revisa sus portafolios reales y conéctate con el talento que tu empresa necesita. Agencias y corporaciones encuentran aquí su próximo gran talento.</p>
-            </div>
+        <div class="page-header">
+            <h1><i class="fa-solid fa-building"></i> Directorio de Empresas Aliadas</h1>
+            <p>Conoce las agencias, firmas y corporaciones que confían en el talento UBA. Explora sus perfiles, descubre su cultura organizacional y postúlate a los retos que tienen disponibles para tu carrera.</p>
         </div>
 
-        <!-- Filtros de Búsqueda Avanzada -->
         <div class="filters-container">
-            <div class="filter-group">
+            <div class="filter-group" style="flex-grow: 2;">
                 <label>Buscar por nombre</label>
-                <input type="text" placeholder="Nombre, habilidad, proyecto...">
+                <input type="text" placeholder="Ej. Agencia Impacto, LexCorp...">
             </div>
             <div class="filter-group">
-                <label>Carrera</label>
-                <select><option>Todas las carreras</option><option>Comunicación Social</option><option>Derecho</option></select>
+                <label>Sector de la Empresa</label>
+                <select>
+                    <option>Todos los sectores</option>
+                    <option>Marketing y Publicidad</option>
+                    <option>Servicios Legales</option>
+                    <option>Tecnología y Software</option>
+                    <option>Finanzas y Contabilidad</option>
+                </select>
             </div>
             <div class="filter-group">
-                <label>Habilidades</label>
-                <select><option>Selecciona...</option><option>Redacción</option><option>Edición</option></select>
-            </div>
-            <div class="filter-group">
-                <label>Disponibilidad</label>
-                <select><option>Disponible ahora</option><option>Próximo mes</option></select>
-            </div>
-            <div class="filter-group">
-                <label>Ubicación</label>
-                <select><option>Todas</option><option>Maracay</option><option>Remoto</option></select>
+                <label>Oportunidades</label>
+                <select>
+                    <option>Todas</option>
+                    <option>Con Retos Activos</option>
+                    <option>Con Vacantes</option>
+                </select>
             </div>
         </div>
 
-        <!-- Grid de Estudiantes (Talentos) -->
-        <div class="talent-grid">
+        <div class="companies-grid">
             
-            <!-- Tarjeta Yudresky (Comunicación) -->
-            <div class="talent-card">
-                <div class="talent-header">
-                    <div class="talent-avatar"><i class="fa-solid fa-user-tie"></i></div>
-                    <div class="talent-info">
-                        <h3>Yudresky Parra <i class="fa-solid fa-bookmark" style="color: var(--dorado); float: right;"></i></h3>
-                        <p>Comunicación Social • Maracay, Aragua</p>
-                        <div class="talent-status"><i class="fa-solid fa-circle"></i> Disponible para prácticas</div>
+            <!-- Empresa 1: Agencia de Marketing (Ideal para tu rubro) -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div class="company-logo" style="color: #E1306C;"><i class="fa-solid fa-bullhorn"></i></div>
+                    <div class="company-info">
+                        <h3>Agencia Impacto Digital</h3>
+                        <p>Marketing y Publicidad</p>
                     </div>
                 </div>
-                <div class="talent-tags">
-                    <span>Redacción</span><span>Producción Audiovisual</span><span>Edición</span>
+                <p class="company-desc">Agencia especializada en estrategias de conversión, gestión de redes sociales y branding para marcas en crecimiento a nivel nacional e internacional.</p>
+                <div class="company-stats">
+                    <div class="c-stat"><span>2</span><small>Retos Activos</small></div>
+                    <div class="c-stat"><span>1</span><small>Vacante</small></div>
+                    <div class="c-stat"><span>8</span><small>UBA Contratados</small></div>
                 </div>
-                <div class="mini-projects">
-                    <div></div><div></div><div></div>
-                </div>
-                <div class="talent-actions">
-                    <button class="btn-view" onclick="window.location.href='perfil.html'"><i class="fa-regular fa-eye"></i> Ver portafolio</button>
-                    <button class="btn-contact"><i class="fa-regular fa-comment"></i> Contactar</button>
-                    <button class="btn-save"><i class="fa-regular fa-bookmark"></i> Guardar</button>
+                <div class="company-actions">
+                    <button class="btn-ver-empresa"><i class="fa-regular fa-building"></i> Perfil</button>
+                    <a href="retos.html" style="flex: 1;"><button class="btn-ver-retos" style="width: 100%;">Ver Retos</button></a>
                 </div>
             </div>
 
-            <!-- Tarjeta Andrés (Derecho) -->
-            <div class="talent-card">
-                <div class="talent-header">
-                    <div class="talent-avatar" style="background: var(--gris-texto); border-color: var(--gris-claro);"><i class="fa-solid fa-scale-balanced"></i></div>
-                    <div class="talent-info">
-                        <h3>Andrés Pineda <i class="fa-regular fa-bookmark" style="color: var(--gris-claro); float: right;"></i></h3>
-                        <p>Derecho • Valencia, Carabobo</p>
-                        <div class="talent-status"><i class="fa-solid fa-circle"></i> Disponible</div>
+            <!-- Empresa 2: Servicios Legales -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div class="company-logo" style="color: #2C3E50;"><i class="fa-solid fa-scale-unbalanced"></i></div>
+                    <div class="company-info">
+                        <h3>LexCorp Abogados</h3>
+                        <p>Servicios Legales y Jurídicos</p>
                     </div>
                 </div>
-                <div class="talent-tags">
-                    <span>Análisis jurídico</span><span>Investigación</span><span>Redacción legal</span>
+                <p class="company-desc">Firma legal con más de 15 años de experiencia en derecho penal, civil y corporativo. Participamos activamente en simulacros de juicios orales.</p>
+                <div class="company-stats">
+                    <div class="c-stat"><span>1</span><small>Retos Activos</small></div>
+                    <div class="c-stat"><span>0</span><small>Vacantes</small></div>
+                    <div class="c-stat"><span>12</span><small>UBA Contratados</small></div>
                 </div>
-                <div class="mini-projects">
-                    <div style="background: #2C3E50;"></div><div style="background: #7F8C8D;"></div><div style="background: #95A5A6;"></div>
+                <div class="company-actions">
+                    <button class="btn-ver-empresa"><i class="fa-regular fa-building"></i> Perfil</button>
+                    <a href="retos.html" style="flex: 1;"><button class="btn-ver-retos" style="width: 100%;">Ver Retos</button></a>
                 </div>
-                <div class="talent-actions">
-                    <button class="btn-view"><i class="fa-regular fa-eye"></i> Ver portafolio</button>
-                    <button class="btn-contact"><i class="fa-regular fa-comment"></i> Contactar</button>
-                    <button class="btn-save"><i class="fa-regular fa-bookmark"></i> Guardar</button>
+            </div>
+
+            <!-- Empresa 3: Contabilidad -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div class="company-logo" style="color: #27AE60;"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="company-info">
+                        <h3>EcoClean Soluciones</h3>
+                        <p>Administración y Finanzas</p>
+                    </div>
+                </div>
+                <p class="company-desc">Empresa líder en productos ecológicos. Buscamos talento joven para optimizar nuestros procesos contables y modelos de negocios sustentables.</p>
+                <div class="company-stats">
+                    <div class="c-stat"><span>1</span><small>Retos Activos</small></div>
+                    <div class="c-stat"><span>2</span><small>Vacantes</small></div>
+                    <div class="c-stat"><span>5</span><small>UBA Contratados</small></div>
+                </div>
+                <div class="company-actions">
+                    <button class="btn-ver-empresa"><i class="fa-regular fa-building"></i> Perfil</button>
+                    <a href="retos.html" style="flex: 1;"><button class="btn-ver-retos" style="width: 100%;">Ver Retos</button></a>
+                </div>
+            </div>
+
+            <!-- Empresa 4: Tecnología -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div class="company-logo" style="color: #2980B9;"><i class="fa-solid fa-code"></i></div>
+                    <div class="company-info">
+                        <h3>NovaTech Innovación</h3>
+                        <p>Tecnología y Software</p>
+                    </div>
+                </div>
+                <p class="company-desc">Desarrolladora de software y aplicaciones móviles. Ofrecemos retos de lógica de programación y diseño de interfaces para estudiantes de sistemas.</p>
+                <div class="company-stats">
+                    <div class="c-stat"><span>3</span><small>Retos Activos</small></div>
+                    <div class="c-stat"><span>1</span><small>Vacante</small></div>
+                    <div class="c-stat"><span>14</span><small>UBA Contratados</small></div>
+                </div>
+                <div class="company-actions">
+                    <button class="btn-ver-empresa"><i class="fa-regular fa-building"></i> Perfil</button>
+                    <a href="retos.html" style="flex: 1;"><button class="btn-ver-retos" style="width: 100%;">Ver Retos</button></a>
+                </div>
+            </div>
+
+            <!-- Empresa 5: Audiovisual -->
+            <div class="company-card">
+                <div class="company-header">
+                    <div class="company-logo" style="color: #8E44AD;"><i class="fa-solid fa-video"></i></div>
+                    <div class="company-info">
+                        <h3>CineArts Producciones</h3>
+                        <p>Producción Audiovisual</p>
+                    </div>
+                </div>
+                <p class="company-desc">Productora independiente en búsqueda de mentes creativas para la redacción de guiones, dirección de arte y edición de documentales cortos.</p>
+                <div class="company-stats">
+                    <div class="c-stat"><span>1</span><small>Retos Activos</small></div>
+                    <div class="c-stat"><span>0</span><small>Vacantes</small></div>
+                    <div class="c-stat"><span>3</span><small>UBA Contratados</small></div>
+                </div>
+                <div class="company-actions">
+                    <button class="btn-ver-empresa"><i class="fa-regular fa-building"></i> Perfil</button>
+                    <a href="retos.html" style="flex: 1;"><button class="btn-ver-retos" style="width: 100%;">Ver Retos</button></a>
                 </div>
             </div>
 
