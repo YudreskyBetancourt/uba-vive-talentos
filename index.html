@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - UBA Vive Talentos</title>
-    <!-- Fuentes: Montserrat (Títulos) y Open Sans (Textos) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <!-- Iconos de FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -36,13 +34,11 @@
         .nav-menu a { display: flex; align-items: center; gap: 15px; padding: 12px 20px; color: var(--blanco); font-weight: 600; border-radius: 8px; transition: 0.3s; }
         .nav-menu a i { font-size: 18px; width: 20px; text-align: center; }
         
-        /* Estado inactivo al pasar el mouse */
         .nav-menu a:hover { background-color: rgba(255,255,255,0.1); }
         
-        /* Estado activo (El dorado de tus mockups) */
+        /* Estado activo para Inicio */
         .nav-menu a.activo { background-color: var(--dorado); color: var(--azul-marino); }
 
-        /* Tarjeta inferior del sidebar */
         .sidebar-footer-card { background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); padding: 20px; border-radius: 12px; border-left: 4px solid var(--dorado); margin-top: auto; }
         .sidebar-footer-card h4 { color: var(--dorado); font-size: 14px; margin-bottom: 5px; }
         .sidebar-footer-card p { font-size: 12px; color: rgba(255,255,255,0.8); }
@@ -61,10 +57,10 @@
         .btn-registro { background-color: var(--azul-marino); color: var(--blanco); padding: 10px 20px; border-radius: 8px; font-weight: 600; transition: 0.3s; }
         .btn-registro:hover { background-color: var(--azul-rey); }
 
-        /* Banner Hero (Estilo Mockup) */
+        /* Banner Hero */
         .banner-hero { background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-rey) 100%); border-radius: 16px; padding: 50px; color: var(--blanco); display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; box-shadow: 0 10px 20px rgba(0,59,142,0.2); position: relative; overflow: hidden; }
         .banner-content { position: relative; z-index: 2; max-width: 60%; }
-        .banner-hero h1 { color: var(--blanco); font-size: 36px; margin-bottom: 15px; }
+        .banner-hero h1 { color: var(--blanco); font-size: 36px; margin-bottom: 15px; line-height: 1.2; }
         .banner-hero h1 span { color: var(--dorado); }
         .banner-hero p { font-size: 16px; margin-bottom: 25px; opacity: 0.9; line-height: 1.6; }
         .btn-dorado { background-color: var(--dorado); color: var(--azul-marino); padding: 12px 25px; border-radius: 8px; font-weight: bold; font-size: 16px; display: inline-block; transition: 0.3s; }
@@ -94,7 +90,6 @@
 </head>
 <body>
 
-    <!-- MENÚ LATERAL -->
     <aside class="sidebar">
         <div class="logo-container">
             <i class="fa-solid fa-graduation-cap"></i>
@@ -104,10 +99,10 @@
         <nav class="nav-menu">
             <a href="index.html" class="activo"><i class="fa-solid fa-house"></i> Inicio</a>
             <a href="que-es.html"><i class="fa-solid fa-circle-info"></i> ¿Qué es?</a>
-            <a href="#"><i class="fa-solid fa-compass"></i> Explorar carreras</a>
-            <a href="#"><i class="fa-solid fa-folder-open"></i> Portafolios</a>
-            <a href="#"><i class="fa-solid fa-flask"></i> Simulacros y Retos</a>
-            <a href="#"><i class="fa-solid fa-handshake"></i> Empresas aliadas</a>
+            <a href="carreras.html"><i class="fa-solid fa-compass"></i> Explorar carreras</a>
+            <a href="perfil.html"><i class="fa-regular fa-user"></i> Mi Perfil</a>
+            <a href="perfil.html"><i class="fa-solid fa-folder-open"></i> Mi Portafolio</a>
+            <a href="retos.html"><i class="fa-solid fa-flask"></i> Simulacros y Retos</a>
         </nav>
 
         <div class="sidebar-footer-card">
@@ -116,10 +111,8 @@
         </div>
     </aside>
 
-    <!-- ÁREA CENTRAL -->
     <main class="main-content">
         
-        <!-- Top Bar -->
         <header class="topbar">
             <div class="search-bar">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -131,17 +124,15 @@
             </div>
         </header>
 
-        <!-- Banner Principal -->
         <section class="banner-hero">
             <div class="banner-content">
                 <h1>Participa, crea y <span>transforma tu futuro</span></h1>
-                <p>Descubre proyectos, simulaciones y portafolios por área académica. Vive experiencias que fortalecen tus habilidades, conectan con empresas y generan impacto real.</p>
-                <a href="#" class="btn-dorado">Explorar oportunidades <i class="fa-solid fa-arrow-right"></i></a>
+                <p>Descubre proyectos, simulaciones y portafolios por área académica. Vive experiencias que fortalecen tus habilidades, conectan con empresas y generan impacto real desde la universidad virtual.</p>
+                <a href="registro.html" class="btn-dorado">Explorar oportunidades <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <i class="fa-solid fa-laptop-code banner-icon"></i>
         </section>
 
-        <!-- Tarjetas de Estadísticas -->
         <section class="stats-container">
             <div class="stat-card">
                 <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
@@ -173,30 +164,29 @@
             </div>
         </section>
 
-        <!-- Grid de Carreras Destacadas -->
         <div class="section-title">
             <h2>Áreas Académicas Destacadas</h2>
-            <a href="#">Ver todas las carreras <i class="fa-solid fa-angle-right"></i></a>
+            <a href="carreras.html">Ver todas las carreras <i class="fa-solid fa-angle-right"></i></a>
         </div>
 
         <section class="carreras-grid">
             <div class="carrera-card">
                 <i class="fa-solid fa-microphone-lines"></i>
                 <h3>Comunicación Social</h3>
-                <p>Comunica ideas que inspiran y generan impacto en la sociedad mediante formatos digitales.</p>
-                <a href="#" class="link-proyecto">Ver proyectos <i class="fa-solid fa-arrow-right"></i></a>
+                <p>Comunica ideas que inspiran y generan impacto en la sociedad mediante formatos digitales avanzados.</p>
+                <a href="retos.html" class="link-proyecto">Ver proyectos <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="carrera-card">
                 <i class="fa-solid fa-scale-balanced"></i>
                 <h3>Derecho</h3>
-                <p>Defiende la justicia y transforma realidades desde el conocimiento práctico y la ética.</p>
-                <a href="#" class="link-proyecto">Ver simulacros <i class="fa-solid fa-arrow-right"></i></a>
+                <p>Defiende la justicia y transforma realidades desde el conocimiento práctico y la simulación jurídica.</p>
+                <a href="retos.html" class="link-proyecto">Ver simulacros <i class="fa-solid fa-arrow-right"></i></a>
             </div>
             <div class="carrera-card">
                 <i class="fa-solid fa-calculator"></i>
                 <h3>Contaduría Pública</h3>
-                <p>Interpreta datos, genera confianza y apoya la toma de decisiones empresariales.</p>
-                <a href="#" class="link-proyecto">Ver retos <i class="fa-solid fa-arrow-right"></i></a>
+                <p>Interpreta datos, estructura presupuestos y apoya la toma de decisiones estratégicas corporativas.</p>
+                <a href="retos.html" class="link-proyecto">Ver retos <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </section>
 
