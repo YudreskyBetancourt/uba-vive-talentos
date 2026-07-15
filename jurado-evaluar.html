@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluar y Certificar - Portal de Jurado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .prof-header {
+            background: linear-gradient(135deg, #8B0000 0%, #4A0000 100%);
+            border-radius: 16px; padding: 30px; color: white; margin-bottom: 30px;
+        }
+        .prof-header h1 { font-size: 24px; color: var(--accent-gold); margin-bottom: 5px; }
+
+        .eval-grid {
+            display: grid; grid-template-columns: 1fr; gap: 25px; margin-bottom: 50px;
+        }
+
+        .eval-card {
+            background: white; border-radius: 12px; padding: 25px; border: 1px solid var(--gris-claro);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; gap: 20px;
+        }
+
+        .student-col {
+            flex: 1; border-right: 1px solid var(--gris-fondo); padding-right: 20px;
+        }
+
+        .student-info { display: flex; gap: 15px; margin-bottom: 20px; }
+        .student-avatar { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 3px solid #8B0000; }
+        .student-details h3 { font-size: 16px; color: #8B0000; margin-bottom: 2px; }
+        .student-details p { font-size: 12px; color: var(--gris-texto); font-weight: 600; }
+
+        .project-details h4 { font-size: 14px; color: var(--text-dark); margin-bottom: 5px; }
+        .project-details p { font-size: 13px; color: var(--gris-texto); line-height: 1.5; margin-bottom: 10px; }
+        
+        .attachment {
+            display: inline-flex; align-items: center; gap: 8px; background: #F8FAFC; padding: 8px 12px;
+            border-radius: 6px; border: 1px solid var(--gris-claro); font-size: 12px; font-weight: 700;
+            color: #8B0000; text-decoration: none;
+        }
+        .attachment:hover { background: #FEF2F2; border-color: #8B0000; }
+
+        .action-col {
+            flex: 1.5; padding-left: 10px; display: flex; flex-direction: column;
+        }
+
+        .action-title { font-size: 14px; font-weight: 800; color: var(--primary-blue); margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+
+        .form-row { display: flex; gap: 15px; margin-bottom: 15px; }
+        .form-group { flex: 1; }
+        .form-group label { display: block; font-size: 12px; font-weight: 700; color: var(--text-dark); margin-bottom: 5px; }
+        
+        .form-control {
+            width: 100%; padding: 10px; border: 1px solid var(--gris-claro); border-radius: 6px;
+            font-family: 'Open Sans'; font-size: 13px; box-sizing: border-box;
+        }
+        .form-control:focus { outline: none; border-color: #8B0000; }
+
+        .grade-input {
+            width: 80px; font-size: 24px; font-weight: 800; text-align: center; color: #8B0000;
+            padding: 5px; border: 2px solid #8B0000; border-radius: 8px;
+        }
+
+        .btn-action-group { display: flex; gap: 15px; margin-top: auto; }
+        
+        .btn-evaluate {
+            background: #8B0000; color: white; border: none; padding: 12px; flex: 1;
+            border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;
+        }
+        .btn-evaluate:hover { background: #5c0000; }
+
+        .btn-certify {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            color: #92400E; border: 2px solid var(--accent-gold); padding: 12px; flex: 1;
+            border-radius: 8px; font-weight: 800; cursor: pointer; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-certify:hover { box-shadow: 0 5px 15px rgba(217, 119, 6, 0.3); transform: translateY(-2px); }
+
+    </style>
+</head>
+<body class="has-sidebar">
+
+    <aside class="sidebar" style="background: #2C0000;">
+        <div class="logo-container">
+            <i class="fa-solid fa-gavel" style="color: var(--accent-gold);"></i>
+            <h2>Portal <span>Jurados</span></h2>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="dashboard-jurado.html"><i class="fa-solid fa-user-tie"></i> Mi Perfil Profesional</a>
+            <a href="jurado-live.html"><i class="fa-solid fa-chalkboard-user"></i> Aula Live y Retos</a>
+            <a href="jurado-evaluar.html" class="activo"><i class="fa-solid fa-award"></i> Evaluar y Certificar</a>
+            
+            <a href="index.html" style="margin-top: auto; color: #f87171;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+        </nav>
+    </aside>
+
+    <div class="top-bar"><span>UBA ViveTalentos - Ecosistema Académico</span></div>
+
+    <main class="main-content" style="padding-top: 40px;">
+        
+        <div class="prof-header">
+            <h1>Evaluación Académica Oficial</h1>
+            <p style="font-size: 14px; opacity: 0.9;">Califica los proyectos de los estudiantes. Los proyectos excepcionales (100 pts / 20 pts) pueden ser avalados con un <strong>Certificado Oficial UBA</strong> que otorgará honores al alumno en su acto de grado.</p>
+        </div>
+
+        <div class="eval-grid">
+            
+            <!-- Entrega 1 -->
+            <div class="eval-card">
+                <div class="student-col">
+                    <div class="student-info">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150" alt="Alumno" class="student-avatar">
+                        <div class="student-details">
+                            <h3>Yudresky Parra</h3>
+                            <p>Comunicación Social | 7mo Trim.</p>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h4>Proyecto: Campaña Audiovisual "Salvemos el Lago"</h4>
+                        <p>Entrega final para la materia Producción Audiovisual II. El alumno ha adjuntado el enlace al cortometraje y el guion técnico en PDF.</p>
+                        <a href="#" class="attachment"><i class="fa-solid fa-file-pdf"></i> guion_tecnico.pdf</a>
+                        <a href="#" class="attachment"><i class="fa-solid fa-video"></i> Ver Cortometraje</a>
+                    </div>
+                </div>
+                
+                <div class="action-col">
+                    <div class="action-title"><i class="fa-solid fa-clipboard-check"></i> Panel de Calificación</div>
+                    
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 0 0 auto;">
+                            <label>Nota (Pts)</label>
+                            <input type="text" class="grade-input" placeholder="00" value="100">
+                        </div>
+                        <div class="form-group">
+                            <label>Feedback Oficial (Comentario Jurado)</label>
+                            <textarea class="form-control" rows="3" placeholder="Redacta la evaluación académica del proyecto...">El trabajo demuestra un nivel de madurez profesional excepcional. Dominio técnico de cámara y narrativa impecable. Proyecto digno de excelencia académica.</textarea>
+                        </div>
+                    </div>
+
+                    <div class="btn-action-group">
+                        <button class="btn-evaluate"><i class="fa-solid fa-floppy-disk"></i> Guardar Calificación</button>
+                        <button class="btn-certify" title="Otorgar Certificado Oficial de Excelencia UBA">
+                            <i class="fa-solid fa-certificate"></i> Emitir Certificado UBA (Honores)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Entrega 2 -->
+            <div class="eval-card">
+                <div class="student-col">
+                    <div class="student-info">
+                        <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&q=80&w=150" alt="Alumno" class="student-avatar">
+                        <div class="student-details">
+                            <h3>Carlos Márquez</h3>
+                            <p>Ingeniería de Sistemas | 9no Trim.</p>
+                        </div>
+                    </div>
+                    <div class="project-details">
+                        <h4>Proyecto: API REST para Control de Inventario</h4>
+                        <p>Desarrollo de API utilizando Node.js y MongoDB. Documentación en Swagger incluida.</p>
+                        <a href="#" class="attachment"><i class="fa-brands fa-github"></i> Repositorio GitHub</a>
+                    </div>
+                </div>
+                
+                <div class="action-col">
+                    <div class="action-title"><i class="fa-solid fa-clipboard-check"></i> Panel de Calificación</div>
+                    
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 0 0 auto;">
+                            <label>Nota (Pts)</label>
+                            <input type="text" class="grade-input" placeholder="00">
+                        </div>
+                        <div class="form-group">
+                            <label>Feedback Oficial (Comentario Jurado)</label>
+                            <textarea class="form-control" rows="3" placeholder="Redacta la evaluación académica del proyecto..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="btn-action-group">
+                        <button class="btn-evaluate"><i class="fa-solid fa-floppy-disk"></i> Guardar Calificación</button>
+                        <!-- Botón certificado deshabilitado visualmente hasta tener nota perfecta -->
+                        <button class="btn-certify" style="opacity: 0.5; cursor: not-allowed; filter: grayscale(100%);">
+                            <i class="fa-solid fa-certificate"></i> Emitir Certificado UBA (Requiere 100pts)
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

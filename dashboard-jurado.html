@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Jurado - UBA Vive Talentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .prof-header {
+            background: linear-gradient(135deg, #8B0000 0%, #4A0000 100%);
+            border-radius: 16px;
+            padding: 40px;
+            color: white;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px rgba(139,0,0,0.15);
+        }
+        
+        .prof-header-info h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--accent-gold);
+        }
+        
+        .prof-header-info p {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .prof-form-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--gris-claro);
+        }
+
+        .form-group { margin-bottom: 25px; }
+
+        .form-group label {
+            display: block; font-size: 14px; font-weight: 700; color: #8B0000; margin-bottom: 10px;
+        }
+
+        .form-control {
+            width: 100%; padding: 15px; border: 2px solid var(--gris-claro); border-radius: 8px;
+            font-family: 'Open Sans', sans-serif; font-size: 14px; transition: all 0.3s ease; box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-gold); outline: none; box-shadow: 0 0 0 3px rgba(201,154,46,0.2);
+        }
+
+        .photo-upload {
+            text-align: center; margin-bottom: 20px;
+        }
+
+        .photo-upload img {
+            width: 150px; height: 150px; border-radius: 50%; object-fit: cover;
+            border: 4px solid var(--accent-gold); margin-bottom: 15px;
+        }
+
+        .btn-save {
+            background: #8B0000; color: white; padding: 15px 30px; border: none;
+            border-radius: 8px; font-size: 16px; font-weight: 700; cursor: pointer;
+            transition: 0.3s; width: 100%;
+        }
+
+        .btn-save:hover {
+            background: #5c0000; box-shadow: 0 5px 15px rgba(139,0,0,0.3);
+        }
+    </style>
+</head>
+<body class="has-sidebar">
+
+    <aside class="sidebar" style="background: #2C0000;">
+        <div class="logo-container">
+            <i class="fa-solid fa-gavel" style="color: var(--accent-gold);"></i>
+            <h2>Portal <span>Jurados</span></h2>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="dashboard-jurado.html" class="activo"><i class="fa-solid fa-user-tie"></i> Mi Perfil Profesional</a>
+            <a href="jurado-live.html"><i class="fa-solid fa-chalkboard-user"></i> Aula Live y Retos</a>
+            <a href="jurado-evaluar.html"><i class="fa-solid fa-award"></i> Evaluar y Certificar</a>
+            
+            <a href="index.html" style="margin-top: auto; color: #f87171;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+        </nav>
+    </aside>
+
+    <div class="top-bar"><span>UBA ViveTalentos - Ecosistema Académico</span></div>
+
+    <main class="main-content" style="padding-top: 40px;">
+        
+        <div class="prof-header">
+            <div class="prof-header-info">
+                <h1>Bienvenido, Prof. Carlos Mendoza</h1>
+                <p><i class="fa-solid fa-building-columns"></i> Jurado Evaluador | Escuela de Comunicación Social</p>
+            </div>
+        </div>
+
+        <div class="prof-form-section">
+            <h2 style="color: #8B0000; margin-bottom: 25px; border-bottom: 2px solid var(--gris-fondo); padding-bottom: 10px;">Configuración de Perfil Académico</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 40px;">
+                <!-- Columna Foto -->
+                <div class="photo-upload">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200" alt="Profesor">
+                    <button style="background: transparent; color: #8B0000; border: 2px solid #8B0000; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%;">
+                        <i class="fa-solid fa-camera"></i> Cambiar Foto
+                    </button>
+                    
+                    <div style="margin-top: 30px; text-align: left; background: #F8FAFC; padding: 15px; border-radius: 8px; border: 1px solid var(--gris-claro);">
+                        <p style="font-size: 13px; font-weight: 700; color: #8B0000; margin-bottom: 10px;"><i class="fa-solid fa-file-pdf"></i> CV Actual (Público)</p>
+                        <a href="#" style="font-size: 12px; color: var(--text-dark); text-decoration: none;"><i class="fa-solid fa-download"></i> mendoza_cv_2025.pdf</a>
+                    </div>
+                </div>
+
+                <!-- Columna Datos -->
+                <div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label>Nombre Completo</label>
+                            <input type="text" class="form-control" value="Carlos Mendoza">
+                        </div>
+                        <div class="form-group">
+                            <label>Especialidad</label>
+                            <input type="text" class="form-control" value="Producción Audiovisual">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Biografía Profesional (Experiencia y Virtudes)</label>
+                        <textarea class="form-control" rows="5">Con más de 15 años de experiencia en producción para televisión nacional e internacional. Dedicado a guiar a las nuevas generaciones de comunicadores sociales en la narrativa visual.</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Materias o Trimestres que Dicta (Opcional)</label>
+                        <input type="text" class="form-control" value="Producción Audiovisual II (6to Trimestre)">
+                    </div>
+                    
+                    <button class="btn-save"><i class="fa-solid fa-floppy-disk"></i> Guardar Perfil</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

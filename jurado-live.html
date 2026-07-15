@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula Live - Portal de Jurado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .prof-header {
+            background: linear-gradient(135deg, #8B0000 0%, #4A0000 100%);
+            border-radius: 16px; padding: 30px; color: white; margin-bottom: 30px;
+        }
+
+        .prof-header h1 { font-size: 24px; color: var(--accent-gold); margin-bottom: 5px; }
+
+        .live-grid {
+            display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-bottom: 50px;
+        }
+
+        .card-section {
+            background: white; border-radius: 16px; padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid var(--gris-claro);
+        }
+
+        .card-title {
+            font-size: 18px; color: #8B0000; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--gris-fondo); display: flex; align-items: center; gap: 10px;
+        }
+
+        .video-box {
+            background: #000; border-radius: 12px; height: 350px; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; color: white; margin-bottom: 20px; position: relative;
+        }
+
+        .video-box i { font-size: 60px; color: rgba(255,255,255,0.3); margin-bottom: 15px; }
+
+        .live-badge {
+            position: absolute; top: 15px; left: 15px; background: #E53E3E; color: white;
+            padding: 5px 10px; border-radius: 8px; font-size: 12px; font-weight: 800; display: flex; align-items: center; gap: 5px;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+
+        .btn-live {
+            background: #8B0000; color: white; padding: 12px 25px; border: none; border-radius: 8px;
+            font-weight: 700; cursor: pointer; transition: 0.3s;
+        }
+        .btn-live:hover { background: #5c0000; }
+
+        .form-group label { display: block; font-size: 13px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+        .form-control {
+            width: 100%; padding: 12px; border: 2px solid var(--gris-claro); border-radius: 8px;
+            font-family: 'Open Sans', sans-serif; font-size: 13px; margin-bottom: 15px; box-sizing: border-box;
+        }
+
+        .btn-reto {
+            background: var(--accent-gold); color: #8B0000; border: none; padding: 12px; width: 100%;
+            border-radius: 8px; font-weight: 800; cursor: pointer; transition: 0.3s;
+        }
+        .btn-reto:hover { background: #D97706; color: white; }
+
+        .reto-item {
+            background: #F8FAFC; border: 1px solid var(--gris-claro); padding: 15px; border-radius: 8px; margin-bottom: 15px;
+        }
+        .reto-item h4 { font-size: 14px; color: #8B0000; margin-bottom: 5px; }
+        .reto-item p { font-size: 12px; color: var(--gris-texto); }
+    </style>
+</head>
+<body class="has-sidebar">
+
+    <aside class="sidebar" style="background: #2C0000;">
+        <div class="logo-container">
+            <i class="fa-solid fa-gavel" style="color: var(--accent-gold);"></i>
+            <h2>Portal <span>Jurados</span></h2>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="dashboard-jurado.html"><i class="fa-solid fa-user-tie"></i> Mi Perfil Profesional</a>
+            <a href="jurado-live.html" class="activo"><i class="fa-solid fa-chalkboard-user"></i> Aula Live y Retos</a>
+            <a href="jurado-evaluar.html"><i class="fa-solid fa-award"></i> Evaluar y Certificar</a>
+            
+            <a href="index.html" style="margin-top: auto; color: #f87171;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+        </nav>
+    </aside>
+
+    <div class="top-bar"><span>UBA ViveTalentos - Ecosistema Académico</span></div>
+
+    <main class="main-content" style="padding-top: 40px;">
+        
+        <div class="prof-header">
+            <h1>Aula Virtual y Retos Prácticos</h1>
+            <p style="font-size: 14px; opacity: 0.9;">Dicta clases magistrales, explica retos en vivo o publica ejemplos prácticos para entrenar a los estudiantes en escenarios reales del campo laboral.</p>
+        </div>
+
+        <div class="live-grid">
+            
+            <!-- Columna Live -->
+            <div>
+                <div class="card-section">
+                    <h2 class="card-title"><i class="fa-solid fa-video"></i> Transmisión en Vivo (Masterclass)</h2>
+                    
+                    <div class="video-box">
+                        <div class="live-badge"><i class="fa-solid fa-circle"></i> OFF AIR</div>
+                        <i class="fa-solid fa-video-slash"></i>
+                        <p style="font-weight: 600; color: rgba(255,255,255,0.7);">La cámara y micrófono están apagados.</p>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <input type="text" class="form-control" placeholder="Título de la clase (Ej. Cómo afrontar un reto audiovisual)" style="margin-bottom: 0; width: 60%;">
+                        <button class="btn-live"><i class="fa-solid fa-tower-broadcast"></i> Iniciar Transmisión</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna Retos de Ejemplo -->
+            <div>
+                <div class="card-section" style="margin-bottom: 25px;">
+                    <h2 class="card-title"><i class="fa-solid fa-plus"></i> Publicar Reto de Entrenamiento</h2>
+                    <form>
+                        <div class="form-group">
+                            <label>Título del Reto Práctico</label>
+                            <input type="text" class="form-control" placeholder="Ej. Práctica de Guionización">
+                        </div>
+                        <div class="form-group">
+                            <label>Descripción / Instrucciones</label>
+                            <textarea class="form-control" rows="3" placeholder="Sube un escenario simulado..."></textarea>
+                        </div>
+                        <button type="button" class="btn-reto"><i class="fa-solid fa-bullhorn"></i> Publicar Ejemplo</button>
+                    </form>
+                </div>
+
+                <div class="card-section">
+                    <h2 class="card-title"><i class="fa-solid fa-list-check"></i> Retos Activos (Publicados)</h2>
+                    
+                    <div class="reto-item">
+                        <h4>Guionización para Cortometraje</h4>
+                        <p>Simulación de requerimiento de agencia. 15 alumnos participando.</p>
+                    </div>
+                    
+                    <div class="reto-item">
+                        <h4>Análisis de Caso: Crisis de Marca</h4>
+                        <p>Análisis comunicacional. 8 alumnos participando.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
