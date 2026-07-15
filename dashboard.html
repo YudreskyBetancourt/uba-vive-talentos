@@ -3,41 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio | UBA Vive Talentos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Mi Portafolio - UBA Vive Talentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Banner Hero Institucional */
-        .banner-hero {
+        /* Estilos del Hero (importados del perfil) */
+        .profile-hero {
             background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-rey) 100%);
-            border-radius: 20px;
-            padding: 50px;
+            border-radius: 16px;
+            padding: 40px;
             color: var(--blanco);
-            margin-bottom: 30px;
+            display: flex;
+            gap: 30px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px rgba(0,59,142,0.1);
             position: relative;
-            box-shadow: var(--sombra-hover);
         }
-        .banner-hero h1 { color: var(--blanco); font-size: 36px; margin-bottom: 15px; }
-        .banner-hero h1 span { color: var(--dorado); }
-        .banner-hero p { font-size: 16px; opacity: 0.9; margin-bottom: 25px; max-width: 600px; }
+        .avatar-container { position: relative; width: 150px; height: 150px; }
+        .avatar-container i.fa-user-tie {
+            width: 100%; height: 100%; border-radius: 50%;
+            border: 4px solid var(--dorado); background: var(--blanco);
+            display: flex; justify-content: center; align-items: center;
+            font-size: 60px; color: var(--azul-rey);
+        }
+        .status-dot {
+            position: absolute; bottom: 10px; right: 10px; width: 20px; height: 20px;
+            background-color: var(--verde-exito); border: 3px solid var(--azul-oscuro); border-radius: 50%;
+        }
+        .profile-info { flex-grow: 1; }
+        .profile-info h1 { color: var(--blanco); font-size: 28px; margin-bottom: 5px; display: flex; align-items: center; gap: 10px; }
+        .profile-info h1 i { color: var(--dorado); font-size: 20px; }
+        .profile-subtitle { font-size: 15px; margin-bottom: 15px; font-weight: 600; opacity: 0.9; }
+        .profile-contact { display: flex; gap: 20px; font-size: 13px; margin-bottom: 15px; opacity: 0.8; }
+        .profile-bio { font-size: 14px; line-height: 1.6; max-width: 800px; opacity: 0.9; margin-bottom: 20px; }
         
-        /* Stats Grid (Autoridad) */
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
-        .stat-card { background: var(--blanco); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid var(--gris-claro); }
-        .stat-card h3 { font-size: 24px; color: var(--azul-rey); }
-        .stat-card p { font-size: 11px; font-weight: 700; color: var(--gris-texto); text-transform: uppercase; }
+        .profile-stats-row { display: flex; gap: 15px; position: absolute; top: 40px; right: 40px; }
+        .p-stat-box {
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(5px);
+            padding: 15px; border-radius: 12px; text-align: center; min-width: 100px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .p-stat-box i { font-size: 20px; margin-bottom: 8px; color: var(--blanco); }
+        .p-stat-box h3 { color: var(--blanco); font-size: 18px; margin-bottom: 2px; }
+        .p-stat-box p { font-size: 10px; opacity: 0.8; text-transform: uppercase; }
 
-        /* Acceso Rápido (Botones Profesionales) */
-        .action-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px; }
-        .action-btn { background: var(--blanco); border: 1px solid var(--gris-claro); padding: 20px; border-radius: 12px; display: flex; align-items: center; gap: 15px; color: var(--azul-oscuro); font-weight: 600; transition: 0.3s; cursor: pointer; }
-        .action-btn:hover { border-color: var(--dorado); background: #fdfbf7; }
-        .action-btn i { font-size: 20px; color: var(--dorado); }
+        /* Estilos de la Cuadrícula del Portafolio (Showcase) */
+        .showcase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--gris-claro);
+        }
+        .showcase-header h2 {
+            font-size: 24px;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
 
-        /* Misión */
-        .mission-section { background: #FDFBF7; padding: 25px; border-radius: 12px; border-left: 4px solid var(--dorado); }
-        .mission-section h4 { color: var(--azul-oscuro); margin-bottom: 10px; }
-        .mission-section p { font-size: 13px; font-style: italic; color: var(--gris-texto); line-height: 1.6; }
+        .showcase-card {
+            background: var(--blanco);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            border: 1px solid var(--gris-claro);
+            position: relative;
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,43,94,0.15);
+            border-color: var(--accent-gold);
+        }
+
+        .showcase-img {
+            width: 100%;
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .showcase-img::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+
+        .showcase-card:hover .showcase-img::before {
+            opacity: 0.9;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 60px;
+            height: 60px;
+            background: rgba(201, 154, 46, 0.9);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            opacity: 0;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding-left: 5px; /* Centrar icono de play visualmente */
+        }
+
+        .showcase-card:hover .play-overlay {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .showcase-content {
+            padding: 25px;
+        }
+
+        .showcase-content h3 {
+            color: var(--primary-blue);
+            font-size: 20px;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+        }
+
+        .showcase-card:hover .showcase-content h3 {
+            color: var(--accent-gold);
+        }
+
+        .showcase-content p {
+            color: var(--gris-texto);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .showcase-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--gris-claro);
+            padding-top: 15px;
+            font-size: 12px;
+            color: #94A3B8;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body class="has-sidebar">
@@ -53,13 +197,12 @@
 
             <a href="dashboard.html" class="activo"><i class="fa-solid fa-chart-pie"></i> Mi Portafolio</a>
             <a href="#"><i class="fa-solid fa-rocket"></i> Retos Académicos</a>
-            <a href="#"><i class="fa-solid fa-handshake"></i> Aliados Comerciales</a>
+            <a href="aliados.html"><i class="fa-solid fa-handshake"></i> Aliados Comerciales</a>
             <a href="perfil.html" class=""><i class="fa-solid fa-user"></i> Mi Perfil</a>
             
             <a href="login.html" style="margin-top: auto; color: #f87171;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
         </nav>
     </aside>
-
 
     <div class="top-bar">
         <span>San Joaquín de Turmero</span>
@@ -79,78 +222,134 @@
             <a href="index.html">Inicio</a>
             <a href="carreras.html">Carreras</a>
             <a href="aliados.html">Empresas</a>
-            <a href="login.html" class="btn-login">Mi Plataforma</a>
         </div>
     </nav>
 
-
-    
-
     <main class="main-content">
         
+        <!-- Hero del Portafolio -->
+        <section class="profile-hero">
+            <div class="avatar-container">
+                <i class="fa-solid fa-user-tie"></i>
+                <div class="status-dot"></div>
+            </div>
+            
+            <div class="profile-info">
+                <h1>Yudresky Parra <i class="fa-solid fa-circle-check" title="Perfil Verificado"></i></h1>
+                <p class="profile-subtitle">Estudiante de Comunicación Social | UBA | 7mo Trimestre</p>
+                <div class="profile-contact">
+                    <span><i class="fa-solid fa-location-dot"></i> Maracay, Venezuela</span>
+                    <span><i class="fa-regular fa-envelope"></i> yudresky.parra@uba.edu.ve</span>
+                </div>
+                <p class="profile-bio">Apasionada por contar historias que informan, conectan e inspiran. Me especializo en comunicación digital, producción audiovisual y narrativas multiplataforma con enfoque social. ¡Bienvenido a mi portafolio profesional!</p>
+            </div>
 
-        <section class="banner-hero">
-            <h1>UBA Vive Talentos: <span>Conectando tu capacidad con el futuro profesional.</span></h1>
-            <p>Hola, Yudresky. ¿Qué oportunidad vamos a impulsar hoy?</p>
-            <a href="retos.html" class="btn-dorado">Explorar Oportunidades</a>
+            <div class="profile-stats-row">
+                <div class="p-stat-box">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <h3>16</h3>
+                    <p>Proyectos</p>
+                </div>
+                <div class="p-stat-box">
+                    <i class="fa-solid fa-eye"></i>
+                    <h3>2,845</h3>
+                    <p>Visualizaciones</p>
+                </div>
+            </div>
         </section>
 
-        <section class="stats-grid">
-            <div class="stat-card"><h3>+10k</h3><p>Estudiantes</p></div>
-            <div class="stat-card"><h3>+1.2k</h3><p>Proyectos</p></div>
-            <div class="stat-card"><h3>418</h3><p>Perfiles</p></div>
-            <div class="stat-card"><h3>236</h3><p>Empresas</p></div>
-        </section>
+        <!-- Galería de Trabajos Ficticios -->
+        <div class="showcase-header">
+            <h2><i class="fa-solid fa-folder-open" style="color: var(--accent-gold);"></i> Obras y Proyectos Destacados</h2>
+            <button style="background: var(--primary-blue); color: white; padding: 10px 20px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-plus"></i> Añadir Nuevo
+            </button>
+        </div>
 
-        <div class="dash-layout">
-            <div>
-                <section class="dash-section">
-                    <h3 class="dash-section-title">Agenda de Oportunidades</h3>
-                    <div class="action-grid">
-                        <a href="perfil.html" class="action-btn"><i class="fa-solid fa-address-card"></i> Crear mi Portafolio</a>
-                        <a href="retos.html" class="action-btn"><i class="fa-solid fa-paper-plane"></i> Postular a Convocatoria</a>
-                        <a href="carreras.html" class="action-btn"><i class="fa-solid fa-book-open"></i> Ver Retos Académicos</a>
-                        <a href="aliados.html" class="action-btn"><i class="fa-solid fa-users"></i> Conectar con Empresas</a>
+        <div class="showcase-grid">
+            
+            <!-- 1. Podcast -->
+            <a href="#" class="showcase-card">
+                <div class="showcase-img" style="background-image: url('https://images.unsplash.com/photo-1589903308904-1010c2294adc?auto=format&fit=crop&q=80&w=800');">
+                    <span class="badge">Audio / Podcast</span>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="showcase-content">
+                    <h3>"Voces que Inspiran" - Ep. 4</h3>
+                    <p>Producción, edición y locución de un episodio de podcast documental enfocado en emprendimiento juvenil en Venezuela.</p>
+                    <div class="showcase-meta">
+                        <span><i class="fa-regular fa-clock"></i> 24 mins</span>
+                        <span><i class="fa-solid fa-headphones"></i> 1.2k reproducciones</span>
                     </div>
-                </section>
-            </div>
+                </div>
+            </a>
 
-            <div>
-                <section class="mission-section">
-                    <h4>Nuestra Misión</h4>
-                    <p>"UBA Vive Talentos es el ecosistema digital donde la formación virtual trasciende la teoría. Nuestra misión es potenciar el Desarrollo Humano Integral, proporcionando un espacio de convergencia donde el talento encuentra visibilidad."</p>
-                </section>
-            </div>
+            <!-- 2. Guiones Técnicos -->
+            <a href="#" class="showcase-card">
+                <div class="showcase-img" style="background-image: url('https://images.unsplash.com/photo-1455390582262-044cdead2708?auto=format&fit=crop&q=80&w=800');">
+                    <span class="badge">Escritura</span>
+                    <div class="play-overlay" style="padding-left: 0;"><i class="fa-solid fa-file-pdf"></i></div>
+                </div>
+                <div class="showcase-content">
+                    <h3>Guion de Cortometraje: "Ecos"</h3>
+                    <p>Desarrollo de guion técnico y literario para un cortometraje de ficción sobre salud mental. Formato profesional cinematográfico.</p>
+                    <div class="showcase-meta">
+                        <span><i class="fa-regular fa-file-lines"></i> 15 páginas</span>
+                        <span><i class="fa-solid fa-download"></i> PDF Disponible</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 3. Grilla de Contenido -->
+            <a href="#" class="showcase-card">
+                <div class="showcase-img" style="background-image: url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&q=80&w=800'); background-position: top;">
+                    <span class="badge">Marketing Digital</span>
+                    <div class="play-overlay" style="padding-left: 0;"><i class="fa-solid fa-arrow-pointer"></i></div>
+                </div>
+                <div class="showcase-content">
+                    <h3>Grilla RRSS: Campaña Ecológica</h3>
+                    <p>Estrategia de social media, creación de parrilla de contenido y diseño de copys persuasivos para una campaña de concienciación UBA.</p>
+                    <div class="showcase-meta">
+                        <span><i class="fa-regular fa-calendar"></i> 1 Mes (Plan)</span>
+                        <span><i class="fa-brands fa-instagram"></i> Instagram / TikTok</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 4. Locución -->
+            <a href="#" class="showcase-card">
+                <div class="showcase-img" style="background-image: url('https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&q=80&w=800');">
+                    <span class="badge">Locución Comercial</span>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="showcase-content">
+                    <h3>Demo de Voz Comercial 2026</h3>
+                    <p>Reel de locución comercial mostrando versatilidad en tonos institucionales, juveniles y promocionales para marcas aliadas.</p>
+                    <div class="showcase-meta">
+                        <span><i class="fa-solid fa-wave-square"></i> Audio Alta Calidad</span>
+                        <span><i class="fa-solid fa-microphone-lines"></i> Voz principal</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 5. Actuación -->
+            <a href="#" class="showcase-card">
+                <div class="showcase-img" style="background-image: url('https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?auto=format&fit=crop&q=80&w=800');">
+                    <span class="badge">Actuación / Video</span>
+                    <div class="play-overlay"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="showcase-content">
+                    <h3>Reel de Presentadora (Host)</h3>
+                    <p>Trabajo frente a cámara como presentadora para un programa de noticias universitario. Dominio escénico y teleprompter.</p>
+                    <div class="showcase-meta">
+                        <span><i class="fa-solid fa-video"></i> 1080p Full HD</span>
+                        <span><i class="fa-solid fa-tv"></i> Presentación TV</span>
+                    </div>
+                </div>
+            </a>
+
         </div>
     </main>
 
-    <script>
-        // Mismo buscador que en carreras.html
-        const baseDeDatos = [
-            { nombre: "Comunicación Social", url: "carreras.html", icono: "fa-microphone-lines" },
-            { nombre: "Simulacros y Retos", url: "retos.html", icono: "fa-flask" },
-            { nombre: "Empresas Aliadas", url: "aliados.html", icono: "fa-handshake" },
-            { nombre: "Mi Perfil", url: "perfil.html", icono: "fa-user" }
-        ];
-
-        const input = document.getElementById('global-search');
-        const results = document.getElementById('global-search-results');
-
-        input.addEventListener('input', function() {
-            const query = this.value.toLowerCase();
-            results.innerHTML = '';
-            if(query.length > 0) {
-                const filtered = baseDeDatos.filter(i => i.nombre.toLowerCase().includes(query));
-                filtered.forEach(item => {
-                    const link = document.createElement('a');
-                    link.href = item.url;
-                    link.className = 'search-item';
-                    link.innerHTML = `<i class="fa-solid ${item.icono}"></i><div><h4>${item.nombre}</h4></div>`;
-                    results.appendChild(link);
-                });
-                results.classList.add('active');
-            } else { results.classList.remove('active'); }
-        });
-    </script>
 </body>
 </html>
