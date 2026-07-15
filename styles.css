@@ -1949,10 +1949,9 @@ body.dark-mode .notif-badge {
 /* Extracted from vacantes.html */
 
         :root { --azul-rey: #003B8E; --azul-marino: #001F4D; --dorado: #C99A2E; --blanco: #FFFFFF; --gris-fondo: #F5F7FA; --gris-texto: #4A4A4A; }
-        body { font-family: 'Open Sans', sans-serif; background-color: var(--gris-fondo); display: flex; }
-        .sidebar { width: 260px; background-color: var(--azul-marino); color: var(--blanco); height: 100vh; position: fixed; padding: 20px; }
-        .nav-menu a { display: flex; align-items: center; gap: 15px; padding: 12px 20px; color: var(--blanco); font-weight: 600; border-radius: 8px; }
-        .main-content { margin-left: 260px; width: calc(100% - 260px); padding: 30px 50px; }
+        body.vacantes-page { display: flex; }
+        .vacantes-page .nav-menu a { display: flex; align-items: center; gap: 15px; padding: 12px 20px; color: var(--blanco); font-weight: 600; border-radius: 8px; }
+        .vacantes-page .main-content { margin-left: 260px; width: calc(100% - 260px); padding: 30px 50px; }
         
         .vacante-card { background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
         .btn-postular { background-color: var(--azul-rey); color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold; }
@@ -1970,6 +1969,10 @@ body.dark-mode .notif-badge {
         flex-direction: column !important;
         gap: 15px !important;
     }
+    .form-group input, .form-group select, .form-group textarea, .search-input {
+        width: 100% !important;
+        box-sizing: border-box;
+    }
     .corp-header, .eval-header {
         flex-direction: column !important;
         text-align: center;
@@ -1979,7 +1982,6 @@ body.dark-mode .notif-badge {
         border-radius: 12px !important;
     }
     .search-input {
-        width: 100% !important;
         margin-bottom: 10px;
     }
     .btn-filter {
@@ -2071,6 +2073,50 @@ body.dark-mode .notif-badge {
     .profile-tabs { flex-wrap: wrap !important; justify-content: center !important; }
     .profile-grid-layout { grid-template-columns: 1fr !important; }
     .chart-container { width: 100% !important; overflow-x: auto; }
+}
+
+@media (max-width: 768px) {
+    /* Responsive nav-links */
+    .landing-navbar {
+        flex-direction: column;
+        padding: 15px;
+    }
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        align-items: center;
+        margin-top: 15px;
+    }
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        box-sizing: border-box;
+    }
+    
+    /* Ajustes generales de relleno */
+    .main-content {
+        padding: 20px 15px !important;
+        padding-top: 80px !important; /* account for topbar */
+    }
+    .auth-container {
+        padding: 20px;
+        width: 95%;
+    }
+    
+    /* Ajuste de Hero en index */
+    .hero, .banner-hero {
+        padding: 40px 15px;
+    }
+    
+    /* Tablas adaptables */
+    table, .table-container {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
 }
 
 @keyframes slideDownFade {
