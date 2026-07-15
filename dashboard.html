@@ -121,7 +121,9 @@
         <div style="display: grid; grid-template-columns: 1fr; gap: 30px; margin-bottom: 40px; margin-top: 40px;">
             <div class="card-section">
                 <h3 class="card-title">Visibilidad y Métricas Mensuales</h3>
-                <canvas id="viewsChart" width="400" height="150"></canvas>
+                <div style="position: relative; height: 300px; width: 100%;">
+                    <canvas id="viewsChart"></canvas>
+                </div>
             </div>
         </div>
 
@@ -249,6 +251,7 @@
                 },
                 options: {
                     responsive: true,
+                    maintainAspectRatio: false,
                     plugins: {
                         legend: { position: 'top' }
                     },
