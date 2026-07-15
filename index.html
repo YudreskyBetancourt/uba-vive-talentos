@@ -4,88 +4,461 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UBA Vive Talentos | Bienvenido</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Fuentes modernas para alinear con la estética -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* CORRECCIÓN: Sobrescribimos estilos globales para que el Index se vea bien */
-        body { display: block !important; min-height: 100vh; background-color: white !important; }
-        
-        /* Estilos específicos para la Landing Page */
-        .landing-navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 80px; background: #0B1727; color: white; }
-        .logo h2 { color: white; font-size: 20px; }
-        .logo span { color: #C99A2E; }
-        .nav-links a { color: white; margin-left: 25px; font-weight: 600; text-decoration: none; }
-        
-        .hero-banner { 
-            background: linear-gradient(135deg, #0B1727 0%, #003B8E 100%); 
-            padding: 80px 20px; color: white; text-align: center; 
+        /* Rediseño Moderno UBA ViveTalentos alineado a uba.edu.ve */
+        :root {
+            --primary-blue: #002b5e;
+            --secondary-blue: #004488;
+            --accent-red: #e63946;
+            --accent-gold: #c99a2e;
+            --text-dark: #333333;
+            --text-light: #ffffff;
+            --bg-light: #f8f9fa;
         }
-        .hero-banner h1 { font-size: 40px; margin-bottom: 20px; }
-        .hero-banner span { color: #C99A2E; }
-        .hero-banner p { font-size: 18px; margin-bottom: 40px; opacity: 0.9; max-width: 800px; margin-left: auto; margin-right: auto; }
-        .btn-dorado { background: #C99A2E; color: #0B1727; padding: 15px 30px; border-radius: 8px; font-weight: 700; text-decoration: none; }
 
-        .stats-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; background: white; padding: 40px 80px; border-bottom: 1px solid #E2E8F0; }
-        .stat-item { text-align: center; }
-        .stat-item h3 { font-size: 28px; color: #003B8E; margin: 0; }
-        .stat-item p { font-size: 12px; font-weight: 700; color: #4A5568; text-transform: uppercase; }
+        body { 
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            display: block !important;
+        }
 
-        .features-grid { padding: 60px 80px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        .feature-card { background: #F8FAFC; padding: 30px; border-radius: 12px; border: 1px solid #E2E8F0; }
+        /* Top Bar */
+        .top-bar {
+            background-color: #001a38;
+            color: var(--text-light);
+            font-size: 11px;
+            padding: 8px 5%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+            font-weight: 600;
+        }
+        .top-bar span { cursor: pointer; transition: color 0.2s; }
+        .top-bar span:hover { color: var(--accent-gold); }
+
+        /* Navbar */
+        .landing-navbar { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 15px 5%; 
+            background: var(--text-light); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
         
-        .mission-box { padding: 60px 80px; background: #fdfdfd; text-align: center; border-top: 1px solid #E2E8F0; }
-        .mission-box p { font-size: 16px; font-style: italic; color: #4A5568; max-width: 900px; margin: 0 auto; line-height: 1.8; }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-shield {
+            background: var(--primary-blue);
+            color: white;
+            padding: 15px 18px;
+            border-radius: 0 0 15px 15px;
+            font-weight: 800;
+            font-size: 24px;
+            text-align: center;
+            margin-top: -30px; /* Cuelga desde arriba como el escudo original */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 2px solid white;
+            border-top: none;
+        }
+        
+        .logo-text h2 { 
+            color: var(--primary-blue); 
+            font-size: 22px; 
+            margin: 0;
+            font-weight: 700;
+        }
+        .logo-text span { color: var(--accent-gold); }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        .nav-links a { 
+            color: var(--primary-blue); 
+            margin-left: 25px; 
+            font-weight: 600; 
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent-red); }
+
+        .btn-login {
+            background: var(--primary-blue);
+            color: var(--text-light) !important;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            border: 2px solid transparent;
+        }
+        .btn-login:hover {
+            background: transparent;
+            color: var(--primary-blue) !important;
+            border: 2px solid var(--primary-blue);
+        }
+
+        /* Hero Section */
+        .hero-banner { 
+            position: relative;
+            background: linear-gradient(135deg, #001a38 0%, var(--primary-blue) 100%); 
+            padding: 100px 5% 120px 5%; 
+            color: var(--text-light); 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+            min-height: 550px;
+        }
+        
+        /* Textura sutil en el fondo */
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.05) 2px, transparent 2px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-banner h1 { 
+            font-size: 52px; 
+            margin-bottom: 20px; 
+            font-weight: 800;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+        
+        .hero-banner p { 
+            font-size: 18px; 
+            margin-bottom: 40px; 
+            opacity: 0.95; 
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-red { 
+            background: var(--accent-red); 
+            color: white; 
+            padding: 16px 35px; 
+            border-radius: 30px; 
+            font-weight: 700; 
+            text-decoration: none; 
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.4);
+        }
+        .btn-red:hover { 
+            background: #d62828; 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(230, 57, 70, 0.6);
+        }
+        
+        .btn-white {
+            background: white; 
+            color: var(--primary-blue); 
+            padding: 16px 35px; 
+            border-radius: 30px; 
+            font-weight: 700; 
+            text-decoration: none; 
+            transition: transform 0.3s, background 0.3s;
+            display: inline-block;
+            border: 2px solid white;
+        }
+        .btn-white:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Máscara poligonal para la imagen, similar a la referencia */
+        .hero-image {
+            position: relative;
+            z-index: 2;
+            width: 45%;
+            height: 450px;
+            background: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800') center/cover;
+            clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
+            border: 5px solid rgba(255,255,255,0.1);
+        }
+
+        /* Stats Section */
+        .stats-strip { 
+            display: flex; 
+            justify-content: space-around;
+            background: white; 
+            padding: 40px 5%; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            position: relative;
+            z-index: 10;
+            margin-top: -50px; /* Hace que flote sobre el banner */
+            margin-left: 5%;
+            margin-right: 5%;
+            border-radius: 12px;
+        }
+        .stat-item { text-align: center; border-right: 1px solid #e2e8f0; flex: 1; }
+        .stat-item:last-child { border-right: none; }
+        .stat-item h3 { font-size: 38px; color: var(--primary-blue); margin: 0 0 8px 0; font-weight: 800; }
+        .stat-item p { font-size: 13px; font-weight: 700; color: #64748b; text-transform: uppercase; margin: 0; letter-spacing: 0.5px; }
+
+        /* About & Categorías Section */
+        .about-section {
+            padding: 100px 5% 80px 5%;
+            text-align: center;
+            background: var(--bg-light);
+        }
+        .about-section h2 {
+            color: var(--primary-blue);
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+        .about-section p.subtitle {
+            max-width: 900px;
+            margin: 0 auto 60px auto;
+            color: #475569;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* Rejilla de botones estilo uba.edu.ve */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .category-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 20px;
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+        .category-btn:hover {
+            background: var(--primary-blue);
+            color: white;
+            box-shadow: 0 10px 20px rgba(0,43,94,0.15);
+            transform: translateY(-3px);
+        }
+
+        /* Características (Fondo Oscuro) */
+        .features-wrapper {
+            background: var(--primary-blue);
+            padding: 90px 5%;
+            color: white;
+            position: relative;
+        }
+        
+        .features-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .features-header h2 {
+            font-size: 38px;
+            font-weight: 800;
+        }
+        
+        .features-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 30px; 
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .feature-card { 
+            background: rgba(255,255,255,0.03); 
+            padding: 40px; 
+            border-radius: 12px; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            transition: transform 0.3s, background 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.08); 
+            border-color: rgba(255,255,255,0.2);
+        }
+        
+        .feature-card h3 {
+            color: var(--text-light);
+            font-size: 24px;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 700;
+        }
+        .feature-card h3 i {
+            font-size: 28px;
+            color: var(--accent-red); /* Contraste moderno */
+        }
+        .feature-card p {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 0;
+            font-size: 16px;
+        }
+
+        /* Footer moderno */
+        footer {
+            background: #001226;
+            color: #94a3b8;
+            padding: 40px 5%;
+            text-align: center;
+            font-size: 14px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        footer p { margin: 0; }
+
+        @media(max-width: 992px) {
+            .hero-banner { flex-direction: column; text-align: center; padding-top: 60px; min-height: auto; }
+            .hero-content { align-items: center; display: flex; flex-direction: column; margin-bottom: 40px; }
+            .hero-image { width: 90%; height: 350px; clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%); }
+            .stats-strip { flex-direction: column; gap: 20px; }
+            .stat-item { border-right: none; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px; }
+            .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
+            .features-grid { grid-template-columns: 1fr; }
+            .landing-navbar { flex-direction: column; gap: 20px; padding-top: 25px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .nav-links a { margin: 0; }
+            .logo-shield { margin-top: 0; border-radius: 8px; border-top: 2px solid white; padding: 10px 15px; }
+        }
     </style>
 </head>
 <body>
 
+    <div class="top-bar">
+        <span>San Joaquín de Turmero</span>
+        <span>San Antonio de los Altos</span>
+        <span>San Fernando de Apure</span>
+        <span>Puerto Ordaz</span>
+    </div>
+
     <nav class="landing-navbar">
-        <div class="logo"><h2>UBA <span>ViveTalentos</span></h2></div>
+        <div class="logo">
+            <div class="logo-shield">UBA</div>
+            <div class="logo-text">
+                <h2>UBA <span>ViveTalentos</span></h2>
+            </div>
+        </div>
         <div class="nav-links">
             <a href="index.html">Inicio</a>
             <a href="carreras.html">Carreras</a>
             <a href="aliados.html">Empresas</a>
-            <a href="dashboard.html" style="background: #C99A2E; padding: 10px 20px; border-radius: 6px; color: #0B1727;">Iniciar sesión</a>
+            <a href="dashboard.html" class="btn-login">Iniciar sesión</a>
         </div>
     </nav>
 
     <header class="hero-banner">
-        <h1>UBA Vive Talentos: <span>Conectando tu capacidad con el futuro profesional.</span></h1>
-        <p>Potenciamos el Desarrollo Humano Integral, convirtiendo tu trayectoria universitaria en una ventaja competitiva real.</p>
-        <a href="dashboard.html" class="btn-dorado">Explorar Oportunidades</a>
+        <div class="hero-content">
+            <h1>Desarrolla tu potencial con nosotros</h1>
+            <p><strong>UBA Vive Talentos</strong> es la plataforma que conecta tus capacidades con el futuro profesional. Ofrecemos oportunidades reales, proyectos académicos de impacto y conexión directa con el mundo laboral.</p>
+            <div class="hero-buttons">
+                <a href="dashboard.html" class="btn-red">¡Sueña, haz que suceda!</a>
+                <a href="registro.html" class="btn-white">! Preinscríbete Gratis Aquí !</a>
+            </div>
+        </div>
+        <div class="hero-image"></div>
     </header>
 
     <section class="stats-strip">
-        <div class="stat-item"><h3>+10,000</h3><p>Estudiantes conectados</p></div>
-        <div class="stat-item"><h3>+1,250</h3><p>Proyectos publicados</p></div>
-        <div class="stat-item"><h3>418</h3><p>Perfiles destacados</p></div>
-        <div class="stat-item"><h3>236</h3><p>Empresas aliadas</p></div>
-    </section>
-
-    <section class="features-grid">
-        <div class="feature-card">
-            <h3><i class="fa-solid fa-compass" style="color:#C99A2E"></i> Explorar Carreras</h3>
-            <p>El núcleo de la plataforma donde conectamos tus intereses con proyectos, simulaciones y facultades reales.</p>
+        <div class="stat-item">
+            <h3>56,187</h3>
+            <p>Estudiantes Egresados</p>
         </div>
-        <div class="feature-card">
-            <h3><i class="fa-solid fa-flask" style="color:#C99A2E"></i> Convocatorias Abiertas</h3>
-            <p>Espacio de participación activa para retos corporativos y proyectos académicos de impacto.</p>
+        <div class="stat-item">
+            <h3>1,250</h3>
+            <p>Proyectos Publicados</p>
         </div>
-        <div class="feature-card">
-            <h3><i class="fa-solid fa-address-card" style="color:#C99A2E"></i> Portafolio Estudiantil</h3>
-            <p>Gestión directa de tus evidencias de aprendizaje y logros académicos para mostrar a reclutadores.</p>
+        <div class="stat-item">
+            <h3>40</h3>
+            <p>Programas de Postgrado</p>
         </div>
-        <div class="feature-card">
-            <h3><i class="fa-solid fa-users" style="color:#C99A2E"></i> Conexión Empresarial</h3>
-            <p>Acceso directo a la vitrina de oportunidades y contacto con nuestra red de empresas aliadas.</p>
+        <div class="stat-item">
+            <h3>6,229</h3>
+            <p>Estudiantes Activos</p>
         </div>
     </section>
 
-    <section class="mission-box">
-        <h2>Nuestra Misión</h2>
-        <p>"UBA Vive Talentos es el ecosistema digital donde la formación virtual trasciende la teoría. Nuestra misión es potenciar el Desarrollo Humano Integral, proporcionando un espacio de convergencia donde el talento encuentra visibilidad y el estudiante se convierte en el arquitecto de su futuro profesional, transformando su trayectoria universitaria en una ventaja competitiva real".</p>
+    <section class="about-section">
+        <h2>Somos la plataforma de aprendizaje y talento más robusta del país</h2>
+        <p class="subtitle">En <strong>UBA Vive Talentos</strong> potenciamos el Desarrollo Humano Integral, proporcionando un espacio de convergencia donde el talento encuentra visibilidad y el estudiante se convierte en el arquitecto de su futuro profesional, transformando su trayectoria universitaria en una ventaja competitiva real.</p>
+        
+        <div class="categories-grid">
+            <a href="carreras.html" class="category-btn">Explorar Carreras</a>
+            <a href="retos.html" class="category-btn">Convocatorias Abiertas</a>
+            <a href="perfil.html" class="category-btn">Portafolio Estudiantil</a>
+            <a href="aliados.html" class="category-btn">Conexión Empresarial</a>
+            <a href="registro.html" class="category-btn">Inscripción</a>
+            <a href="#" class="category-btn">Diplomados UBA</a>
+        </div>
     </section>
+
+    <section class="features-wrapper">
+        <div class="features-header">
+            <h2>¿Por qué unirte a ViveTalentos?</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3><i class="fa-solid fa-compass"></i> Explorar Carreras</h3>
+                <p>El núcleo de la plataforma donde conectamos tus intereses con proyectos, simulaciones y facultades reales. Explora opciones y define tu rumbo con claridad.</p>
+            </div>
+            <div class="feature-card">
+                <h3><i class="fa-solid fa-flask"></i> Convocatorias Abiertas</h3>
+                <p>Espacio de participación activa para retos corporativos y proyectos académicos de impacto. Pon a prueba tus habilidades resolviendo problemas del mundo real.</p>
+            </div>
+            <div class="feature-card">
+                <h3><i class="fa-solid fa-address-card"></i> Portafolio Estudiantil</h3>
+                <p>Gestión directa de tus evidencias de aprendizaje y logros académicos para mostrar a reclutadores. Tu portafolio será tu mejor carta de presentación.</p>
+            </div>
+            <div class="feature-card">
+                <h3><i class="fa-solid fa-users"></i> Conexión Empresarial</h3>
+                <p>Acceso directo a la vitrina de oportunidades y contacto con nuestra red de empresas aliadas. Conecta hoy con quienes impulsarán tu mañana profesional.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Universidad Bicentenaria de Aragua. Todos los derechos reservados. UBA ViveTalentos.</p>
+    </footer>
 
 </body>
 </html>
