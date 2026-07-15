@@ -2,6 +2,12 @@
    ESTILOS GENERALES Y VARIABLES (UBA Vive Talentos)
    ========================================================================== */
 :root {
+    --primary-blue: #002b5e;
+    --secondary-blue: #004488;
+    --accent-gold: #c99a2e;
+    --text-dark: #1a1a1a;
+    --text-light: #ffffff;
+    --bg-light: #f8f9fa;
     --azul-oscuro: #0B1727;   /* El azul profundo del menú lateral */
     --azul-rey: #003B8E;      /* El azul institucional de la UBA */
     --dorado: #C99A2E;        /* El dorado elegante de los acentos */
@@ -143,9 +149,8 @@ a {
    CONTENIDO PRINCIPAL (MAIN CONTENT) Y BARRA SUPERIOR
    ========================================================================== */
 .main-content {
-    margin-left: 280px;
-    width: calc(100% - 280px);
-    padding: 30px 45px;
+    width: 100%;
+    padding: 30px 5%;
     min-height: 100vh;
 }
 
@@ -452,10 +457,10 @@ a {
         transition: transform 0.3s ease-in-out;
     }
     .main-content {
-        margin-left: 0;
-        width: 100%;
-        padding: 20px;
-    }
+    width: 100%;
+    padding: 30px 5%;
+    min-height: 100vh;
+}
     .page-header {
         flex-direction: column;
         align-items: flex-start;
@@ -616,3 +621,88 @@ a {
 .features-grid { padding: 40px 50px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .feature-card { background: #f9f9f9; padding: 25px; border-radius: 10px; border: 1px solid #eee; }
 .mission-box { padding: 50px; text-align: center; background: #fff; }
+
+
+/* ==========================================================================
+   TOP BAR Y NAVBAR GLOBAL
+   ========================================================================== */
+.top-bar {
+    background-color: #001a38;
+    color: var(--text-light);
+    font-size: 11px;
+    padding: 8px 5%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    font-weight: 600;
+}
+.top-bar span { cursor: pointer; transition: color 0.2s; }
+.top-bar span:hover { color: var(--accent-gold); }
+
+.landing-navbar { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 5%; 
+    background: var(--text-light); 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-shield {
+    background: var(--primary-blue);
+    color: white;
+    padding: 15px 18px;
+    border-radius: 0 0 15px 15px;
+    font-weight: 800;
+    font-size: 24px;
+    text-align: center;
+    margin-top: -30px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: 2px solid white;
+    border-top: none;
+}
+
+.logo-text h2 { 
+    color: var(--primary-blue); 
+    font-size: 22px; 
+    margin: 0;
+    font-weight: 700;
+}
+.logo-text span { color: var(--accent-gold); }
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+.nav-links a { 
+    color: var(--primary-blue); 
+    margin-left: 25px; 
+    font-weight: 600; 
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--accent-gold); }
+
+.btn-login {
+    background: var(--primary-blue);
+    color: var(--text-light) !important;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-weight: 700;
+    border: 2px solid transparent;
+}
+.btn-login:hover {
+    background: transparent;
+    color: var(--primary-blue) !important;
+    border: 2px solid var(--primary-blue);
+}
