@@ -3,55 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - UBA Vive Talentos</title>
+    <title>Inicio | UBA Vive Talentos</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Ajustes específicos para el Dashboard */
-        .dashboard-welcome {
-            background: linear-gradient(135deg, var(--blanco) 0%, #F8FAFC 100%);
-            border-radius: 16px;
-            padding: 30px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: var(--sombra-tarjeta);
-            border: 1px solid var(--gris-claro);
+        /* Banner Hero Institucional */
+        .banner-hero {
+            background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-rey) 100%);
+            border-radius: 20px;
+            padding: 50px;
+            color: var(--blanco);
             margin-bottom: 30px;
-            border-left: 6px solid var(--azul-rey);
+            position: relative;
+            box-shadow: var(--sombra-hover);
         }
-        .welcome-text h1 { font-size: 26px; color: var(--azul-oscuro); margin-bottom: 8px; }
-        .welcome-text p { font-size: 14px; color: var(--gris-texto); }
+        .banner-hero h1 { color: var(--blanco); font-size: 36px; margin-bottom: 15px; }
+        .banner-hero h1 span { color: var(--dorado); }
+        .banner-hero p { font-size: 16px; opacity: 0.9; margin-bottom: 25px; max-width: 600px; }
         
-        .dashboard-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
-        .dash-card { background: var(--blanco); padding: 25px; border-radius: 16px; box-shadow: var(--sombra-tarjeta); border: 1px solid var(--gris-claro); display: flex; align-items: center; gap: 20px; transition: 0.3s; }
-        .dash-icon { width: 60px; height: 60px; border-radius: 12px; background: var(--gris-fondo); display: flex; justify-content: center; align-items: center; font-size: 24px; color: var(--azul-rey); }
-        .dash-info h3 { font-size: 24px; margin-bottom: 2px; color: var(--azul-oscuro); }
-        .dash-info p { font-size: 11px; color: var(--gris-texto); font-weight: 700; letter-spacing: 0.5px; }
+        /* Stats Grid (Autoridad) */
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: var(--blanco); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid var(--gris-claro); }
+        .stat-card h3 { font-size: 24px; color: var(--azul-rey); }
+        .stat-card p { font-size: 11px; font-weight: 700; color: var(--gris-texto); text-transform: uppercase; }
 
-        .dash-layout { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
-        .dash-section { background: var(--blanco); padding: 25px; border-radius: 16px; box-shadow: var(--sombra-tarjeta); border: 1px solid var(--gris-claro); margin-bottom: 30px; }
-        .dash-section-title { font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; color: var(--azul-oscuro); }
-        
-        .suggested-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .suggested-card { border: 1px solid var(--gris-claro); border-radius: 12px; padding: 20px; transition: 0.3s; }
-        .suggested-icon { font-size: 24px; color: var(--dorado); margin-bottom: 15px; }
-        .suggested-card h4 { font-size: 15px; margin-bottom: 8px; color: var(--azul-oscuro); }
-        .suggested-card p { font-size: 12px; color: var(--gris-texto); margin-bottom: 15px; line-height: 1.5; }
-        
-        .progress-container { margin-bottom: 20px; }
-        .progress-header { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; margin-bottom: 10px; color: var(--azul-oscuro); }
-        .progress-bar-bg { width: 100%; height: 10px; background: var(--gris-fondo); border-radius: 10px; overflow: hidden; }
-        .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--dorado) 0%, var(--dorado-brillante) 100%); border-radius: 10px; }
-        .progress-tasks { list-style: none; }
-        .progress-tasks li { font-size: 13px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: var(--gris-texto); }
-        
-        .activity-list { list-style: none; }
-        .activity-item { display: flex; gap: 15px; margin-bottom: 20px; }
-        .activity-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--gris-fondo); display: flex; justify-content: center; align-items: center; color: var(--azul-rey); font-size: 16px; flex-shrink: 0; }
-        .activity-text h4 { font-size: 13px; margin-bottom: 3px; color: var(--azul-oscuro); }
-        .activity-text p { font-size: 11px; color: #94A3B8; }
+        /* Acceso Rápido (Botones Profesionales) */
+        .action-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px; }
+        .action-btn { background: var(--blanco); border: 1px solid var(--gris-claro); padding: 20px; border-radius: 12px; display: flex; align-items: center; gap: 15px; color: var(--azul-oscuro); font-weight: 600; transition: 0.3s; cursor: pointer; }
+        .action-btn:hover { border-color: var(--dorado); background: #fdfbf7; }
+        .action-btn i { font-size: 20px; color: var(--dorado); }
+
+        /* Misión */
+        .mission-section { background: #FDFBF7; padding: 25px; border-radius: 12px; border-left: 4px solid var(--dorado); }
+        .mission-section h4 { color: var(--azul-oscuro); margin-bottom: 10px; }
+        .mission-section p { font-size: 13px; font-style: italic; color: var(--gris-texto); line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -74,74 +60,74 @@
         <header class="topbar">
             <div class="search-bar">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Buscar novedades...">
+                <input type="text" id="global-search" placeholder="Buscar oportunidades...">
+                <div class="search-results" id="global-search-results"></div>
             </div>
-            <div class="user-actions">
-                <div class="notification-icon">
-                    <i class="fa-regular fa-bell"></i>
-                    <div class="notification-badge">3</div>
-                </div>
-                <div class="user-profile-mini">
-                    <i class="fa-solid fa-circle-user"></i>
-                    <span>Yudresky P.</span>
-                </div>
-            </div>
+            <div class="user-profile-mini"><span>Yudresky P.</span></div>
         </header>
 
-        <section class="dashboard-welcome">
-            <div class="welcome-text">
-                <h1>¡Hola de nuevo, Yudresky!</h1>
-                <p>Tu portafolio de Comunicación Social está atrayendo miradas. 12 visualizaciones nuevas esta semana.</p>
-            </div>
-            <a href="perfil.html" class="btn-dorado" style="color: var(--blanco); background: var(--azul-oscuro);">Ver mi portafolio</a>
+        <section class="banner-hero">
+            <h1>UBA Vive Talentos: <span>Conectando tu capacidad con el futuro profesional.</span></h1>
+            <p>Hola, Yudresky. ¿Qué oportunidad vamos a impulsar hoy?</p>
+            <a href="retos.html" class="btn-dorado">Explorar Oportunidades</a>
         </section>
 
-        <section class="dashboard-grid">
-            <div class="dash-card">
-                <div class="dash-icon"><i class="fa-solid fa-flask"></i></div>
-                <div class="dash-info"><h3>2</h3><p>RETOS ACTIVOS</p></div>
-            </div>
-            <div class="dash-card">
-                <div class="dash-icon"><i class="fa-solid fa-star"></i></div>
-                <div class="dash-info"><h3>98%</h3><p>VALORACIÓN</p></div>
-            </div>
-            <div class="dash-card">
-                <div class="dash-icon"><i class="fa-solid fa-building"></i></div>
-                <div class="dash-info"><h3>3</h3><p>EMPRESAS</p></div>
-            </div>
+        <section class="stats-grid">
+            <div class="stat-card"><h3>+10k</h3><p>Estudiantes</p></div>
+            <div class="stat-card"><h3>+1.2k</h3><p>Proyectos</p></div>
+            <div class="stat-card"><h3>418</h3><p>Perfiles</p></div>
+            <div class="stat-card"><h3>236</h3><p>Empresas</p></div>
         </section>
 
         <div class="dash-layout">
             <div>
-                <div class="dash-section">
-                    <h3 class="dash-section-title">Sugeridos para tu perfil</h3>
-                    <div class="suggested-grid">
-                        <div class="suggested-card">
-                            <i class="fa-solid fa-microphone-lines suggested-icon"></i>
-                            <h4>Guion de Podcast</h4>
-                            <p>Desarrolla el guion para un podcast sobre tecnología.</p>
-                        </div>
-                        <div class="suggested-card">
-                            <i class="fa-solid fa-bullhorn suggested-icon"></i>
-                            <h4>Estrategia de Copys</h4>
-                            <p>Parrilla mensual de contenido para redes sociales.</p>
-                        </div>
+                <section class="dash-section">
+                    <h3 class="dash-section-title">Agenda de Oportunidades</h3>
+                    <div class="action-grid">
+                        <a href="perfil.html" class="action-btn"><i class="fa-solid fa-address-card"></i> Crear mi Portafolio</a>
+                        <a href="retos.html" class="action-btn"><i class="fa-solid fa-paper-plane"></i> Postular a Convocatoria</a>
+                        <a href="carreras.html" class="action-btn"><i class="fa-solid fa-book-open"></i> Ver Retos Académicos</a>
+                        <a href="aliados.html" class="action-btn"><i class="fa-solid fa-users"></i> Conectar con Empresas</a>
                     </div>
-                </div>
+                </section>
             </div>
+
             <div>
-                <div class="dash-section">
-                    <h3 class="dash-section-title">Progreso</h3>
-                    <div class="progress-container">
-                        <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 75%;"></div></div>
-                    </div>
-                    <ul class="progress-tasks">
-                        <li><i class="fa-solid fa-circle-check"></i> Perfil completo</li>
-                        <li><i class="fa-solid fa-circle-check"></i> 1 evidencia subida</li>
-                    </ul>
-                </div>
+                <section class="mission-section">
+                    <h4>Nuestra Misión</h4>
+                    <p>"UBA Vive Talentos es el ecosistema digital donde la formación virtual trasciende la teoría. Nuestra misión es potenciar el Desarrollo Humano Integral, proporcionando un espacio de convergencia donde el talento encuentra visibilidad."</p>
+                </section>
             </div>
         </div>
     </main>
+
+    <script>
+        // Mismo buscador que en carreras.html
+        const baseDeDatos = [
+            { nombre: "Comunicación Social", url: "carreras.html", icono: "fa-microphone-lines" },
+            { nombre: "Simulacros y Retos", url: "retos.html", icono: "fa-flask" },
+            { nombre: "Empresas Aliadas", url: "aliados.html", icono: "fa-handshake" },
+            { nombre: "Mi Perfil", url: "perfil.html", icono: "fa-user" }
+        ];
+
+        const input = document.getElementById('global-search');
+        const results = document.getElementById('global-search-results');
+
+        input.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            results.innerHTML = '';
+            if(query.length > 0) {
+                const filtered = baseDeDatos.filter(i => i.nombre.toLowerCase().includes(query));
+                filtered.forEach(item => {
+                    const link = document.createElement('a');
+                    link.href = item.url;
+                    link.className = 'search-item';
+                    link.innerHTML = `<i class="fa-solid ${item.icono}"></i><div><h4>${item.nombre}</h4></div>`;
+                    results.appendChild(link);
+                });
+                results.classList.add('active');
+            } else { results.classList.remove('active'); }
+        });
+    </script>
 </body>
 </html>
