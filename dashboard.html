@@ -6,7 +6,7 @@
     <title>Mi Portafolio - UBA Vive Talentos</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
     <style>
         /* Estilos del Hero (importados del perfil) */
         .profile-hero {
@@ -298,14 +298,20 @@
                     <h3>2,845</h3>
                     <p>Visualizaciones</p>
                 </div>
-        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-bottom: 40px;">
-            
+                <div class="p-stat-box">
+                    <i class="fa-solid fa-star"></i>
+                    <h3>98%</h3>
+                    <p>Valoración</p>
+                </div>
+            </div>
+        </section>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 30px; margin-bottom: 40px; margin-top: 40px;">
             <div class="card-section">
                 <h3 class="card-title">Visibilidad y Métricas Mensuales</h3>
                 <canvas id="viewsChart" width="400" height="150"></canvas>
             </div>
         </div>
-        </section>
 
         <!-- Galería de Trabajos Ficticios -->
         <div class="showcase-header">
