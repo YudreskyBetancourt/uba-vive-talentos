@@ -543,3 +543,64 @@ a {
     from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
+/* ==========================================================================
+   DISEÑO DEL BUSCADOR GLOBAL (AUTOCOMPLETADO)
+   ========================================================================== */
+.search-bar { 
+    position: relative; /* Muy importante para que los resultados floten debajo */
+}
+
+.search-results {
+    position: absolute;
+    top: 115%;
+    left: 0;
+    width: 100%;
+    background: var(--blanco);
+    border: 1px solid var(--gris-claro);
+    border-radius: 12px;
+    box-shadow: var(--sombra-hover);
+    z-index: 1000;
+    display: none; /* Oculto por defecto */
+    flex-direction: column;
+    overflow: hidden;
+    animation: fadeInTab 0.2s ease-out;
+}
+
+.search-results.active { 
+    display: flex; 
+}
+
+.search-item {
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--gris-texto);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gris-fondo);
+    transition: 0.2s;
+}
+
+.search-item:last-child { border-bottom: none; }
+
+.search-item:hover { 
+    background: var(--gris-fondo); 
+}
+
+.search-item i { 
+    font-size: 16px; 
+    color: var(--dorado); 
+    width: 20px; 
+    text-align: center; 
+}
+
+.search-item div h4 { 
+    font-size: 13px; 
+    color: var(--azul-oscuro); 
+    margin-bottom: 2px; 
+}
+
+.search-item div small { 
+    font-size: 11px; 
+    color: var(--gris-texto); 
+}
