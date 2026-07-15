@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicar Reto - UBA Vive Talentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --azul-rey: #003B8E;
+            --azul-marino: #001F4D;
+            --dorado: #C99A2E;
+            --blanco: #FFFFFF;
+            --gris-fondo: #F5F7FA;
+            --gris-texto: #4A4A4A;
+            --gris-claro: #E0E5EC;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', sans-serif; color: var(--gris-texto); background-color: var(--gris-fondo); display: flex; }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-marino); }
+        a { text-decoration: none; }
+
+        /* SIDEBAR */
+        .sidebar { width: 260px; background-color: var(--azul-marino); color: var(--blanco); height: 100vh; position: fixed; display: flex; flex-direction: column; padding: 20px; box-shadow: 4px 0 10px rgba(0,0,0,0.1); z-index: 100; }
+        .logo-container { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo-container i { font-size: 40px; color: var(--blanco); margin-bottom: 10px; }
+        .logo-container h2 { color: var(--blanco); font-size: 20px; }
+        .logo-container h2 span { color: var(--dorado); }
+        .nav-menu { display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
+        .nav-menu a { display: flex; align-items: center; gap: 15px; padding: 12px 20px; color: var(--blanco); font-weight: 600; border-radius: 8px; transition: 0.3s; }
+        .nav-menu a i { font-size: 18px; width: 20px; text-align: center; }
+        .nav-menu a:hover { background-color: rgba(255,255,255,0.1); }
+        .nav-menu a.activo { background-color: var(--dorado); color: var(--azul-marino); }
+
+        /* MAIN CONTENT */
+        .main-content { margin-left: 260px; width: calc(100% - 260px); padding: 30px 50px; min-height: 100vh; }
+
+        /* Header */
+        .page-header { margin-bottom: 30px; }
+        .page-header h1 { font-size: 32px; margin-bottom: 10px; }
+        .page-header p { font-size: 16px; color: var(--gris-texto); }
+
+        /* Formulario Box */
+        .form-container { background-color: var(--blanco); padding: 40px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); border: 1px solid var(--gris-claro); max-width: 800px; }
+        
+        .form-group { margin-bottom: 25px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--azul-marino); font-size: 14px; }
+        
+        input[type="text"], select, textarea { width: 100%; padding: 12px 15px; border: 1px solid var(--gris-claro); border-radius: 8px; font-family: 'Open Sans', sans-serif; font-size: 14px; color: var(--gris-texto); background-color: #FAFCFF; outline: none; transition: 0.3s; }
+        textarea { resize: vertical; min-height: 120px; }
+        
+        input:focus, select:focus, textarea:focus { border-color: var(--azul-rey); box-shadow: 0 0 0 3px rgba(0, 59, 142, 0.1); background-color: var(--blanco); }
+        
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        .btn-submit { background-color: var(--azul-marino); color: var(--blanco); border: none; padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; transition: 0.3s; font-family: 'Open Sans'; }
+        .btn-submit:hover { background-color: var(--azul-rey); box-shadow: 0 5px 15px rgba(0, 59, 142, 0.2); }
+        .btn-cancel { background-color: transparent; color: var(--gris-texto); border: 1px solid var(--gris-claro); padding: 14px 28px; border-radius: 8px; font-size: 15px; font-weight: 600; margin-right: 15px; display: inline-block; }
+        .btn-cancel:hover { background-color: var(--gris-fondo); }
+
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo-container">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <h2>UBA <span>ViveTalentos</span></h2>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="que-es.html"><i class="fa-solid fa-circle-info"></i> ¿Qué es?</a>
+            <a href="carreras.html"><i class="fa-solid fa-compass"></i> Explorar carreras</a>
+            <a href="perfil.html"><i class="fa-regular fa-user"></i> Mi Perfil</a>
+            <a href="retos.html"><i class="fa-solid fa-flask"></i> Simulacros y Retos</a>
+            <a href="aliados.html" class="activo"><i class="fa-solid fa-handshake"></i> Empresas Aliadas</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        
+        <div class="page-header">
+            <h1>Publicar Reto Corporativo</h1>
+            <p>Estructure un desafío práctico para que los estudiantes de semestres avanzados apliquen sus habilidades en un entorno real.</p>
+        </div>
+
+        <div class="form-container">
+            <form action="aliados.html" method="get">
+                
+                <div class="form-group">
+                    <label>Nombre de la Empresa o Institución</label>
+                    <input type="text" placeholder="Ej. DataVisión Analytics" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Título del Desafío</label>
+                        <input type="text" placeholder="Ej. Campaña de Marketing Audiovisual" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Facultad o Carrera Destinada</label>
+                        <select required>
+                            <option value="" disabled selected>Seleccione un área académica</option>
+                            <option value="comunicacion">Comunicación Social</option>
+                            <option value="derecho">Derecho</option>
+                            <option value="contaduria">Contaduría Pública</option>
+                            <option value="administracion">Administración</option>
+                            <option value="psicologia">Psicología</option>
+                            <option value="sistemas">Ingeniería en Sistemas</option>
+                            <option value="publicidad">TSU en Publicidad</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Descripción del Problema (Brief)</label>
+                    <textarea placeholder="Explique detalladamente la situación o necesidad de su empresa corporativa..." required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Producto Esperado (Entregable del alumno)</label>
+                        <input type="text" placeholder="Ej. Video Pitch, Documento PDF, Planilla de Excel" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha de Finalización del Reto</label>
+                        <input type="text" placeholder="Ej. 30 de Agosto de 2026" required>
+                    </div>
+                </div>
+
+                <div style="text-align: right; margin-top: 20px;">
+                    <a href="aliados.html" class="btn-cancel">Cancelar</a>
+                    <button type="submit" class="btn-submit">Publicar Desafío Corporativo</button>
+                </div>
+
+            </form>
+        </div>
+
+    </main>
+
+</body>
+</html>
