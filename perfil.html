@@ -2,124 +2,275 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Perfil - UBA Vive Talentos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
-        :root {
-            --azul-rey: #003B8E;
-            --azul-marino: #001F4D;
-            --dorado: #C99A2E;
-            --blanco: #FFFFFF;
-            --gris-fondo: #F5F7FA;
-            --gris-texto: #4A4A4A;
-            --gris-claro: #E0E5EC;
+        /* Estilos específicos para la página de Perfil */
+        .profile-hero {
+            background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-rey) 100%);
+            border-radius: 16px;
+            padding: 40px;
+            color: var(--blanco);
+            display: flex;
+            gap: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(0,59,142,0.1);
+            position: relative;
         }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Open Sans', sans-serif; color: var(--gris-texto); background-color: var(--gris-fondo); display: flex; }
-        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-marino); }
-        a { text-decoration: none; }
-
-        /* SIDEBAR */
-        .sidebar { width: 260px; background-color: var(--azul-marino); color: var(--blanco); height: 100vh; position: fixed; display: flex; flex-direction: column; padding: 20px; box-shadow: 4px 0 10px rgba(0,0,0,0.1); z-index: 100; }
-        .logo-container { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .nav-menu { display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
-        .nav-menu a { display: flex; align-items: center; gap: 15px; padding: 12px 20px; color: var(--blanco); font-weight: 600; border-radius: 8px; transition: 0.3s; }
-        .nav-menu a.activo { background-color: var(--dorado); color: var(--azul-marino); }
-        .nav-menu a:hover { background-color: rgba(255,255,255,0.1); }
-
-        /* MAIN CONTENT */
-        .main-content { margin-left: 260px; width: calc(100% - 260px); padding: 30px 50px; }
-
-        /* TOP BAR Y DROPDOWN */
-        .topbar { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 30px; }
-        .user-profile-container { position: relative; cursor: pointer; }
-        .user-profile-mini { display: flex; align-items: center; gap: 10px; background: white; padding: 8px 15px; border-radius: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        
-        .dropdown-menu { 
-            display: none; position: absolute; top: 110%; right: 0; background: white; 
-            width: 250px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); 
-            padding: 10px 0; z-index: 1000; border: 1px solid var(--gris-claro);
+        .avatar-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
         }
-        .dropdown-menu.show { display: block; }
-        .dropdown-menu a { display: block; padding: 10px 20px; color: var(--gris-texto); font-size: 14px; }
-        .dropdown-menu a:hover { background-color: var(--gris-fondo); color: var(--azul-rey); }
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 4px solid var(--dorado);
+            object-fit: cover;
+        }
+        .status-dot {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--verde-exito);
+            border: 3px solid var(--azul-oscuro);
+            border-radius: 50%;
+        }
+        .profile-info { flex-grow: 1; }
+        .profile-info h1 { color: var(--blanco); font-size: 28px; margin-bottom: 5px; display: flex; align-items: center; gap: 10px; }
+        .profile-info h1 i { color: var(--dorado); font-size: 20px; }
+        .profile-subtitle { font-size: 15px; margin-bottom: 15px; font-weight: 600; opacity: 0.9; }
+        .profile-contact { display: flex; gap: 20px; font-size: 13px; margin-bottom: 15px; opacity: 0.8; }
+        .profile-bio { font-size: 14px; line-height: 1.6; max-width: 800px; opacity: 0.9; margin-bottom: 20px; }
+        
+        .profile-stats-row {
+            display: flex;
+            gap: 15px;
+            position: absolute;
+            top: 40px;
+            right: 40px;
+        }
+        .p-stat-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            min-width: 100px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .p-stat-box i { font-size: 20px; margin-bottom: 8px; color: var(--blanco); }
+        .p-stat-box h3 { color: var(--blanco); font-size: 18px; margin-bottom: 2px; }
+        .p-stat-box p { font-size: 10px; opacity: 0.8; }
 
-        /* CABECERA PERFIL (RESTABLECIDA) */
-        .profile-header { background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-rey) 100%); border-radius: 16px; padding: 40px; color: var(--blanco); display: flex; align-items: center; gap: 30px; margin-bottom: 30px; box-shadow: 0 10px 20px rgba(0,59,142,0.15); }
-        .profile-avatar { width: 150px; height: 150px; border-radius: 50%; background-color: var(--blanco); display: flex; justify-content: center; align-items: center; border: 4px solid var(--dorado); }
-        .profile-info h1 { color: var(--blanco); font-size: 32px; }
-        .profile-info p { color: rgba(255,255,255,0.9); }
+        .profile-tabs {
+            display: flex;
+            gap: 30px;
+            border-bottom: 1px solid var(--gris-claro);
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+        }
+        .profile-tabs a { color: var(--gris-texto); font-weight: 600; font-size: 15px; }
+        .profile-tabs a.activo { color: var(--azul-rey); border-bottom: 3px solid var(--dorado); padding-bottom: 15px; margin-bottom: -16px; }
 
-        /* GRID */
-        .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
-        .card { background-color: var(--blanco); border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 30px; }
-        .card-title { font-size: 18px; margin-bottom: 20px; color: var(--azul-marino); border-bottom: 1px solid var(--gris-claro); padding-bottom: 10px; }
+        .profile-grid-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
+        
+        .card-section {
+            background: var(--blanco);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--sombra-tarjeta);
+            border: 1px solid var(--gris-claro);
+            margin-bottom: 30px;
+        }
+        .card-title { font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+        
+        /* Barras de habilidades */
+        .skill-item { margin-bottom: 15px; }
+        .skill-header { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+        .skill-bar-bg { width: 100%; height: 8px; background-color: var(--gris-claro); border-radius: 4px; overflow: hidden; }
+        .skill-bar-fill { height: 100%; background-color: var(--azul-rey); border-radius: 4px; }
+        
+        /* Grid de Portafolio */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .portfolio-item { border-radius: 12px; overflow: hidden; border: 1px solid var(--gris-claro); transition: 0.3s; cursor: pointer; }
+        .portfolio-item:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-color: var(--dorado); }
+        .portfolio-img { width: 100%; height: 120px; background-color: var(--azul-oscuro); display: flex; justify-content: center; align-items: center; position: relative; }
+        .portfolio-img i { font-size: 30px; color: var(--blanco); }
+        .portfolio-info { padding: 15px; }
+        .portfolio-info h4 { font-size: 14px; margin-bottom: 5px; }
+        .portfolio-info p { font-size: 12px; color: var(--gris-texto); }
     </style>
 </head>
 <body>
 
     <aside class="sidebar">
         <div class="logo-container">
+            <i class="fa-solid fa-graduation-cap"></i>
             <h2>UBA <span>ViveTalentos</span></h2>
         </div>
         <nav class="nav-menu">
             <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="carreras.html"><i class="fa-solid fa-compass"></i> Explorar carreras</a>
+            <a href="retos.html"><i class="fa-solid fa-flask"></i> Simulacros y retos</a>
+            <a href="aliados.html"><i class="fa-solid fa-handshake"></i> Empresas aliadas</a>
             <a href="perfil.html" class="activo"><i class="fa-regular fa-user"></i> Mi Perfil</a>
-            <a href="retos.html"><i class="fa-solid fa-flask"></i> Simulacros y Retos</a>
         </nav>
     </aside>
 
     <main class="main-content">
         <header class="topbar">
-            <div class="user-profile-container" onclick="toggleMenu()">
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar...">
+            </div>
+            <div class="user-actions">
                 <div class="user-profile-mini">
-                    <i class="fa-solid fa-circle-user" style="font-size: 25px; color: var(--azul-rey);"></i>
-                    <span>Yudresky P. <i class="fa-solid fa-angle-down"></i></span>
-                </div>
-
-                <div class="dropdown-menu" id="userDropdown">
-                    <a href="#"><i class="fa-solid fa-user-edit"></i> Editar Perfil</a>
-                    <a href="#"><i class="fa-solid fa-camera"></i> Foto de Perfil</a>
-                    <a href="vacantes.html"><i class="fa-solid fa-briefcase"></i> Ver Vacantes</a>
-                    <div style="border-top:1px solid #eee; margin:5px 0;"></div>
-                    <a href="index.html" style="color: #e74c3c;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span>Yudresky P.</span>
                 </div>
             </div>
         </header>
 
-        <section class="profile-header">
-            <div class="profile-avatar"><i class="fa-solid fa-user" style="font-size: 60px; color: var(--azul-rey);"></i></div>
+        <!-- SECCIÓN HERO DEL PERFIL -->
+        <section class="profile-hero">
+            <div class="avatar-container">
+                <!-- Como no tenemos la foto real, usamos un icono elegante -->
+                <div style="width:100%; height:100%; background:var(--blanco); border-radius:50%; display:flex; justify-content:center; align-items:center; border:4px solid var(--dorado);">
+                    <i class="fa-solid fa-user-tie" style="font-size: 60px; color: var(--azul-rey);"></i>
+                </div>
+                <div class="status-dot"></div>
+            </div>
+            
             <div class="profile-info">
-                <h1>Yudresky Parra</h1>
-                <p>Estudiante de Comunicación Social | 3er Trimestre</p>
+                <h1>Yudresky Parra <i class="fa-solid fa-circle-check" title="Perfil Verificado"></i></h1>
+                <p class="profile-subtitle">Estudiante de Comunicación Social | UBA | 7mo Trimestre</p>
+                <div class="profile-contact">
+                    <span><i class="fa-solid fa-location-dot"></i> Maracay, Venezuela</span>
+                    <span><i class="fa-regular fa-envelope"></i> yudresky.parra@uba.edu.ve</span>
+                </div>
+                <p class="profile-bio">Apasionada por contar historias que informan, conectan e inspiran. Me especializo en comunicación digital, producción audiovisual y narrativas multiplataforma con enfoque social. Soy organizada, creativa y me adapto fácilmente a equipos multidisciplinarios.</p>
+            </div>
+
+            <!-- Estadísticas flotantes -->
+            <div class="profile-stats-row">
+                <div class="p-stat-box">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <h3>16</h3>
+                    <p>Proyectos</p>
+                </div>
+                <div class="p-stat-box">
+                    <i class="fa-solid fa-eye"></i>
+                    <h3>2,845</h3>
+                    <p>Visualizaciones</p>
+                </div>
+                <div class="p-stat-box">
+                    <i class="fa-solid fa-star"></i>
+                    <h3>98%</h3>
+                    <p>Valoración</p>
+                </div>
             </div>
         </section>
-        
-        <div class="profile-grid">
-            <div class="card">
-                <h3 class="card-title">Sobre mí</h3>
-                <p>Apasionada por la comunicación estratégica...</p>
+
+        <!-- PESTAÑAS DE NAVEGACIÓN INTERNA -->
+        <div class="profile-tabs">
+            <a href="#" class="activo">Resumen</a>
+            <a href="#">Portafolio</a>
+            <a href="#">Proyectos</a>
+            <a href="#">Evidencias</a>
+            <a href="#">Reconocimientos</a>
+        </div>
+
+        <!-- CUADRÍCULA DE CONTENIDO -->
+        <div class="profile-grid-layout">
+            
+            <!-- Columna Izquierda -->
+            <div>
+                <div class="card-section">
+                    <h3 class="card-title"><i class="fa-regular fa-user"></i> Sobre mí</h3>
+                    <p style="font-size: 13px; line-height: 1.6;">Estudiante de Comunicación Social con enfoque en narrativas digitales. Me motiva investigar, crear y comunicar de forma que genere un impacto positivo.</p>
+                    <div style="background: var(--gris-fondo); padding: 15px; border-left: 3px solid var(--dorado); margin-top: 15px; font-style: italic; font-size: 13px;">
+                        "Creo en el poder de las historias bien contadas para transformar realidades."
+                    </div>
+                </div>
+
+                <div class="card-section">
+                    <h3 class="card-title"><i class="fa-solid fa-sliders"></i> Habilidades</h3>
+                    <div class="skill-item">
+                        <div class="skill-header"><span>Redacción y Storytelling</span> <span>95%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 95%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header"><span>Producción Audiovisual</span> <span>90%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header"><span>Edición de Video</span> <span>85%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header"><span>Comunicación Digital</span> <span>90%</span></div>
+                        <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+                    </div>
+                </div>
             </div>
-            <div class="card">
-                <h3 class="card-title">Portafolio Destacado</h3>
+
+            <!-- Columna Derecha -->
+            <div>
+                <div class="card-section">
+                    <h3 class="card-title"><i class="fa-regular fa-star"></i> Portafolio Destacado <a href="#" style="font-size: 13px; color: var(--azul-rey);">Ver todo</a></h3>
+                    <div class="portfolio-grid">
+                        <div class="portfolio-item">
+                            <div class="portfolio-img"><i class="fa-solid fa-microphone-lines"></i></div>
+                            <div class="portfolio-info">
+                                <h4>Podcast Documental</h4>
+                                <p>Voces que inspiran</p>
+                            </div>
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="portfolio-img" style="background-color: var(--dorado);"><i class="fa-solid fa-video"></i></div>
+                            <div class="portfolio-info">
+                                <h4>Reel Informativo</h4>
+                                <p>Salud mental en jóvenes</p>
+                            </div>
+                        </div>
+                        <div class="portfolio-item">
+                            <div class="portfolio-img" style="background-color: #34495E;"><i class="fa-solid fa-bullhorn"></i></div>
+                            <div class="portfolio-info">
+                                <h4>Campaña Digital</h4>
+                                <p>Cuida tu voz</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-section">
+                    <h3 class="card-title"><i class="fa-solid fa-award"></i> Reconocimientos y Evidencias</h3>
+                    <div style="display: flex; gap: 15px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--gris-claro);">
+                        <i class="fa-solid fa-trophy" style="color: var(--dorado); font-size: 24px;"></i>
+                        <div>
+                            <h4 style="font-size: 14px; margin-bottom: 3px;">Mención Honorífica</h4>
+                            <p style="font-size: 12px; color: var(--gris-texto);">Mejor Proyecto Audiovisual - UBA 2024</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 15px; align-items: center; padding: 10px 0;">
+                        <i class="fa-solid fa-file-pdf" style="color: #E74C3C; font-size: 24px;"></i>
+                        <div>
+                            <h4 style="font-size: 14px; margin-bottom: 3px;">Certificado Taller de Podcast</h4>
+                            <p style="font-size: 12px; color: var(--gris-texto);">PDF Documento Valido</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </main>
 
-    <script>
-        function toggleMenu() {
-            document.getElementById("userDropdown").classList.toggle("show");
-        }
-        window.onclick = function(event) {
-            if (!event.target.matches('.user-profile-container') && !event.target.matches('.fa-angle-down')) {
-                var dropdowns = document.getElementsByClassName("dropdown-menu");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    dropdowns[i].classList.remove('show');
-                }
-            }
-        }
-    </script>
 </body>
 </html>
