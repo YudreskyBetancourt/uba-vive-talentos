@@ -44,16 +44,17 @@
         .main-content { margin-left: 260px; width: calc(100% - 260px); padding: 30px 50px; min-height: 100vh; }
 
         /* Top Bar */
-        .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .search-bar { background-color: var(--blanco); padding: 10px 20px; border-radius: 20px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); width: 300px; }
+        .topbar { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 30px; }
+        .search-bar { background-color: var(--blanco); padding: 10px 20px; border-radius: 20px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); width: 300px; margin-right: auto; }
         .search-bar input { border: none; outline: none; background: transparent; width: 100%; font-family: 'Open Sans'; }
-        .search-bar i { color: #A0AABF; }
-        .user-actions { display: flex; align-items: center; gap: 15px; }
-        .notification-icon { position: relative; font-size: 20px; color: var(--azul-marino); cursor: pointer; margin-right: 10px;}
-        .notification-badge { position: absolute; top: -5px; right: -5px; background-color: #e74c3c; color: white; font-size: 10px; font-weight: bold; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
-        .user-profile-mini { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-        .user-profile-mini img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--dorado); }
-        .user-profile-mini span { font-weight: 600; color: var(--azul-marino); }
+        
+        /* Dropdown Menu CSS */
+        .user-profile-container { position: relative; cursor: pointer; }
+        .user-profile-mini { display: flex; align-items: center; gap: 10px; background: white; padding: 8px 15px; border-radius: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .dropdown-menu { display: none; position: absolute; right: 0; top: 110%; background: white; width: 220px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); padding: 10px 0; z-index: 1000; border: 1px solid var(--gris-claro); }
+        .dropdown-menu.show { display: block; }
+        .dropdown-menu a { display: block; padding: 10px 20px; color: var(--gris-texto); text-decoration: none; font-size: 14px; }
+        .dropdown-menu a:hover { background-color: var(--gris-fondo); color: var(--azul-rey); }
 
         /* Header de la página */
         .page-header { margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end; }
@@ -67,30 +68,23 @@
 
         /* Grid de Carreras */
         .carreras-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
-        
         .carrera-card { background: var(--blanco); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid var(--gris-claro); transition: 0.3s; position: relative; }
         .carrera-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-color: var(--azul-rey); }
-        
         .carrera-header { background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-rey) 100%); padding: 30px 20px; text-align: center; color: var(--blanco); position: relative; }
         .carrera-header i { font-size: 40px; color: var(--dorado); margin-bottom: 15px; }
         .carrera-header h3 { color: var(--blanco); font-size: 20px; }
-        
         .carrera-body { padding: 20px; }
         .carrera-body p { font-size: 13px; line-height: 1.6; color: var(--gris-texto); margin-bottom: 15px; min-height: 60px; }
-        
         .carrera-meta { display: flex; justify-content: space-between; border-top: 1px solid var(--gris-fondo); padding-top: 15px; margin-bottom: 15px; }
         .meta-data { text-align: center; }
         .meta-data span { display: block; font-size: 16px; font-weight: bold; color: var(--azul-marino); }
         .meta-data small { font-size: 11px; color: var(--gris-texto); }
-
         .btn-ver-carrera { display: block; text-align: center; background-color: var(--gris-fondo); color: var(--azul-rey); font-weight: 600; padding: 12px; border-radius: 8px; transition: 0.3s; font-size: 14px; }
         .btn-ver-carrera:hover { background-color: var(--azul-rey); color: var(--blanco); }
-
     </style>
 </head>
 <body>
 
-    <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="logo-container">
             <i class="fa-solid fa-graduation-cap"></i>
@@ -110,170 +104,56 @@
         </div>
     </aside>
 
-    <!-- MAIN CONTENT -->
     <main class="main-content">
-        
-        <!-- Top Bar -->
         <header class="topbar">
             <div class="search-bar">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" placeholder="Buscar proyectos, talentos...">
             </div>
-            <div class="user-actions">
-                <div class="notification-icon">
-                    <i class="fa-regular fa-bell"></i>
-                    <div class="notification-badge">2</div>
-                </div>
+            
+            <div class="user-profile-container" onclick="toggleMenu()">
                 <div class="user-profile-mini">
-                    <i class="fa-solid fa-circle-user" style="font-size: 35px; color: var(--azul-rey);"></i>
-                    <span>Yudresky P.</span>
+                    <i class="fa-solid fa-circle-user" style="font-size: 25px; color: var(--azul-rey);"></i>
+                    <span>Yudresky P. <i class="fa-solid fa-angle-down"></i></span>
+                </div>
+                <div class="dropdown-menu" id="userDropdown">
+                    <a href="perfil.html"><i class="fa-solid fa-user-edit"></i> Editar Perfil</a>
+                    <a href="vacantes.html"><i class="fa-solid fa-briefcase"></i> Ver Vacantes</a>
+                    <div style="border-top:1px solid #eee; margin:5px 0;"></div>
+                    <a href="index.html" style="color:red;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
                 </div>
             </div>
         </header>
 
-        <!-- Header de la Página -->
         <div class="page-header">
             <div class="header-text">
                 <h1>Explora las carreras</h1>
                 <p>Descubre los proyectos, simulaciones y portafolios organizados por área académica. Conecta tu talento con las oportunidades reales que ofrece cada facultad.</p>
             </div>
             <div class="carreras-stats">
-                <div class="stat-box">
-                    <h3>7</h3>
-                    <p>CARRERAS</p>
-                </div>
-                <div class="stat-box">
-                    <h3>+1.2k</h3>
-                    <p>PROYECTOS</p>
-                </div>
+                <div class="stat-box"><h3>7</h3><p>CARRERAS</p></div>
+                <div class="stat-box"><h3>+1.2k</h3><p>PROYECTOS</p></div>
             </div>
         </div>
 
-        <!-- Grid de Carreras -->
         <div class="carreras-grid">
-            
-            <!-- Comunicación Social -->
             <div class="carrera-card">
-                <div class="carrera-header">
-                    <i class="fa-solid fa-microphone-lines"></i>
-                    <h3>Comunicación Social</h3>
-                </div>
+                <div class="carrera-header"><i class="fa-solid fa-microphone-lines"></i><h3>Comunicación Social</h3></div>
                 <div class="carrera-body">
-                    <p>Redacta noticias, crea guiones para podcast o video, diseña campañas comunicacionales y genera impacto en medios digitales.</p>
+                    <p>Redacta noticias, crea guiones para podcast o video, diseña campañas comunicacionales y genera impacto.</p>
                     <div class="carrera-meta">
                         <div class="meta-data"><span>342</span><small>Estudiantes</small></div>
-                        <div class="meta-data"><span>15</span><small>Retos activos</small></div>
-                        <div class="meta-data"><span>420</span><small>Portafolios</small></div>
+                        <div class="meta-data"><span>15</span><small>Retos</small></div>
                     </div>
                     <a href="retos.html" class="btn-ver-carrera">Ver actividades <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-
-            <!-- Derecho -->
-            <div class="carrera-card">
-                <div class="carrera-header">
-                    <i class="fa-solid fa-scale-balanced"></i>
-                    <h3>Derecho</h3>
-                </div>
-                <div class="carrera-body">
-                    <p>Participa en simulacros de juicio oral, analiza casos jurídicos reales y redacta documentos legales con ética y profesionalismo.</p>
-                    <div class="carrera-meta">
-                        <div class="meta-data"><span>280</span><small>Estudiantes</small></div>
-                        <div class="meta-data"><span>8</span><small>Retos activos</small></div>
-                        <div class="meta-data"><span>315</span><small>Portafolios</small></div>
-                    </div>
-                    <a href="retos.html" class="btn-ver-carrera">Ver actividades <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
             </div>
-
-            <!-- Contaduría Pública -->
-            <div class="carrera-card">
-                <div class="carrera-header">
-                    <i class="fa-solid fa-calculator"></i>
-                    <h3>Contaduría Pública</h3>
-                </div>
-                <div class="carrera-body">
-                    <p>Resuelve casos contables, elabora presupuestos corporativos y analiza estados financieros para el éxito empresarial.</p>
-                    <div class="carrera-meta">
-                        <div class="meta-data"><span>195</span><small>Estudiantes</small></div>
-                        <div class="meta-data"><span>12</span><small>Retos activos</small></div>
-                        <div class="meta-data"><span>210</span><small>Portafolios</small></div>
-                    </div>
-                    <a href="retos.html" class="btn-ver-carrera">Ver actividades <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-
-            <!-- Administración -->
-            <div class="carrera-card">
-                <div class="carrera-header">
-                    <i class="fa-solid fa-chart-pie"></i>
-                    <h3>Administración</h3>
-                </div>
-                <div class="carrera-body">
-                    <p>Diseña modelos de negocio, crea planes organizacionales y lidera proyectos de gestión administrativa simulados.</p>
-                    <div class="carrera-meta">
-                        <div class="meta-data"><span>250</span><small>Estudiantes</small></div>
-                        <div class="meta-data"><span>10</span><small>Retos activos</small></div>
-                        <div class="meta-data"><span>285</span><small>Portafolios</small></div>
-                    </div>
-                    <a href="retos.html" class="btn-ver-carrera">Ver actividades <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-
-            <!-- Psicología -->
-            <div class="carrera-card">
-                <div class="carrera-header">
-                    <i class="fa-solid fa-brain"></i>
-                    <h3>Psicología</h3>
-                </div>
-                <div class="carrera-body">
-                    <p>Analiza casos ficticios, diseña campañas de bienestar emocional e interviene en foros de reflexión y desarrollo humano.</p>
-                    <div class="carrera-meta">
-                        <div class="meta-data"><span>310</span><small>Estudiantes</small></div>
-                        <div class="meta-data"><span>14</span><small>Retos activos</small></div>
-                        <div class="meta-data"><span>360</span><small>Portafolios</small></div>
-                    </div>
-                    <a href="retos.html" class="btn-ver-carrera">Ver actividades <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-
-            <!-- Ingeniería en Sistemas -->
-            <div class="carrera-card">
-                <div class="carrera-header">
-                    <i class="fa-solid fa-laptop-code"></i>
-                    <h3>Ingeniería en Sistemas</h3>
-                </div>
-                <div class="carrera-body">
-                    <p>Crea prototipos de aplicaciones, resuelve retos de lógica de programación y desarrolla interfaces de usuario innovadoras.</p>
-                    <div class="carrera-meta">
-                        <div class="meta-data"><span>180</span><small>Estudiantes</small></div>
-                        <div class="meta-data"><span>20</span><small>Retos activos</small></div>
-                        <div class="meta-data"><span>240</span><small>Portafolios</small></div>
-                    </div>
-                    <a href="retos.html" class="btn-ver-carrera">Ver actividades <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-
-            <!-- TSU en Publicidad -->
-            <div class="carrera-card">
-                <div class="carrera-header">
-                    <i class="fa-solid fa-bullseye"></i>
-                    <h3>TSU en Publicidad</h3>
-                </div>
-                <div class="carrera-body">
-                    <p>Diseña piezas gráficas impactantes, crea propuestas de marca y participa en retos rápidos de creatividad publicitaria.</p>
-                    <div class="carrera-meta">
-                        <div class="meta-data"><span>145</span><small>Estudiantes</small></div>
-                        <div class="meta-data"><span>9</span><small>Retos activos</small></div>
-                        <div class="meta-data"><span>190</span><small>Portafolios</small></div>
-                    </div>
-                    <a href="retos.html" class="btn-ver-carrera">Ver actividades <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-
-        </div>
-
     </main>
 
+    <script>
+        function toggleMenu() { document.getElementById("userDropdown").classList.toggle("show"); }
+        window.onclick = function(event) { if (!event.target.matches('.user-profile-container') && !event.target.matches('.fa-angle-down')) { var dropdowns = document.getElementsByClassName("dropdown-menu"); for (var i = 0; i < dropdowns.length; i++) { dropdowns[i].classList.remove('show'); } } }
+    </script>
 </body>
 </html>
