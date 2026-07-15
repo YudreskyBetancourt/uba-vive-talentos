@@ -154,6 +154,17 @@ a {
     min-height: 100vh;
 }
 
+body.has-sidebar .main-content {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+}
+
+body.has-sidebar .top-bar,
+body.has-sidebar .landing-navbar {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+}
+
 .topbar {
     display: flex;
     justify-content: space-between;
