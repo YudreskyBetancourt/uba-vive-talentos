@@ -143,10 +143,36 @@
 
 
     <div class="top-bar">
+        <button class="mobile-toggle-btn" id="mobileToggleBtn"><i class="fa-solid fa-bars"></i></button>
         <span>San Joaquín de Turmero</span>
         <span>San Antonio de los Altos</span>
         <span>San Fernando de Apure</span>
         <span>Puerto Ordaz</span>
+        
+        <div class="top-bar-controls">
+            <button class="control-btn" id="darkModeToggle" title="Modo Oscuro/Claro">
+                <i class="fa-solid fa-moon" id="darkModeIcon"></i>
+            </button>
+            <div style="position: relative;">
+                <button class="control-btn" id="notifToggle" title="Notificaciones">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notif-badge" id="notifBadge">1</span>
+                </button>
+                
+                <div class="notification-panel" id="notifPanel">
+                    <div class="notif-header">Notificaciones</div>
+                    <div class="notif-body">
+                        <a href="#" class="notif-item">
+                            <div class="notif-icon"><i class="fa-solid fa-building"></i></div>
+                            <div class="notif-content">
+                                <h4>Nueva Oferta Laboral</h4>
+                                <p>Revisa la sección de aliados.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <nav class="landing-navbar">
@@ -426,6 +452,21 @@
                             </div>
                         </div>
 
+                        <div class="form-group" style="margin-bottom: 25px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <label style="font-weight: 600; font-size: 13px; margin: 0;">Biografía Profesional</label>
+                                
+                                <button type="button" class="ai-button" id="aiEnhanceBtn" onclick="enhanceBioWithAI()">
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i> Mejorar con IA
+                                </button>
+                                
+                                <div class="ai-loading" id="aiLoading">
+                                    Generando magia <div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div>
+                                </div>
+                            </div>
+                            <textarea id="bioTextarea" class="form-control" rows="4" style="width: 100%; padding: 10px; border: 1px solid var(--gris-claro); border-radius: 8px;">Apasionada por contar historias que informan, conectan e inspiran. Me especializo en comunicación digital, producción audiovisual y narrativas multiplataforma con enfoque social. ¡Bienvenido a mi portafolio profesional!</textarea>
+                        </div>
+
                         <h4 style="margin-bottom: 15px; font-size: 16px; color: var(--azul-oscuro); border-bottom: 1px solid var(--gris-claro); padding-bottom: 10px;">Redes Sociales</h4>
                         
                         <div class="form-row" style="display: flex; gap: 15px; margin-bottom: 15px;">
@@ -479,5 +520,6 @@
             evt.currentTarget.className += " activo";
         }
     </script>
+    <script src="app.js"></script>
 </body>
 </html>

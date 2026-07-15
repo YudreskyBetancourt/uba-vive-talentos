@@ -717,3 +717,324 @@ body.has-sidebar .landing-navbar {
     color: var(--primary-blue) !important;
     border: 2px solid var(--primary-blue);
 }
+
+
+/* =========================================
+   MEJORAS WOW: MODO OSCURO, NOTIFICACIONES Y RESPONSIVE
+   ========================================= */
+
+/* Variables para Modo Oscuro */
+:root {
+    --bg-dark-base: #0f172a;
+    --bg-dark-panel: #1e293b;
+    --text-dark-main: #f8fafc;
+    --text-dark-muted: #94a3b8;
+    --border-dark: #334155;
+}
+
+body.dark-mode {
+    background-color: var(--bg-dark-base);
+    color: var(--text-dark-main);
+}
+
+body.dark-mode .main-content {
+    background-color: var(--bg-dark-base);
+}
+
+body.dark-mode .card-section, 
+body.dark-mode .showcase-card, 
+body.dark-mode .eval-card, 
+body.dark-mode .corp-form-section,
+body.dark-mode .prof-form-section {
+    background-color: var(--bg-dark-panel);
+    border-color: var(--border-dark);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .card-title,
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4,
+body.dark-mode label {
+    color: var(--text-dark-main) !important;
+}
+
+body.dark-mode p,
+body.dark-mode .form-control,
+body.dark-mode .profile-bio,
+body.dark-mode .showcase-meta {
+    color: var(--text-dark-muted) !important;
+}
+
+body.dark-mode .form-control {
+    background-color: var(--bg-dark-base);
+    border-color: var(--border-dark);
+    color: var(--text-dark-main) !important;
+}
+
+body.dark-mode .top-bar {
+    background-color: var(--bg-dark-panel);
+    border-bottom: 1px solid var(--border-dark);
+    color: var(--text-dark-main);
+}
+
+/* Panel de Notificaciones (Estilos Base) */
+.notification-panel {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 320px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border: 1px solid var(--gris-claro);
+    display: none;
+    z-index: 1000;
+    overflow: hidden;
+    animation: slideDownFade 0.3s ease;
+}
+
+.notification-panel.active {
+    display: block;
+}
+
+body.dark-mode .notification-panel {
+    background: var(--bg-dark-panel);
+    border-color: var(--border-dark);
+}
+
+.notif-header {
+    padding: 15px 20px;
+    background: var(--primary-blue);
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notif-body {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.notif-item {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--gris-claro);
+    display: flex;
+    gap: 15px;
+    transition: 0.3s;
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+.notif-item:hover {
+    background: #f8fafc;
+}
+
+body.dark-mode .notif-item {
+    border-bottom-color: var(--border-dark);
+    color: var(--text-dark-main);
+}
+
+body.dark-mode .notif-item:hover {
+    background: var(--bg-dark-base);
+}
+
+.notif-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary-blue);
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.notif-content h4 {
+    font-size: 13px;
+    margin: 0 0 5px 0;
+}
+
+.notif-content p {
+    font-size: 11px;
+    margin: 0;
+    color: var(--gris-texto);
+}
+
+/* Iconos dinámicos en top-bar (Dashboard) */
+.top-bar-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left: auto; /* Empuja a la derecha */
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    color: var(--primary-blue);
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
+}
+
+body.dark-mode .control-btn {
+    color: var(--accent-gold);
+}
+
+.control-btn:hover {
+    transform: scale(1.1);
+}
+
+.notif-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #e53e3e;
+    color: white;
+    font-size: 9px;
+    font-weight: 800;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+}
+
+body.dark-mode .notif-badge {
+    border-color: var(--bg-dark-panel);
+}
+
+/* Responsive Sidebar (Menú Hamburguesa) */
+.mobile-toggle-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+@media (max-width: 992px) {
+    /* Mostrar barra superior de control móvil (en el dashboard) */
+    .top-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+    }
+    
+    .mobile-toggle-btn {
+        display: block;
+        color: var(--primary-blue);
+        margin-right: 15px;
+    }
+    
+    body.dark-mode .mobile-toggle-btn {
+        color: var(--accent-gold);
+    }
+    
+    /* Ocultar barra de texto estática en móviles */
+    .top-bar > span {
+        display: none;
+    }
+    
+    .sidebar {
+        transform: translateX(-100%); /* Oculta por defecto */
+        z-index: 1001;
+        box-shadow: 5px 0 25px rgba(0,0,0,0.5);
+    }
+    
+    /* Cuando se activa la clase 'open' mediante JS */
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0 !important;
+        padding-top: 80px !important; /* Espacio para el fixed top-bar */
+        width: 100%;
+    }
+    
+    /* Overlay para cuando el sidebar está abierto */
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.6);
+        z-index: 1000;
+        display: none;
+        backdrop-filter: blur(3px);
+    }
+    
+    .sidebar-overlay.active {
+        display: block;
+    }
+    
+    .profile-hero { flex-direction: column; text-align: center; }
+    .profile-stats-row { position: relative; top: auto; right: auto; margin-top: 20px; justify-content: center; }
+    .profile-info h1 { justify-content: center; }
+    .profile-contact { justify-content: center; flex-wrap: wrap; }
+    .profile-tabs { flex-wrap: wrap; justify-content: center; }
+    .profile-grid-layout { grid-template-columns: 1fr; }
+}
+
+@keyframes slideDownFade {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Efecto Inteligencia Artificial (Simulación) */
+.ai-button {
+    background: linear-gradient(90deg, #8B5CF6, #3B82F6);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.ai-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+}
+
+.ai-loading {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    color: #8B5CF6;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 10px;
+}
+.ai-dot { width: 6px; height: 6px; background: #8B5CF6; border-radius: 50%; animation: pulse 1s infinite; }
+.ai-dot:nth-child(2) { animation-delay: 0.2s; }
+.ai-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}

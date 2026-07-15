@@ -206,10 +206,48 @@
     </aside>
 
     <div class="top-bar">
+        <button class="mobile-toggle-btn" id="mobileToggleBtn"><i class="fa-solid fa-bars"></i></button>
         <span>San Joaquín de Turmero</span>
         <span>San Antonio de los Altos</span>
         <span>San Fernando de Apure</span>
         <span>Puerto Ordaz</span>
+        
+        <div class="top-bar-controls">
+            <button class="control-btn" id="darkModeToggle" title="Modo Oscuro/Claro">
+                <i class="fa-solid fa-moon" id="darkModeIcon"></i>
+            </button>
+            <div style="position: relative;">
+                <button class="control-btn" id="notifToggle" title="Notificaciones">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notif-badge" id="notifBadge">2</span>
+                </button>
+                
+                <!-- Panel de Notificaciones -->
+                <div class="notification-panel" id="notifPanel">
+                    <div class="notif-header">
+                        Notificaciones <i class="fa-solid fa-check-double" style="font-size: 12px; cursor: pointer;" title="Marcar todas como leídas"></i>
+                    </div>
+                    <div class="notif-body">
+                        <a href="#" class="notif-item">
+                            <div class="notif-icon"><i class="fa-solid fa-building"></i></div>
+                            <div class="notif-content">
+                                <h4>Empresas Polar C.A.</h4>
+                                <p>Ha visto tu portafolio de proyectos.</p>
+                                <p style="font-size: 10px; color: #8B0000; margin-top: 3px;">Hace 2 horas</p>
+                            </div>
+                        </a>
+                        <a href="#" class="notif-item">
+                            <div class="notif-icon"><i class="fa-solid fa-award"></i></div>
+                            <div class="notif-content">
+                                <h4>¡Reto Evaluado!</h4>
+                                <p>Prof. Carlos Mendoza te asignó 95/100 pts.</p>
+                                <p style="font-size: 10px; color: #8B0000; margin-top: 3px;">Ayer</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <nav class="landing-navbar">
@@ -260,7 +298,13 @@
                     <h3>2,845</h3>
                     <p>Visualizaciones</p>
                 </div>
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-bottom: 40px;">
+            
+            <div class="card-section">
+                <h3 class="card-title">Visibilidad y Métricas Mensuales</h3>
+                <canvas id="viewsChart" width="400" height="150"></canvas>
             </div>
+        </div>
         </section>
 
         <!-- Galería de Trabajos Ficticios -->
@@ -356,5 +400,46 @@
         </div>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Inicializar el gráfico Chart.js
+        const ctx = document.getElementById('viewsChart');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+                    datasets: [{
+                        label: 'Vistas del Portafolio',
+                        data: [150, 430, 850, 1415],
+                        borderColor: '#002B5E',
+                        backgroundColor: 'rgba(0, 43, 94, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true
+                    },
+                    {
+                        label: 'Empresas Interesadas',
+                        data: [5, 12, 18, 42],
+                        borderColor: '#C99A2E',
+                        backgroundColor: 'rgba(201, 154, 46, 0.1)',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top' }
+                    },
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>
