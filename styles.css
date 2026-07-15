@@ -925,6 +925,40 @@ body.dark-mode .notif-badge {
 }
 
 @media (max-width: 992px) {
+
+    /* Fixing small inputs and form rows on mobile */
+    .form-row, .profile-contact, .profile-stats-row {
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+    .corp-header, .eval-header {
+        flex-direction: column !important;
+        text-align: center;
+    }
+    .search-bar {
+        flex-wrap: wrap !important;
+        border-radius: 12px !important;
+    }
+    .search-input {
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+    .btn-filter {
+        width: 100%;
+        justify-content: center;
+    }
+    div[style*="display: grid; grid-template-columns: 1fr 2fr;"] {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    div[style*="display: grid; grid-template-columns: 2fr 1fr;"] {
+        display: flex !important;
+        flex-direction: column-reverse !important; /* Put main content above side panel on mobile */
+    }
+    div[style*="display: grid;"] {
+        grid-template-columns: 1fr !important; /* Catch any remaining inline grids */
+    }
+
     /* Mostrar barra superior de control móvil (en el dashboard) */
     .top-bar {
         position: fixed;

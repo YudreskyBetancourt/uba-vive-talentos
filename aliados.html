@@ -6,7 +6,7 @@
     <title>Aliados Comerciales - UBA Vive Talentos</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=4">
+    <link rel="stylesheet" href="styles.css?v=5">
     <style>
         .hero-aliados {
             background-image: linear-gradient(135deg, rgba(0, 43, 94, 0.9) 0%, rgba(0, 26, 56, 0.9) 100%), url('https://images.unsplash.com/photo-1556761175-5973dc0f32d7?auto=format&fit=crop&q=80&w=1200');
@@ -195,10 +195,33 @@
     </aside>
 
     <div class="top-bar">
-        <span>San Joaquín de Turmero</span>
-        <span>San Antonio de los Altos</span>
-        <span>San Fernando de Apure</span>
-        <span>Puerto Ordaz</span>
+        <button class="mobile-toggle-btn" id="mobileToggleBtn"><i class="fa-solid fa-bars"></i></button>
+        <span>UBA ViveTalentos - Ecosistema Corporativo</span>
+        
+        <div class="top-bar-controls">
+            <button class="control-btn" id="darkModeToggle" title="Modo Oscuro/Claro">
+                <i class="fa-solid fa-moon" id="darkModeIcon"></i>
+            </button>
+            <div style="position: relative;">
+                <button class="control-btn" id="notifToggle" title="Notificaciones">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="notif-badge" id="notifBadge">1</span>
+                </button>
+                
+                <div class="notification-panel" id="notifPanel">
+                    <div class="notif-header">Notificaciones</div>
+                    <div class="notif-body">
+                        <a href="#" class="notif-item">
+                            <div class="notif-icon"><i class="fa-solid fa-info-circle"></i></div>
+                            <div class="notif-content">
+                                <h4>Sistema</h4>
+                                <p>Bienvenido a la plataforma UBA ViveTalentos.</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <nav class="landing-navbar">
@@ -475,5 +498,6 @@
 
     </main>
 
+    <script src="app.js"></script>
 </body>
 </html>
