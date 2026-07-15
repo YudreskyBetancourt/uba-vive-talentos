@@ -6,9 +6,10 @@
     <title>Mi Perfil - UBA Vive Talentos</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Aquí conectamos el diseño mágico -->
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Estilos específicos para la página de Perfil */
+        /* Estilos exclusivos solo para el interior del Perfil */
         .profile-hero {
             background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-rey) 100%);
             border-radius: 16px;
@@ -25,12 +26,17 @@
             width: 150px;
             height: 150px;
         }
-        .avatar-container img {
+        .avatar-container i.fa-user-tie {
             width: 100%;
             height: 100%;
             border-radius: 50%;
             border: 4px solid var(--dorado);
-            object-fit: cover;
+            background: var(--blanco);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            color: var(--azul-rey);
         }
         .status-dot {
             position: absolute;
@@ -91,20 +97,18 @@
         }
         .card-title { font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
         
-        /* Barras de habilidades */
         .skill-item { margin-bottom: 15px; }
         .skill-header { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 5px; }
         .skill-bar-bg { width: 100%; height: 8px; background-color: var(--gris-claro); border-radius: 4px; overflow: hidden; }
         .skill-bar-fill { height: 100%; background-color: var(--azul-rey); border-radius: 4px; }
         
-        /* Grid de Portafolio */
         .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
         .portfolio-item { border-radius: 12px; overflow: hidden; border: 1px solid var(--gris-claro); transition: 0.3s; cursor: pointer; }
         .portfolio-item:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-color: var(--dorado); }
         .portfolio-img { width: 100%; height: 120px; background-color: var(--azul-oscuro); display: flex; justify-content: center; align-items: center; position: relative; }
         .portfolio-img i { font-size: 30px; color: var(--blanco); }
         .portfolio-info { padding: 15px; }
-        .portfolio-info h4 { font-size: 14px; margin-bottom: 5px; }
+        .portfolio-info h4 { font-size: 14px; margin-bottom: 5px; color: var(--azul-oscuro); font-weight: 700; }
         .portfolio-info p { font-size: 12px; color: var(--gris-texto); }
     </style>
 </head>
@@ -138,13 +142,9 @@
             </div>
         </header>
 
-        <!-- SECCIÓN HERO DEL PERFIL -->
         <section class="profile-hero">
             <div class="avatar-container">
-                <!-- Como no tenemos la foto real, usamos un icono elegante -->
-                <div style="width:100%; height:100%; background:var(--blanco); border-radius:50%; display:flex; justify-content:center; align-items:center; border:4px solid var(--dorado);">
-                    <i class="fa-solid fa-user-tie" style="font-size: 60px; color: var(--azul-rey);"></i>
-                </div>
+                <i class="fa-solid fa-user-tie"></i>
                 <div class="status-dot"></div>
             </div>
             
@@ -158,7 +158,6 @@
                 <p class="profile-bio">Apasionada por contar historias que informan, conectan e inspiran. Me especializo en comunicación digital, producción audiovisual y narrativas multiplataforma con enfoque social. Soy organizada, creativa y me adapto fácilmente a equipos multidisciplinarios.</p>
             </div>
 
-            <!-- Estadísticas flotantes -->
             <div class="profile-stats-row">
                 <div class="p-stat-box">
                     <i class="fa-solid fa-briefcase"></i>
@@ -178,7 +177,6 @@
             </div>
         </section>
 
-        <!-- PESTAÑAS DE NAVEGACIÓN INTERNA -->
         <div class="profile-tabs">
             <a href="#" class="activo">Resumen</a>
             <a href="#">Portafolio</a>
@@ -187,7 +185,6 @@
             <a href="#">Reconocimientos</a>
         </div>
 
-        <!-- CUADRÍCULA DE CONTENIDO -->
         <div class="profile-grid-layout">
             
             <!-- Columna Izquierda -->
@@ -255,14 +252,14 @@
                     <div style="display: flex; gap: 15px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--gris-claro);">
                         <i class="fa-solid fa-trophy" style="color: var(--dorado); font-size: 24px;"></i>
                         <div>
-                            <h4 style="font-size: 14px; margin-bottom: 3px;">Mención Honorífica</h4>
+                            <h4 style="font-size: 14px; margin-bottom: 3px; color: var(--azul-oscuro); font-weight: 700;">Mención Honorífica</h4>
                             <p style="font-size: 12px; color: var(--gris-texto);">Mejor Proyecto Audiovisual - UBA 2024</p>
                         </div>
                     </div>
                     <div style="display: flex; gap: 15px; align-items: center; padding: 10px 0;">
                         <i class="fa-solid fa-file-pdf" style="color: #E74C3C; font-size: 24px;"></i>
                         <div>
-                            <h4 style="font-size: 14px; margin-bottom: 3px;">Certificado Taller de Podcast</h4>
+                            <h4 style="font-size: 14px; margin-bottom: 3px; color: var(--azul-oscuro); font-weight: 700;">Certificado Taller de Podcast</h4>
                             <p style="font-size: 12px; color: var(--gris-texto);">PDF Documento Valido</p>
                         </div>
                     </div>
