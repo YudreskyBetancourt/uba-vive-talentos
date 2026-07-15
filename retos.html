@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         .page-header { margin-bottom: 30px; }
-        .page-header h1 { font-size: 32px; margin-bottom: 10px; display: flex; align-items: center; gap: 15px; color: var(--azul-oscuro); }
+        .page-header h1 { font-size: 32px; margin-bottom: 10px; color: var(--azul-oscuro); display: flex; align-items: center; gap: 15px; }
         .page-header h1 i { color: var(--dorado); }
         .page-header p { font-size: 16px; color: var(--gris-texto); max-width: 800px; line-height: 1.6; }
 
@@ -23,7 +23,6 @@
         .reto-card:hover { transform: translateY(-6px); box-shadow: var(--sombra-hover); border-color: var(--azul-rey); }
 
         .video-container { width: 100%; height: 220px; background-color: var(--azul-oscuro); position: relative; overflow: hidden; }
-        .video-container iframe { width: 100%; height: 100%; border: none; }
         .reto-tag { position: absolute; top: 15px; left: 15px; background-color: var(--dorado); color: var(--azul-oscuro); font-size: 12px; font-weight: bold; padding: 6px 14px; border-radius: 20px; z-index: 10; }
 
         .reto-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
@@ -32,17 +31,11 @@
 
         .reto-meta { background-color: var(--gris-fondo); padding: 18px; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--gris-claro); }
         .meta-item { display: flex; margin-bottom: 10px; font-size: 13px; }
-        .meta-item:last-child { margin-bottom: 0; }
         .meta-item strong { width: 130px; color: var(--azul-oscuro); display: flex; align-items: center; gap: 8px; font-weight: 700; }
-        .meta-item strong i { color: var(--dorado); width: 15px; text-align: center; }
         .meta-item span { flex-grow: 1; color: var(--gris-texto); }
 
         .btn-participar { background-color: var(--azul-oscuro); color: var(--blanco); text-align: center; padding: 14px; border-radius: 8px; font-weight: 700; transition: all 0.3s ease; margin-top: auto; border: none; cursor: pointer; font-size: 14px; }
         .btn-participar:hover { background-color: var(--azul-rey); }
-
-        .video-placeholder { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; position: relative; }
-        .video-placeholder::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 1; }
-        .play-button { width: 60px; height: 60px; background-color: rgba(255, 255, 255, 0.9); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--azul-rey); font-size: 24px; z-index: 2; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
     </style>
 </head>
 <body>
@@ -81,121 +74,64 @@
 
         <div class="page-header">
             <h1><i class="fa-solid fa-flask"></i> Simulacros y Retos Prácticos</h1>
-            <p>El puente entre la teoría y la práctica. Selecciona un desafío corporativo y sube la evidencia a tu portafolio digital.</p>
+            <p>Selecciona un desafío corporativo y sube la evidencia a tu portafolio digital.</p>
         </div>
 
         <div class="filters">
             <button class="filter-btn active" data-filter="todos">Todos</button>
-            <button class="filter-btn" data-filter="marketing">Marketing y Publicidad</button>
+            <button class="filter-btn" data-filter="marketing">Marketing</button>
             <button class="filter-btn" data-filter="derecho">Derecho</button>
-            <button class="filter-btn" data-filter="finanzas">Admin y Contaduría</button>
+            <button class="filter-btn" data-filter="finanzas">Finanzas</button>
         </div>
 
         <div class="retos-grid" id="retos-container">
-            
-            <!-- RETO 1: MARKETING -->
             <div class="reto-card" data-category="marketing">
-                <div class="video-container">
-                    <span class="reto-tag">Agencia Impacto Digital</span>
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=1&showinfo=0&rel=0" title="Video de Ejemplo" allowfullscreen></iframe>
-                </div>
+                <div class="video-container"><span class="reto-tag">Agencia Impacto Digital</span></div>
                 <div class="reto-content">
-                    <h3>Producción de Podcast & Campaña Digital</h3>
-                    <p class="desc">Asume el rol de productor y copywriter. Diseña y ejecuta una campaña comunicacional enfocada en estrategias de conversión digitales y narrativas auditivas.</p>
+                    <h3>Producción de Podcast & Campaña</h3>
+                    <p class="desc">Asume el rol de productor y copywriter. Diseña y ejecuta una campaña comunicacional real.</p>
                     <div class="reto-meta">
-                        <div class="meta-item"><strong><i class="fa-solid fa-bullseye"></i> Objetivo:</strong><span>Crear un episodio piloto de podcast y su estrategia de difusión.</span></div>
-                        <div class="meta-item"><strong><i class="fa-regular fa-clock"></i> Duración:</strong><span>2 Semanas (Cierra 30 de Julio)</span></div>
-                        <div class="meta-item"><strong><i class="fa-solid fa-box-open"></i> Producto:</strong><span>Audio MP3 + Guion Literario + Parrilla de Copys.</span></div>
+                        <div class="meta-item"><strong><i class="fa-solid fa-bullseye"></i> Objetivo:</strong><span>Podcast y estrategia de difusión.</span></div>
+                        <div class="meta-item"><strong><i class="fa-regular fa-clock"></i> Duración:</strong><span>2 Semanas</span></div>
                     </div>
                     <button class="btn-participar">Participar en este reto</button>
                 </div>
             </div>
-
-            <!-- RETO 2: DERECHO -->
             <div class="reto-card" data-category="derecho">
-                <div class="video-container">
-                    <div class="video-placeholder" style="background-image: url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=800'); background-size: cover;">
-                         <span class="reto-tag" style="background-color: var(--azul-rey); color: var(--blanco);">LexCorp Abogados</span>
-                         <div class="play-button"><i class="fa-solid fa-play"></i></div>
-                    </div>
-                </div>
+                <div class="video-container"><span class="reto-tag">LexCorp Abogados</span></div>
                 <div class="reto-content">
-                    <h3>Simulacro de Juicio Oral: Caso Penal</h3>
-                    <p class="desc">Participa en nuestra sala de audiencias virtual. Analiza el expediente asignado, construye tus argumentos jurídicos y defiende tu postura en un debate en tiempo real.</p>
+                    <h3>Simulacro de Juicio Oral</h3>
+                    <p class="desc">Analiza el expediente asignado, construye tus argumentos jurídicos y defiende tu postura en tiempo real.</p>
                     <div class="reto-meta">
-                        <div class="meta-item"><strong><i class="fa-solid fa-bullseye"></i> Objetivo:</strong><span>Aplicar técnicas de litigación oral y argumentación jurídica.</span></div>
-                        <div class="meta-item"><strong><i class="fa-regular fa-clock"></i> Duración:</strong><span>1 Sesión en Vivo (Viernes 15, 09:00 AM)</span></div>
-                        <div class="meta-item"><strong><i class="fa-solid fa-box-open"></i> Producto:</strong><span>Escrito de alegatos iniciales (PDF) + Participación oral.</span></div>
+                        <div class="meta-item"><strong><i class="fa-solid fa-bullseye"></i> Objetivo:</strong><span>Aplicar técnicas de litigación oral.</span></div>
+                        <div class="meta-item"><strong><i class="fa-regular fa-clock"></i> Duración:</strong><span>1 Sesión en Vivo</span></div>
                     </div>
                     <button class="btn-participar">Participar en este reto</button>
                 </div>
             </div>
-
-            <!-- RETO 3: FINANZAS -->
-            <div class="reto-card" data-category="finanzas">
-                <div class="video-container">
-                    <div class="video-placeholder" style="background-image: url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800'); background-size: cover;">
-                        <span class="reto-tag" style="background-color: var(--gris-texto); color: var(--blanco);">EcoClean Soluciones</span>
-                        <div class="play-button"><i class="fa-solid fa-play"></i></div>
-                    </div>
-                </div>
-                <div class="reto-content">
-                    <h3>Organización Financiera: Plan de Negocios</h3>
-                    <p class="desc">Una empresa aliada ha presentado un caso de desorganización financiera. Tu misión es realizar ejercicios de costos, diseñar un presupuesto base y estructurar un plan de viabilidad.</p>
-                    <div class="reto-meta">
-                        <div class="meta-item"><strong><i class="fa-solid fa-bullseye"></i> Objetivo:</strong><span>Solucionar un caso real de estructuración de costos.</span></div>
-                        <div class="meta-item"><strong><i class="fa-regular fa-clock"></i> Duración:</strong><span>3 Semanas (Cierra 10 de Agosto)</span></div>
-                        <div class="meta-item"><strong><i class="fa-solid fa-box-open"></i> Producto:</strong><span>Hoja de cálculo (Presupuesto) + Informe de Plan de Negocios.</span></div>
-                    </div>
-                    <button class="btn-participar">Participar en este reto</button>
-                </div>
-            </div>
-
         </div>
     </main>
 
-    <!-- INTELLIGENT ROUTING & FILTERING SCRIPT -->
     <script>
+        // Lógica de filtrado inteligente
         const cards = document.querySelectorAll('.reto-card');
         const buttons = document.querySelectorAll('.filter-btn');
 
-        // Función base para filtrar las tarjetas en pantalla
-        function filterCategory(category) {
+        function filterRetos(category) {
             cards.forEach(card => {
-                if (category === 'todos' || card.getAttribute('data-category') === category) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+                card.style.display = (category === 'todos' || card.dataset.category === category) ? 'flex' : 'none';
             });
-
-            // Resaltar botón activo
-            buttons.forEach(btn => {
-                if (btn.getAttribute('data-filter') === category) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
+            buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.filter === category));
         }
 
-        // 1. CONTROL DE FILTROS POR CLICK MANUAL
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                const targetCategory = button.getAttribute('data-filter');
-                filterCategory(targetCategory);
-            });
-        });
+        buttons.forEach(btn => btn.addEventListener('click', () => filterRetos(btn.dataset.filter)));
 
-        // 2. DETECCIÓN AUTOMÁTICA DE PARÁMETROS DE URL (Magia de Redirección)
-        window.addEventListener('DOMContentLoaded', () => {
+        // Leer parámetro de la URL
+        window.onload = () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const empresaParam = urlParams.get('empresa'); // Lee si viene '?empresa=marketing'
-
-            if (empresaParam) {
-                filterCategory(empresaParam);
-            }
-        });
+            const emp = urlParams.get('empresa');
+            if(emp) filterRetos(emp);
+        };
     </script>
 </body>
 </html>
