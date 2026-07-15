@@ -8,32 +8,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --azul-rey: #003B8E;
-            --azul-marino: #001F4D;
-            --dorado: #C99A2E;
-            --blanco: #FFFFFF;
-            --gris-fondo: #F5F7FA;
-            --gris-texto: #4A4A4A;
-            --gris-claro: #E0E5EC;
+            --azul-rey: #003B8E; --azul-marino: #001F4D; --dorado: #C99A2E; 
+            --blanco: #FFFFFF; --gris-fondo: #F5F7FA; --gris-texto: #4A4A4A; --gris-claro: #E0E5EC;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Open Sans', sans-serif; color: var(--gris-texto); background-color: var(--gris-fondo); display: flex; }
-        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-marino); }
         a { text-decoration: none; }
 
         /* SIDEBAR */
-        .sidebar { width: 260px; background-color: var(--azul-marino); color: var(--blanco); height: 100vh; position: fixed; display: flex; flex-direction: column; padding: 20px; box-shadow: 4px 0 10px rgba(0,0,0,0.1); z-index: 100; }
-        .logo-container { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .logo-container h2 { color: var(--blanco); font-size: 20px; }
-        .logo-container h2 span { color: var(--dorado); }
-        .nav-menu { display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
-        .nav-menu a { display: flex; align-items: center; gap: 15px; padding: 12px 20px; color: var(--blanco); font-weight: 600; border-radius: 8px; transition: 0.3s; }
+        .sidebar { width: 260px; background-color: var(--azul-marino); color: var(--blanco); height: 100vh; position: fixed; padding: 20px; z-index: 100; }
+        .logo-container { text-align: center; margin-bottom: 40px; }
+        .nav-menu { display: flex; flex-direction: column; gap: 10px; }
+        .nav-menu a { display: flex; align-items: center; gap: 15px; padding: 12px 20px; color: var(--blanco); font-weight: 600; border-radius: 8px; }
         .nav-menu a.activo { background-color: var(--dorado); color: var(--azul-marino); }
         
-        /* MAIN CONTENT */
-        .main-content { margin-left: 260px; width: calc(100% - 260px); padding: 30px 50px; min-height: 100vh; }
-        
-        /* TOPBAR Y MENU DESPLEGABLE */
+        .main-content { margin-left: 260px; width: calc(100% - 260px); padding: 30px 50px; }
+
+        /* HEADER Y DROPDOWN */
         .topbar { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 30px; }
         .user-profile-container { position: relative; cursor: pointer; }
         .user-profile-mini { display: flex; align-items: center; gap: 10px; background: white; padding: 8px 15px; border-radius: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
@@ -42,23 +33,20 @@
         .dropdown-menu a { display: block; padding: 10px 20px; color: var(--gris-texto); font-size: 14px; }
         .dropdown-menu a:hover { background-color: var(--gris-fondo); color: var(--azul-rey); }
 
-        /* GRID Y TARJETAS (Mantenemos tu diseño original) */
-        .carreras-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        /* GRID CARRERAS */
+        .carreras-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 30px; }
         .carrera-card { background: var(--blanco); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid var(--gris-claro); transition: 0.3s; }
-        .carrera-card:hover { transform: translateY(-5px); }
-        .carrera-header { background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-rey) 100%); padding: 30px 20px; text-align: center; color: var(--blanco); }
+        .carrera-header { background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-rey) 100%); padding: 30px; text-align: center; color: white; }
+        .carrera-header i { font-size: 40px; color: var(--dorado); margin-bottom: 10px; }
         .carrera-body { padding: 20px; }
-        .carrera-meta { display: flex; justify-content: space-between; border-top: 1px solid var(--gris-fondo); padding-top: 15px; margin-bottom: 15px; }
-        .meta-data span { display: block; font-size: 16px; font-weight: bold; color: var(--azul-marino); }
         .btn-ver-carrera { display: block; text-align: center; background-color: var(--gris-fondo); color: var(--azul-rey); padding: 12px; border-radius: 8px; font-weight: 600; }
+        .meta-data { display: flex; justify-content: space-between; margin: 15px 0; font-size: 14px; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <aside class="sidebar">
-        <div class="logo-container">
-            <h2>UBA <span>ViveTalentos</span></h2>
-        </div>
+        <div class="logo-container"><h2>UBA <span>ViveTalentos</span></h2></div>
         <nav class="nav-menu">
             <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
             <a href="carreras.html" class="activo"><i class="fa-solid fa-compass"></i> Explorar carreras</a>
@@ -70,10 +58,12 @@
         <header class="topbar">
             <div class="user-profile-container" onclick="toggleMenu()">
                 <div class="user-profile-mini">
+                    <i class="fa-solid fa-circle-user"></i>
                     <span>Yudresky P. <i class="fa-solid fa-angle-down"></i></span>
                 </div>
                 <div class="dropdown-menu" id="userDropdown">
                     <a href="perfil.html">Editar Perfil</a>
+                    <a href="vacantes.html">Ver Vacantes</a>
                     <a href="index.html" style="color:red;">Cerrar Sesión</a>
                 </div>
             </div>
@@ -83,13 +73,26 @@
         
         <div class="carreras-grid">
             <div class="carrera-card">
-                <div class="carrera-header"><h3>Comunicación Social</h3></div>
+                <div class="carrera-header">
+                    <i class="fa-solid fa-microphone-lines"></i>
+                    <h3>Comunicación Social</h3>
+                </div>
                 <div class="carrera-body">
-                    <p>Redacta noticias, crea guiones y diseña campañas.</p>
-                    <div class="carrera-meta">
-                        <div class="meta-data"><span>342</span><small>Estudiantes</small></div>
-                    </div>
-                    <a href="#" class="btn-ver-carrera">Ver actividades</a>
+                    <p>Redacta noticias, crea guiones para podcast o video, diseña campañas comunicacionales.</p>
+                    <div class="meta-data"><span>342 Estudiantes</span> <span>15 Retos</span></div>
+                    <a href="retos.html" class="btn-ver-carrera">Ver actividades</a>
+                </div>
+            </div>
+            
+            <div class="carrera-card">
+                <div class="carrera-header">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    <h3>Derecho</h3>
+                </div>
+                <div class="carrera-body">
+                    <p>Simulacros de juicio oral, análisis de casos jurídicos y defensa de postura.</p>
+                    <div class="meta-data"><span>280 Estudiantes</span> <span>8 Retos</span></div>
+                    <a href="retos.html" class="btn-ver-carrera">Ver actividades</a>
                 </div>
             </div>
         </div>
