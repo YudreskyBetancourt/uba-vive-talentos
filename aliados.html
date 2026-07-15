@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresas Aliadas - UBA Vive Talentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --azul-rey: #003B8E;
+            --azul-marino: #001F4D;
+            --dorado: #C99A2E;
+            --blanco: #FFFFFF;
+            --gris-fondo: #F5F7FA;
+            --gris-texto: #4A4A4A;
+            --gris-claro: #E0E5EC;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', sans-serif; color: var(--gris-texto); background-color: var(--gris-fondo); display: flex; }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-marino); }
+        a { text-decoration: none; }
+
+        /* SIDEBAR */
+        .sidebar { width: 260px; background-color: var(--azul-marino); color: var(--blanco); height: 100vh; position: fixed; display: flex; flex-direction: column; padding: 20px; box-shadow: 4px 0 10px rgba(0,0,0,0.1); z-index: 100; }
+        .logo-container { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo-container i { font-size: 40px; color: var(--blanco); margin-bottom: 10px; }
+        .logo-container h2 { color: var(--blanco); font-size: 20px; }
+        .logo-container h2 span { color: var(--dorado); }
+        .nav-menu { display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
+        .nav-menu a { display: flex; align-items: center; gap: 15px; padding: 12px 20px; color: var(--blanco); font-weight: 600; border-radius: 8px; transition: 0.3s; }
+        .nav-menu a i { font-size: 18px; width: 20px; text-align: center; }
+        .nav-menu a:hover { background-color: rgba(255,255,255,0.1); }
+        .nav-menu a.activo { background-color: var(--dorado); color: var(--azul-marino); }
+        
+        .sidebar-footer-card { background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05)); padding: 20px; border-radius: 12px; border-left: 4px solid var(--dorado); margin-top: auto; }
+        .sidebar-footer-card h4 { color: var(--dorado); font-size: 14px; margin-bottom: 5px; }
+        .sidebar-footer-card p { font-size: 12px; color: rgba(255,255,255,0.8); }
+
+        /* MAIN CONTENT */
+        .main-content { margin-left: 260px; width: calc(100% - 260px); padding: 30px 50px; min-height: 100vh; }
+
+        /* Top Bar */
+        .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .search-bar { background-color: var(--blanco); padding: 10px 20px; border-radius: 20px; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); width: 300px; }
+        .search-bar input { border: none; outline: none; background: transparent; width: 100%; font-family: 'Open Sans'; }
+        .user-actions { display: flex; align-items: center; gap: 15px; }
+        .btn-registro { background-color: var(--dorado); color: var(--blanco); padding: 10px 20px; border-radius: 8px; font-weight: 600; transition: 0.3s; }
+        .btn-registro:hover { background-color: #b58925; }
+
+        /* Banner Hero Empresas */
+        .banner-hero { background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-rey) 100%); border-radius: 16px; padding: 50px; color: var(--blanco); display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; box-shadow: 0 10px 20px rgba(0,59,142,0.2); position: relative; overflow: hidden; }
+        .banner-hero::after { content: '\f2b5'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; right: 50px; top: -10px; font-size: 180px; color: rgba(255,255,255,0.05); transform: rotate(-10deg); z-index: 1; }
+        .banner-content { position: relative; z-index: 2; max-width: 65%; }
+        .banner-hero h1 { color: var(--dorado); font-size: 36px; margin-bottom: 15px; line-height: 1.2; }
+        .banner-hero p { font-size: 16px; margin-bottom: 25px; opacity: 0.9; line-height: 1.6; }
+        .btn-dorado { background-color: var(--blanco); color: var(--azul-marino); padding: 12px 25px; border-radius: 8px; font-weight: bold; font-size: 16px; display: inline-block; transition: 0.3s; }
+        .btn-dorado:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        /* Sección Beneficios para Empresas */
+        .section-title { font-size: 24px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; color: var(--azul-marino); }
+        
+        .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 40px; }
+        .benefit-card { background: var(--blanco); padding: 30px 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); border-top: 4px solid var(--azul-rey); }
+        .benefit-card i { font-size: 35px; color: var(--dorado); margin-bottom: 15px; }
+        .benefit-card h3 { font-size: 18px; margin-bottom: 10px; }
+        .benefit-card p { font-size: 14px; line-height: 1.6; color: var(--gris-texto); }
+
+        /* Logos de Empresas (Simuladas) */
+        .companies-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .company-box { background-color: var(--blanco); border: 1px solid var(--gris-claro); border-radius: 12px; padding: 30px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: 0.3s; }
+        .company-box:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.05); transform: translateY(-5px); border-color: var(--dorado); }
+        .company-box i { font-size: 40px; color: var(--azul-rey); margin-bottom: 15px; }
+        .company-box h4 { font-size: 16px; color: var(--azul-marino); margin-bottom: 5px; }
+        .company-box p { font-size: 12px; color: var(--gris-texto); font-weight: 600; }
+        
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo-container">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <h2>UBA <span>ViveTalentos</span></h2>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="que-es.html"><i class="fa-solid fa-circle-info"></i> ¿Qué es?</a>
+            <a href="carreras.html"><i class="fa-solid fa-compass"></i> Explorar carreras</a>
+            <a href="perfil.html"><i class="fa-regular fa-user"></i> Mi Perfil</a>
+            <a href="retos.html"><i class="fa-solid fa-flask"></i> Simulacros y Retos</a>
+            <a href="aliados.html" class="activo"><i class="fa-solid fa-handshake"></i> Empresas Aliadas</a>
+        </nav>
+        <div class="sidebar-footer-card">
+            <h4><i class="fa-solid fa-star"></i> Búsqueda de Talento</h4>
+            <p>Acceso exclusivo a portafolios validados por la academia.</p>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        
+        <header class="topbar">
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar talentos, portafolios...">
+            </div>
+            <div class="user-actions">
+                <a href="#" style="color: var(--azul-rey); font-weight: 600;">Ingreso corporativo</a>
+                <a href="#" class="btn-registro">Quiero ser aliado</a>
+            </div>
+        </header>
+
+        <!-- Banner Hero -->
+        <section class="banner-hero">
+            <div class="banner-content">
+                <h1>Conecta con el talento del futuro, hoy.</h1>
+                <p>Encuentra a los profesionales más capacitados de la Universidad Bicentenaria de Aragua. Propón retos reales para tu empresa, evalúa habilidades en la práctica y recluta talento joven directamente desde nuestra plataforma.</p>
+                <a href="#" class="btn-dorado"><i class="fa-solid fa-briefcase"></i> Publicar un reto corporativo</a>
+            </div>
+        </section>
+
+        <!-- Beneficios -->
+        <h2 class="section-title">¿Por qué unirte a la red UBA?</h2>
+        <section class="benefits-grid">
+            <div class="benefit-card">
+                <i class="fa-solid fa-check-double"></i>
+                <h3>Talento Validado</h3>
+                <p>Todos los proyectos y portafolios que ves en la plataforma han sido revisados y calificados previamente por el cuerpo docente de la UBA.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fa-solid fa-lightbulb"></i>
+                <h3>Innovación y Soluciones</h3>
+                <p>Postula un problema real de tu empresa en nuestra sección de "Retos" y permite que cientos de mentes brillantes trabajen en la solución.</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fa-solid fa-user-tie"></i>
+                <h3>Reclutamiento Directo</h3>
+                <p>Filtra estudiantes por carrera, habilidades específicas e insignias obtenidas, facilitando la búsqueda de pasantes o empleados ideales.</p>
+            </div>
+        </section>
+
+        <!-- Directorio Simulado -->
+        <h2 class="section-title" style="margin-top: 20px;">Red de Empresas Conectadas</h2>
+        <section class="companies-grid">
+            <div class="company-box">
+                <i class="fa-solid fa-cube"></i>
+                <h4>EcoClean Soluciones</h4>
+                <p>+12 Estudiantes captados</p>
+            </div>
+            <div class="company-box">
+                <i class="fa-solid fa-chart-column"></i>
+                <h4>DataVisión Analytics</h4>
+                <p>+5 Retos publicados</p>
+            </div>
+            <div class="company-box">
+                <i class="fa-solid fa-scale-unbalanced"></i>
+                <h4>LexCorp Abogados</h4>
+                <p>Aliado en Simulacros</p>
+            </div>
+            <div class="company-box">
+                <i class="fa-solid fa-code-branch"></i>
+                <h4>NovaTech Innovación</h4>
+                <p>+8 Estudiantes captados</p>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
