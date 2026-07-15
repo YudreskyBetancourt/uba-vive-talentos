@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Empresa - UBA Vive Talentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: linear-gradient(135deg, rgba(139, 0, 0, 0.9) 0%, rgba(178, 34, 34, 0.95) 100%), url('https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 650px;
+            border-top: 6px solid var(--accent-gold);
+        }
+
+        .login-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: #8B0000;
+            margin-bottom: 5px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .login-logo i { color: var(--accent-gold); font-size: 30px; }
+
+        .login-subtitle {
+            color: var(--gris-texto);
+            font-size: 14px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .full-width { grid-column: 1 / -1; }
+
+        .input-group { margin-bottom: 15px; }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #8B0000;
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper { position: relative; }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-gold);
+        }
+
+        .input-wrapper input, .input-wrapper select {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 2px solid var(--gris-claro);
+            border-radius: 8px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .input-wrapper input:focus, .input-wrapper select:focus {
+            border-color: var(--accent-gold);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(201,154,46,0.2);
+        }
+
+        /* Checkbox Firma de Alianza */
+        .agreement-box {
+            background: #FFFAF0;
+            border: 1px solid var(--accent-gold);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .agreement-box input[type="checkbox"] {
+            margin-top: 3px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #8B0000;
+        }
+
+        .agreement-text {
+            font-size: 13px;
+            color: #92400E;
+            line-height: 1.5;
+            font-weight: 600;
+        }
+
+        .btn-submit {
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: var(--blanco);
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(139,0,0,0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139,0,0,0.4);
+            background: linear-gradient(to right, #B22222, #8B0000);
+        }
+
+        .register-link {
+            margin-top: 25px;
+            font-size: 13px;
+            color: var(--gris-texto);
+            text-align: center;
+        }
+
+        .register-link a {
+            color: #8B0000;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .register-link a:hover { text-decoration: underline; color: var(--accent-gold); }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-logo">
+            <i class="fa-solid fa-handshake"></i> UBA ViveTalentos
+        </div>
+        <p class="login-subtitle">Solicitud de Alianza Corporativa Oficial</p>
+
+        <form action="login-aliado.html" method="GET">
+            <div class="form-grid">
+                <!-- Nombre y RIF -->
+                <div class="input-group full-width">
+                    <label>Nombre Comercial de la Empresa</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-building"></i>
+                        <input type="text" placeholder="Ej. Empresas Polar C.A." required>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>RIF Corporativo</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-file-invoice"></i>
+                        <input type="text" placeholder="J-12345678-9" required>
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label>Teléfono de Contacto (RRHH)</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-phone"></i>
+                        <input type="tel" placeholder="+58 414-0000000" required>
+                    </div>
+                </div>
+
+                <!-- Redes y Sector -->
+                <div class="input-group">
+                    <label>Enlace a Redes Sociales (LinkedIn/IG)</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-link"></i>
+                        <input type="url" placeholder="https://linkedin.com/company/..." required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Sector / Industria</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-industry"></i>
+                        <select required>
+                            <option value="">Seleccione el área de su empresa</option>
+                            <option value="Comunicacion">Comunicación y Medios</option>
+                            <option value="Salud">Salud y Psicología</option>
+                            <option value="Finanzas">Finanzas y Derecho</option>
+                            <option value="Tecnologia">Tecnología e Ingeniería</option>
+                            <option value="Otros">Otros</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Correo y Contraseña -->
+                <div class="input-group full-width">
+                    <label>Correo Electrónico Corporativo</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" placeholder="rrhh@empresa.com.ve" required>
+                    </div>
+                </div>
+                <div class="input-group full-width">
+                    <label>Crear Contraseña Segura</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <!-- Firma de Alianza -->
+                <div class="input-group full-width">
+                    <div class="agreement-box">
+                        <input type="checkbox" id="alianzaCheck" required>
+                        <div class="agreement-text">
+                            <label for="alianzaCheck" style="display:inline; font-size:13px; color:inherit; font-weight:bold; cursor:pointer;">Firma de Alianza UBA:</label>
+                            Acepto formalmente los términos de alianza estratégica con la Universidad Bicentenaria de Aragua. Confirmo la veracidad de nuestros datos corporativos y me comprometo a respaldar la seguridad y legitimidad de las vacantes y oportunidades que ofrezcamos a los estudiantes en esta plataforma.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn-submit">Enviar Solicitud de Alianza</button>
+        </form>
+
+        <div class="register-link">
+            ¿Su empresa ya está registrada? <a href="login-aliado.html">Inicie sesión aquí</a>
+        </div>
+    </div>
+
+</body>
+</html>

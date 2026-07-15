@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Jurado - UBA Vive Talentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: linear-gradient(135deg, rgba(139, 0, 0, 0.9) 0%, rgba(178, 34, 34, 0.95) 100%), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 600px;
+            border-top: 6px solid var(--accent-gold);
+        }
+
+        .login-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: #8B0000;
+            margin-bottom: 5px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .login-logo i { color: var(--accent-gold); font-size: 30px; }
+
+        .login-subtitle {
+            color: var(--gris-texto);
+            font-size: 14px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .full-width { grid-column: 1 / -1; }
+
+        .input-group { margin-bottom: 15px; }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #8B0000;
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper { position: relative; }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-gold);
+        }
+
+        .input-wrapper input, .input-wrapper select, .input-wrapper textarea {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 2px solid var(--gris-claro);
+            border-radius: 8px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .input-wrapper textarea {
+            padding: 12px;
+            min-height: 80px;
+            resize: vertical;
+        }
+        .input-wrapper textarea + i { display: none; }
+
+        .input-wrapper input:focus, .input-wrapper select:focus, .input-wrapper textarea:focus {
+            border-color: var(--accent-gold);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(201,154,46,0.2);
+        }
+
+        /* Checkbox slider for Prof question */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #F8FAFC;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--gris-claro);
+        }
+        
+        .toggle-container label {
+            margin-bottom: 0;
+            font-size: 13px;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 24px;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute; cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ccc; transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute; content: "";
+            height: 18px; width: 18px;
+            left: 3px; bottom: 3px;
+            background-color: white; transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider { background-color: var(--accent-gold); }
+        input:checked + .slider:before { transform: translateX(22px); }
+
+        .hidden-field { display: none; margin-top: 15px; }
+        .hidden-field.active { display: block; animation: slideDown 0.3s ease; }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .file-upload {
+            border: 2px dashed var(--accent-gold);
+            background: #FFFAF0;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .file-upload:hover { background: #FEF3C7; }
+        .file-upload i { font-size: 24px; color: var(--accent-gold); margin-bottom: 10px; }
+        .file-upload p { font-size: 12px; color: #92400E; font-weight: 600; margin: 0; }
+
+        .btn-submit {
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: var(--blanco);
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(139,0,0,0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139,0,0,0.4);
+            background: linear-gradient(to right, #B22222, #8B0000);
+        }
+
+        .register-link {
+            margin-top: 25px;
+            font-size: 13px;
+            color: var(--gris-texto);
+            text-align: center;
+        }
+
+        .register-link a {
+            color: #8B0000;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .register-link a:hover { text-decoration: underline; color: var(--accent-gold); }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-logo">
+            <i class="fa-solid fa-gavel"></i> UBA ViveTalentos
+        </div>
+        <p class="login-subtitle">Postulación oficial para Jurados y Evaluadores</p>
+
+        <form action="login-jurado.html" method="GET">
+            <div class="form-grid">
+                <!-- Nombre y Apellido -->
+                <div class="input-group">
+                    <label>Nombre</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" placeholder="Ej. Carlos" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Apellido</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-user"></i>
+                        <input type="text" placeholder="Ej. Mendoza" required>
+                    </div>
+                </div>
+
+                <!-- Cédula y Profesión -->
+                <div class="input-group">
+                    <label>Cédula de Identidad</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-id-card"></i>
+                        <input type="text" placeholder="V-12345678" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Profesión / Especialidad</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <input type="text" placeholder="Ej. Ing. en Sistemas" required>
+                    </div>
+                </div>
+
+                <!-- Correo y Contraseña -->
+                <div class="input-group full-width">
+                    <label>Correo Electrónico (Preferible Institucional)</label>
+                    <div class="input-wrapper">
+                        <i class="fa-regular fa-envelope"></i>
+                        <input type="email" placeholder="profesor@uba.edu.ve" required>
+                    </div>
+                </div>
+                <div class="input-group full-width">
+                    <label>Crear Contraseña</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="••••••••" required>
+                    </div>
+                </div>
+
+                <!-- Pregunta Profesor Activo -->
+                <div class="input-group full-width">
+                    <div class="toggle-container">
+                        <label class="switch">
+                            <input type="checkbox" id="profesorCheck" onchange="toggleTrimestres()">
+                            <span class="slider"></span>
+                        </label>
+                        <label for="profesorCheck"><strong>¿Es usted profesor de la universidad actualmente?</strong></label>
+                    </div>
+                    
+                    <div class="hidden-field" id="trimestresField">
+                        <label style="margin-top:10px;">¿Qué trimestres o materias dicta actualmente?</label>
+                        <div class="input-wrapper">
+                            <textarea placeholder="Ej. Dicto Periodismo de Investigación en el 5to Trimestre..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Virtudes -->
+                <div class="input-group full-width">
+                    <label>Mencione sus virtudes más fuertes como profesional</label>
+                    <div class="input-wrapper">
+                        <textarea placeholder="Detalle aquí por qué sería un buen jurado evaluador para nuestros alumnos..." required></textarea>
+                    </div>
+                </div>
+
+                <!-- Adjuntar CV -->
+                <div class="input-group full-width">
+                    <label>Síntesis Curricular (CV)</label>
+                    <div class="file-upload" onclick="document.getElementById('cv-upload').click()">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <p>Haz clic para subir tu documento PDF</p>
+                        <input type="file" id="cv-upload" style="display:none;" accept=".pdf,.doc,.docx">
+                    </div>
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn-submit">Enviar Postulación</button>
+        </form>
+
+        <div class="register-link">
+            ¿Ya tienes cuenta de jurado? <a href="login-jurado.html">Inicia sesión aquí</a>
+        </div>
+    </div>
+
+    <script>
+        function toggleTrimestres() {
+            var check = document.getElementById("profesorCheck");
+            var field = document.getElementById("trimestresField");
+            if (check.checked) {
+                field.classList.add("active");
+            } else {
+                field.classList.remove("active");
+            }
+        }
+    </script>
+</body>
+</html>

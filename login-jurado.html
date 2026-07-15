@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso de Jurado - UBA Vive Talentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: linear-gradient(135deg, rgba(139, 0, 0, 0.9) 0%, rgba(178, 34, 34, 0.95) 100%), url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            border-top: 6px solid var(--accent-gold);
+        }
+
+        .login-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: #8B0000;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .login-logo i { color: var(--accent-gold); font-size: 35px; }
+
+        .login-subtitle {
+            color: var(--gris-texto);
+            font-size: 14px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #8B0000;
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-gold);
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 2px solid var(--gris-claro);
+            border-radius: 8px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .input-wrapper input:focus {
+            border-color: var(--accent-gold);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(201,154,46,0.2);
+        }
+
+        .forgot-pass {
+            display: block;
+            text-align: right;
+            font-size: 12px;
+            color: #8B0000;
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: 5px;
+        }
+
+        .forgot-pass:hover { text-decoration: underline; color: var(--accent-gold); }
+
+        .btn-submit {
+            background: linear-gradient(to right, #8B0000, #B22222);
+            color: var(--blanco);
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(139,0,0,0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139,0,0,0.4);
+            background: linear-gradient(to right, #B22222, #8B0000);
+        }
+
+        .btn-back {
+            background: transparent;
+            color: #8B0000;
+            border: 2px solid #8B0000;
+            padding: 15px;
+            width: 100%;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 15px;
+        }
+
+        .btn-back:hover {
+            background: #8B0000;
+            color: white;
+        }
+
+        .register-link {
+            margin-top: 30px;
+            font-size: 14px;
+            color: var(--gris-texto);
+        }
+
+        .register-link a {
+            color: var(--accent-gold);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .register-link a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="login-logo">
+            <i class="fa-solid fa-gavel"></i> UBA ViveTalentos
+        </div>
+        <p class="login-subtitle">Portal Exclusivo para Profesores y Jurado</p>
+
+        <form action="index.html" method="GET">
+            <div class="input-group">
+                <label>Correo Electrónico Académico</label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" placeholder="profesor@uba.edu.ve" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Contraseña</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+                <a href="#" class="forgot-pass">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <button type="submit" class="btn-submit">Ingresar al Portal</button>
+            <button type="button" class="btn-back" onclick="window.location.href='index.html'">Volver al Inicio</button>
+        </form>
+
+        <div class="register-link">
+            ¿Deseas postularte como jurado? <a href="registro-jurado.html">Regístrate aquí</a>
+        </div>
+    </div>
+
+</body>
+</html>
