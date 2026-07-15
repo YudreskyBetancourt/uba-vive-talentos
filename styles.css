@@ -1025,12 +1025,13 @@ body.dark-mode .notif-badge {
         display: block;
     }
     
-    .profile-hero { flex-direction: column; text-align: center; }
-    .profile-stats-row { position: relative; top: auto; right: auto; margin-top: 20px; justify-content: center; }
-    .profile-info h1 { justify-content: center; }
-    .profile-contact { justify-content: center; flex-wrap: wrap; }
-    .profile-tabs { flex-wrap: wrap; justify-content: center; }
-    .profile-grid-layout { grid-template-columns: 1fr; }
+    .profile-hero { flex-direction: column !important; text-align: center !important; }
+    .profile-stats-row { position: relative !important; top: auto !important; right: auto !important; margin-top: 20px !important; justify-content: center !important; flex-direction: column !important; }
+    .profile-info h1 { justify-content: center !important; }
+    .profile-contact { justify-content: center !important; flex-wrap: wrap !important; flex-direction: column !important; }
+    .profile-tabs { flex-wrap: wrap !important; justify-content: center !important; }
+    .profile-grid-layout { grid-template-columns: 1fr !important; }
+    .chart-container { width: 100% !important; overflow-x: auto; }
 }
 
 @keyframes slideDownFade {
