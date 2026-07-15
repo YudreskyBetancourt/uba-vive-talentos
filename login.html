@@ -4,38 +4,181 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - UBA Vive Talentos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
-        :root {
-            --azul-rey: #003B8E;
-            --azul-marino: #001F4D;
-            --dorado: #C99A2E;
-            --blanco: #FFFFFF;
-            --gris-fondo: #F5F7FA;
-            --gris-texto: #4A4A4A;
+        .auth-container {
+            min-height: calc(100vh - 110px);
+            display: flex;
+            background: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1600') center/cover no-repeat;
+            position: relative;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Open Sans', sans-serif; display: flex; height: 100vh; background-color: var(--gris-fondo); }
         
-        /* Layout igual al registro para coherencia visual */
-        .login-side { width: 40%; background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-rey) 100%); display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; padding: 40px; text-align: center; }
-        .login-side h2 { color: var(--blanco); font-size: 32px; margin-bottom: 20px; }
-        .login-side p { opacity: 0.8; font-size: 16px; }
+        /* Overlay oscuro azulado */
+        .auth-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 43, 94, 0.9) 0%, rgba(0, 26, 56, 0.7) 100%);
+            z-index: 1;
+        }
 
-        .form-side { width: 60%; display: flex; justify-content: center; align-items: center; padding: 40px; }
-        .form-box { background: var(--blanco); padding: 50px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
-        
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
-        input { width: 100%; padding: 12px 15px; border: 1px solid var(--gris-claro); border-radius: 8px; outline: none; }
-        input:focus { border-color: var(--azul-rey); }
-        
-        .btn-login { width: 100%; background: var(--azul-marino); color: white; padding: 14px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; }
-        .btn-login:hover { background: var(--azul-rey); }
-        
-        .footer-link { text-align: center; margin-top: 20px; font-size: 14px; }
-        .footer-link a { color: var(--azul-rey); font-weight: bold; }
+        .auth-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 5%;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .auth-message {
+            color: var(--text-light);
+            max-width: 500px;
+        }
+
+        .auth-message h1 {
+            color: var(--text-light);
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .auth-message p {
+            font-size: 18px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* Glassmorphism Panel */
+        .auth-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            color: var(--text-light);
+        }
+
+        .auth-panel h2 {
+            color: var(--text-light);
+            font-size: 28px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 800;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            outline: none;
+            color: var(--text-dark);
+            font-family: 'Open Sans', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(201, 154, 46, 0.4);
+        }
+
+        .auth-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 13px;
+        }
+
+        .auth-actions a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .auth-actions a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 800;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(201, 154, 46, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .btn-submit:hover {
+            background: #b58925;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 154, 46, 0.5);
+        }
+
+        .auth-footer {
+            text-align: center;
+            font-size: 14px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
+
+        .btn-register-outline {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 25px;
+            border: 2px solid var(--text-light);
+            border-radius: 30px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .btn-register-outline:hover {
+            background: var(--text-light);
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 992px) {
+            .auth-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .auth-message {
+                margin-bottom: 30px;
+            }
+            .form-group { text-align: left; }
+        }
     </style>
 </head>
 <body>
@@ -58,32 +201,46 @@
             <a href="index.html">Inicio</a>
             <a href="carreras.html">Carreras</a>
             <a href="aliados.html">Empresas</a>
-            <a href="dashboard.html" class="btn-login">Mi Plataforma</a>
+            <a href="login.html" class="btn-login">Mi Plataforma</a>
         </div>
     </nav>
 
-    <div class="login-side">
-        <h2>Bienvenido de nuevo</h2>
-        <p>Inicia sesión para continuar construyendo tu futuro profesional en la UBA.</p>
-    </div>
-    <div class="form-side">
-        <div class="form-box">
-            <h2 style="margin-bottom: 20px;">Iniciar Sesión</h2>
-            <form action="perfil.html" method="get">
-                <div class="form-group">
-                    <label>Correo institucional</label>
-                    <input type="email" placeholder="usuario@uba.edu.ve" required>
-                </div>
-                <div class="form-group">
-                    <label>Contraseña</label>
-                    <input type="password" placeholder="••••••••" required>
-                </div>
-                <button type="submit" class="btn-login">Acceder a mi cuenta</button>
-                <div class="footer-link">
-                    ¿Aún no tienes cuenta? <a href="registro.html">Regístrate aquí</a>
-                </div>
-            </form>
+    <div class="auth-container">
+        <div class="auth-content">
+            <div class="auth-message">
+                <h1>Tu talento, tu mejor carta de presentación</h1>
+                <p>Bienvenido de nuevo a UBA Vive Talentos. Sigue construyendo tu portafolio, accede a convocatorias reales y conecta con empresas aliadas que están buscando perfiles como el tuyo.</p>
+            </div>
+            
+            <div class="auth-panel">
+                <h2>Iniciar Sesión</h2>
+                <form action="dashboard.html" method="get">
+                    <div class="form-group">
+                        <label>Correo Institucional</label>
+                        <input type="email" class="form-control" placeholder="usuario@uba.edu.ve" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    
+                    <div class="auth-actions">
+                        <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                            <input type="checkbox"> Recordarme
+                        </label>
+                        <a href="#">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">Ingresar a mi cuenta</button>
+                    
+                    <div class="auth-footer">
+                        ¿Primera vez construyendo tu futuro profesional? <br>
+                        <a href="registro.html" class="btn-register-outline">Crear mi portafolio (Registro)</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+
 </body>
 </html>

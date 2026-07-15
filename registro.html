@@ -4,69 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - UBA Vive Talentos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
-        :root {
-            --azul-rey: #003B8E;
-            --azul-marino: #001F4D;
-            --dorado: #C99A2E;
-            --blanco: #FFFFFF;
-            --gris-fondo: #F5F7FA;
-            --gris-texto: #4A4A4A;
-            --gris-borde: #E0E5EC;
+        .auth-container {
+            min-height: calc(100vh - 110px);
+            display: flex;
+            background: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1600') center/cover no-repeat;
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .auth-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 43, 94, 0.9) 0%, rgba(0, 26, 56, 0.7) 100%);
+            z-index: 1;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Open Sans', sans-serif; color: var(--gris-texto); background-color: var(--gris-fondo); display: flex; min-height: 100vh; }
-        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-marino); }
+        .auth-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5%;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
 
-        /* Mitad Izquierda (Imagen y mensaje) */
-        .registro-info { width: 45%; background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-rey) 100%); color: var(--blanco); padding: 60px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
-        .registro-info::after { content: ''; position: absolute; bottom: -50px; right: -50px; width: 300px; height: 300px; border-radius: 50%; border: 40px solid rgba(255,255,255,0.05); }
-        .logo { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 700; color: var(--blanco); margin-bottom: 40px; display: flex; align-items: center; gap: 10px;}
-        .logo i { color: var(--dorado); font-size: 28px; }
-        .logo span { color: var(--dorado); }
+        .auth-message {
+            color: var(--text-light);
+            max-width: 500px;
+        }
+
+        .auth-message h1 {
+            color: var(--text-light);
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .auth-message p {
+            font-size: 18px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .auth-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 550px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            color: var(--text-light);
+        }
+
+        .auth-panel h2 {
+            color: var(--text-light);
+            font-size: 28px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 800;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+            text-align: left;
+            flex: 1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            outline: none;
+            color: var(--text-dark);
+            font-family: 'Open Sans', sans-serif;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .form-control:focus {
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(201, 154, 46, 0.4);
+        }
         
-        .info-contenido h1 { color: var(--blanco); font-size: 38px; margin-bottom: 20px; line-height: 1.2; }
-        .info-contenido h1 span { color: var(--dorado); }
-        .info-contenido p { font-size: 16px; margin-bottom: 30px; opacity: 0.9; line-height: 1.6; }
+        select.form-control {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+            padding: 14px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 800;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(201, 154, 46, 0.3);
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background: #b58925;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(201, 154, 46, 0.5);
+        }
+
+        .auth-footer {
+            text-align: center;
+            font-size: 14px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+        }
         
-        .requisito-card { background: rgba(0,0,0,0.2); border-left: 4px solid var(--dorado); padding: 20px; border-radius: 8px; backdrop-filter: blur(5px); }
-        .requisito-card h3 { color: var(--dorado); font-size: 16px; margin-bottom: 5px; display: flex; align-items: center; gap: 10px; }
-        .requisito-card p { margin-bottom: 0; font-size: 14px; opacity: 1; }
+        .auth-footer a {
+            color: var(--accent-gold);
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
 
-        .btn-volver { display: inline-flex; align-items: center; gap: 10px; color: var(--blanco); font-weight: 600; text-decoration: none; opacity: 0.8; transition: 0.3s; margin-top: 40px;}
-        .btn-volver:hover { opacity: 1; color: var(--dorado); }
-
-        /* Mitad Derecha (Formulario) */
-        .registro-form-container { width: 55%; padding: 60px 80px; background-color: var(--blanco); display: flex; flex-direction: column; justify-content: center; }
-        .form-header { margin-bottom: 40px; }
-        .form-header h2 { font-size: 28px; margin-bottom: 10px; }
-        .form-header p { color: #7f8c8d; font-size: 15px; }
-
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--azul-marino); font-size: 14px; }
-        
-        /* Estilos de los inputs */
-        .input-icon-wrapper { position: relative; }
-        .input-icon-wrapper i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #A0AABF; }
-        
-        input[type="text"], input[type="email"], input[type="password"], select { width: 100%; padding: 14px 15px 14px 45px; border: 1px solid var(--gris-borde); border-radius: 8px; font-family: 'Open Sans', sans-serif; font-size: 15px; color: var(--gris-texto); transition: 0.3s; background-color: #FAFCFF; outline: none; -webkit-appearance: none; -moz-appearance: none; appearance: none;}
-        
-        /* Flecha personalizada */
-        select { background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A0AABF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e"); background-repeat: no-repeat; background-position: right 15px center; background-size: 15px; }
-
-        input:focus, select:focus { border-color: var(--azul-rey); box-shadow: 0 0 0 3px rgba(0, 59, 142, 0.1); background-color: var(--blanco); }
-
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-
-        .btn-submit { width: 100%; background-color: var(--azul-marino); color: var(--blanco); border: none; padding: 16px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 10px; font-family: 'Open Sans', sans-serif; }
-        .btn-submit:hover { background-color: var(--azul-rey); box-shadow: 0 5px 15px rgba(0, 59, 142, 0.2); }
-
-        .login-link { text-align: center; margin-top: 25px; font-size: 14px; }
-        .login-link a { color: var(--azul-rey); font-weight: bold; text-decoration: none; }
-        .login-link a:hover { text-decoration: underline; }
+        @media (max-width: 992px) {
+            .auth-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            .auth-message {
+                margin-bottom: 30px;
+            }
+            .form-row { flex-direction: column; gap: 0; }
+        }
     </style>
 </head>
 <body>
@@ -89,114 +188,96 @@
             <a href="index.html">Inicio</a>
             <a href="carreras.html">Carreras</a>
             <a href="aliados.html">Empresas</a>
-            <a href="dashboard.html" class="btn-login">Mi Plataforma</a>
+            <a href="login.html" class="btn-login">Mi Plataforma</a>
         </div>
     </nav>
 
-
-    <!-- Lado Izquierdo: Información y Requisitos -->
-    <div class="registro-info">
-        <div>
-            <div class="logo">
-                <i class="fa-solid fa-graduation-cap"></i> UBA<span>ViveTalentos</span>
+    <div class="auth-container">
+        <div class="auth-content">
+            <div class="auth-message">
+                <h1>El primer paso hacia tu éxito</h1>
+                <p>Crea tu perfil en UBA Vive Talentos y comienza a armar un portafolio profesional que demuestre de qué eres capaz. Conecta con empresas reales antes de graduarte.</p>
             </div>
             
-            <div class="info-contenido">
-                <h1>Tu talento <span>tiene impacto.</span></h1>
-                <p>UBA Vive Talentos es el espacio exclusivo donde los estudiantes demuestran lo que saben hacer en la práctica, construyen su portafolio profesional y se conectan con empresas que impulsan su futuro.</p>
-                
-                <!-- Tarjeta de requisito ajustada al 3er Trimestre -->
-                <div class="requisito-card">
-                    <h3><i class="fa-solid fa-star"></i> Comienza a crear tu Portafolio</h3>
-                    <p>Para asegurar que cuentas con los conocimientos base de tu carrera, el registro en la plataforma está habilitado a partir del <strong>3er Trimestre</strong>. ¡Es tu momento de destacar!</p>
-                </div>
-            </div>
-        </div>
-        
-        <a href="index.html" class="btn-volver"><i class="fa-solid fa-arrow-left"></i> Volver al inicio</a>
-    </div>
+            <div class="auth-panel">
+                <h2>Crear mi Portafolio</h2>
+                <form action="perfil.html" method="get">
+                    
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 3;">
+                            <label>Nombre y Apellido</label>
+                            <input type="text" class="form-control" placeholder="Ej. Juan Pérez" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label>Edad</label>
+                            <input type="number" class="form-control" placeholder="Años" min="15" max="99" required>
+                        </div>
+                    </div>
 
-    <!-- Lado Derecho: Formulario de Registro -->
-    <div class="registro-form-container">
-        <div class="form-header">
-            <h2>Crea tu cuenta profesional</h2>
-            <p>Comienza a construir el camino profesional que sueñas.</p>
-        </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Correo Institucional o Personal</label>
+                            <input type="email" class="form-control" placeholder="usuario@uba.edu.ve" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Ubicación (Ciudad/Estado)</label>
+                            <input type="text" class="form-control" placeholder="Ej. Maracay, Aragua" required>
+                        </div>
+                    </div>
 
-        <form action="#" method="get">
-            
-            <div class="form-group">
-                <label>Nombre completo</label>
-                <div class="input-icon-wrapper">
-                    <i class="fa-regular fa-user"></i>
-                    <input type="text" placeholder="Ej. Yudresky Parra" required>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Correo institucional</label>
-                <div class="input-icon-wrapper">
-                    <i class="fa-regular fa-envelope"></i>
-                    <input type="email" placeholder="usuario@uba.edu.ve" required>
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Carrera que cursas</label>
-                    <div class="input-icon-wrapper">
-                        <i class="fa-solid fa-book"></i>
-                        <select required>
-                            <option value="" disabled selected>Selecciona tu carrera</option>
-                            <option value="comunicacion">Comunicación Social</option>
-                            <option value="derecho">Derecho</option>
-                            <option value="contaduria">Contaduría Pública</option>
-                            <option value="administracion">Administración</option>
-                            <option value="psicologia">Psicología</option>
-                            <option value="sistemas">Ingeniería en Sistemas</option>
+                    <div class="form-group">
+                        <label>Sede a la que pertenece</label>
+                        <select class="form-control" required>
+                            <option value="" disabled selected>Seleccione su sede...</option>
+                            <option value="Turmero">San Joaquín de Turmero (Sede Principal)</option>
+                            <option value="Altos">San Antonio de los Altos</option>
+                            <option value="Apure">San Fernando de Apure</option>
+                            <option value="Ordaz">Puerto Ordaz</option>
                         </select>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label>Trimestre actual</label>
-                    <div class="input-icon-wrapper">
-                        <i class="fa-regular fa-calendar-check"></i>
-                        <select required id="trimestre-select">
-                            <option value="" disabled selected>Selecciona trimestre</option>
-                            <!-- Opciones actualizadas desde el 3er Trimestre -->
-                            <option value="3">3er Trimestre</option>
-                            <option value="4">4to Trimestre</option>
-                            <option value="5">5to Trimestre</option>
-                            <option value="6">6to Trimestre</option>
-                            <option value="7">7mo Trimestre</option>
-                            <option value="8">8vo Trimestre</option>
-                            <option value="9">9no Trimestre</option>
-                            <option value="10">10mo Trimestre</option>
-                            <option value="11">11vo Trimestre</option>
-                            <option value="12">12vo Trimestre</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 2;">
+                            <label>Carrera</label>
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Seleccione su carrera...</option>
+                                <option value="Comunicacion">Comunicación Social</option>
+                                <option value="Psicologia">Psicología</option>
+                                <option value="Derecho">Derecho</option>
+                                <option value="Ing_Sistemas">Ingeniería de Sistemas</option>
+                                <option value="Ing_Electrica">Ingeniería Eléctrica</option>
+                                <option value="Administracion">Administración de Empresas</option>
+                                <option value="Contaduria">Contaduría Pública</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label>Semestre / Trimestre</label>
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Actual...</option>
+                                <option value="1">1ero</option><option value="2">2do</option>
+                                <option value="3">3ero</option><option value="4">4to</option>
+                                <option value="5">5to</option><option value="6">6to</option>
+                                <option value="7">7mo</option><option value="8">8vo</option>
+                                <option value="9">9no</option><option value="10">10mo</option>
+                                <option value="11">11mo</option><option value="12">12mo</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-            </div>
 
-            <div class="form-group">
-                <label>Crea una contraseña</label>
-                <div class="input-icon-wrapper">
-                    <i class="fa-solid fa-lock"></i>
-                    <input type="password" placeholder="Mínimo 8 caracteres" required>
-                </div>
+                    <div class="form-group">
+                        <label>Crear Clave (Contraseña)</label>
+                        <input type="password" class="form-control" placeholder="Mínimo 8 caracteres" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">Completar Registro</button>
+                    
+                    <div class="auth-footer">
+                        ¿Ya tienes una cuenta en UBA Vive Talentos? <br>
+                        <a href="login.html">Iniciar sesión aquí</a>
+                    </div>
+                </form>
             </div>
-
-            <!-- Como la página "Mi Perfil" será la siguiente parada lógica después de registrarse, apuntaremos el botón hacia allá -->
-            <a href="perfil.html" style="text-decoration: none;">
-                <button type="button" class="btn-submit">Crear mi perfil</button>
-            </a>
-
-            <div class="login-link">
-                ¿Ya tienes cuenta? <a href="#">Iniciar sesión</a>
-            </div>
-        </form>
+        </div>
     </div>
 
 </body>
