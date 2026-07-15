@@ -473,3 +473,65 @@ a {
         grid-template-columns: 1fr;
     }
 }
+/* ==========================================================================
+   ANIMACIONES SUTILES (UI/UX MOTION)
+   ========================================================================== */
+
+/* 1. Animación de la barra de progreso (carga desde cero) */
+@keyframes llenarBarra {
+    from { max-width: 0%; }
+    to { max-width: 100%; }
+}
+
+.progress-bar-fill {
+    /* Usamos max-width para que crezca desde 0 hasta el porcentaje que pusiste en el HTML */
+    max-width: 0%; 
+    animation: llenarBarra 1.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    animation-delay: 0.3s; /* Espera un tercio de segundo antes de arrancar */
+}
+
+/* 2. Animación de aparición en cascada para las notificaciones */
+@keyframes aparecerArriba {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.activity-item {
+    opacity: 0; /* Empiezan invisibles */
+    animation: aparecerArriba 0.6s ease-out forwards;
+}
+
+/* Efecto cascada: le decimos a cada notificación que espere un poquito más que la anterior */
+.activity-item:nth-child(1) { animation-delay: 0.2s; }
+.activity-item:nth-child(2) { animation-delay: 0.4s; }
+.activity-item:nth-child(3) { animation-delay: 0.6s; }
+
+/* 3. ¡Un extra! El puntito rojo de notificaciones palpita suavemente */
+@keyframes latido {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); box-shadow: 0 0 8px rgba(239, 68, 68, 0.5); }
+    100% { transform: scale(1); }
+}
+
+.notification-badge {
+    animation: latido 2s infinite ease-in-out;
+}
+
+/* 4. Tarjetas de Retos Sugeridos (Aparecen con un zoom súper sutil) */
+@keyframes zoomSuave {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.suggested-card {
+    opacity: 0;
+    animation: zoomSuave 0.5s ease-out forwards;
+}
+.suggested-card:nth-child(1) { animation-delay: 0.3s; }
+.suggested-card:nth-child(2) { animation-delay: 0.5s; }
