@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicar Reto - Portal de Empresa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .corp-header {
+            background: linear-gradient(135deg, #1A365D 0%, #0F172A 100%);
+            border-radius: 16px;
+            padding: 30px;
+            color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .corp-header h1 { font-size: 24px; color: var(--accent-gold); margin-bottom: 5px; }
+        
+        .form-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--gris-claro);
+            margin-bottom: 30px;
+        }
+
+        .form-title {
+            font-size: 18px;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gris-fondo);
+        }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .form-row.three { grid-template-columns: 1fr 1fr 1fr; }
+        
+        .form-group label {
+            display: block; font-size: 13px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px;
+        }
+
+        .form-control {
+            width: 100%; padding: 12px; border: 2px solid var(--gris-claro); border-radius: 8px;
+            font-family: 'Open Sans', sans-serif; font-size: 14px; box-sizing: border-box;
+        }
+
+        .form-control:focus { border-color: var(--accent-gold); outline: none; }
+
+        .btn-submit {
+            background: var(--accent-gold); color: var(--primary-blue); border: none;
+            padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: 800;
+            cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px;
+        }
+        .btn-submit:hover { box-shadow: 0 5px 15px rgba(201,154,46,0.3); transform: translateY(-2px); }
+
+        .filter-box {
+            background: #F8FAFC; border: 1px solid #E2E8F0; padding: 20px; border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="has-sidebar">
+
+    <aside class="sidebar" style="background: #0F172A;">
+        <div class="logo-container">
+            <i class="fa-solid fa-building" style="color: var(--accent-gold);"></i>
+            <h2>Portal <span>Empresas</span></h2>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="dashboard-aliado.html"><i class="fa-solid fa-id-card"></i> Mi Perfil Corporativo</a>
+            <a href="aliado-retos.html" class="activo"><i class="fa-solid fa-bullhorn"></i> Publicar Retos</a>
+            <a href="aliado-talentos.html"><i class="fa-solid fa-users-viewfinder"></i> Explorar Talentos</a>
+            <a href="aliado-evaluar.html"><i class="fa-solid fa-clipboard-check"></i> Evaluar Participantes</a>
+            
+            <a href="index.html" style="margin-top: auto; color: #f87171;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+        </nav>
+    </aside>
+
+    <div class="top-bar"><span>UBA ViveTalentos - Ecosistema Corporativo</span></div>
+
+    <main class="main-content" style="padding-top: 40px;">
+        
+        <div class="corp-header">
+            <h1>Crear Nuevo Reto Corporativo</h1>
+            <p style="font-size: 14px; opacity: 0.9;">Diseña un desafío práctico para evaluar las habilidades de los estudiantes de la UBA y captar a los mejores talentos para tu empresa.</p>
+        </div>
+
+        <div class="form-section">
+            <h2 class="form-title"><i class="fa-solid fa-pen-to-square"></i> Detalles del Reto</h2>
+            
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label>Título del Reto</label>
+                <input type="text" class="form-control" placeholder="Ej. Campaña de Marketing para Lanzamiento de Nuevo Producto">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label>Descripción del Problema a Resolver</label>
+                <textarea class="form-control" rows="4" placeholder="Describe detalladamente qué esperas que los alumnos desarrollen..."></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Recompensa (Premio o Pasantía)</label>
+                    <input type="text" class="form-control" placeholder="Ej. Entrevista directa + $500 al equipo ganador">
+                </div>
+                <div class="form-group">
+                    <label>Fecha Límite de Entrega</label>
+                    <input type="date" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section filter-box">
+            <h2 class="form-title" style="border-bottom: 1px solid #CBD5E1;"><i class="fa-solid fa-filter"></i> Filtros de Participación</h2>
+            <p style="font-size: 13px; color: var(--gris-texto); margin-bottom: 20px;">Define qué tipo de alumnos pueden participar en este reto.</p>
+
+            <div class="form-row three">
+                <div class="form-group">
+                    <label>Carrera Objetivo</label>
+                    <select class="form-control">
+                        <option value="todas">Todas las Carreras</option>
+                        <option value="psicologia">Psicología</option>
+                        <option value="comunicacion">Comunicación Social</option>
+                        <option value="derecho">Derecho</option>
+                        <option value="sistemas">Ingeniería de Sistemas</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Trimestre Mínimo Requerido</label>
+                    <select class="form-control">
+                        <option value="ninguno">Sin restricción</option>
+                        <option value="3">A partir del 3er Trimestre</option>
+                        <option value="6">A partir del 6to Trimestre</option>
+                        <option value="9">Solo tesistas (9no en adelante)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Rango de Edad Preferido (Opcional)</label>
+                    <input type="text" class="form-control" placeholder="Ej. 18 - 25 años">
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: right; margin-bottom: 50px;">
+            <button class="btn-submit"><i class="fa-solid fa-rocket"></i> Publicar Reto en la Plataforma</button>
+        </div>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Empresa - UBA Vive Talentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .corp-header {
+            background: linear-gradient(135deg, #1A365D 0%, #0F172A 100%);
+            border-radius: 16px;
+            padding: 40px;
+            color: white;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .corp-header-info h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--accent-gold);
+        }
+        
+        .corp-header-info p {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .corp-form-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--gris-claro);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--gris-claro);
+            border-radius: 8px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-gold);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(201,154,46,0.2);
+        }
+
+        .logo-upload-area {
+            border: 2px dashed var(--gris-claro);
+            padding: 40px;
+            text-align: center;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+            background: #F8FAFC;
+        }
+
+        .logo-upload-area:hover {
+            border-color: var(--accent-gold);
+            background: #FEF3C7;
+        }
+
+        .logo-upload-area i {
+            font-size: 40px;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        .btn-save {
+            background: var(--primary-blue);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .btn-save:hover {
+            background: var(--azul-oscuro);
+            box-shadow: 0 5px 15px rgba(0,43,94,0.2);
+        }
+    </style>
+</head>
+<body class="has-sidebar">
+
+    <aside class="sidebar" style="background: #0F172A;">
+        <div class="logo-container">
+            <i class="fa-solid fa-building" style="color: var(--accent-gold);"></i>
+            <h2>Portal <span>Empresas</span></h2>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="dashboard-aliado.html" class="activo"><i class="fa-solid fa-id-card"></i> Mi Perfil Corporativo</a>
+            <a href="aliado-retos.html"><i class="fa-solid fa-bullhorn"></i> Publicar Retos</a>
+            <a href="aliado-talentos.html"><i class="fa-solid fa-users-viewfinder"></i> Explorar Talentos</a>
+            <a href="aliado-evaluar.html"><i class="fa-solid fa-clipboard-check"></i> Evaluar Participantes</a>
+            
+            <a href="index.html" style="margin-top: auto; color: #f87171;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+        </nav>
+    </aside>
+
+    <div class="top-bar">
+        <span>UBA ViveTalentos - Ecosistema Corporativo</span>
+    </div>
+
+    <main class="main-content" style="padding-top: 40px;">
+        
+        <div class="corp-header">
+            <div class="corp-header-info">
+                <h1>Bienvenido, Empresas Polar C.A.</h1>
+                <p><i class="fa-solid fa-industry"></i> Sector: Alimentos y Bebidas | RIF: J-00006372-9</p>
+            </div>
+            <div>
+                <button style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.5); color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold;"><i class="fa-solid fa-eye"></i> Ver mi perfil público</button>
+            </div>
+        </div>
+
+        <div class="corp-form-section">
+            <h2 style="color: var(--primary-blue); margin-bottom: 25px; border-bottom: 2px solid var(--gris-fondo); padding-bottom: 10px;">Gestión de Perfil Corporativo</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 40px;">
+                <!-- Columna Logo -->
+                <div>
+                    <div class="form-group">
+                        <label>Logotipo de la Empresa</label>
+                        <div class="logo-upload-area">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <p style="font-weight: 600; color: var(--text-dark); margin-bottom: 5px;">Sube tu logotipo</p>
+                            <p style="font-size: 12px; color: var(--gris-texto);">PNG o JPG (Máx 2MB)</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Foto de Portada (Hero Banner)</label>
+                        <div class="logo-upload-area" style="padding: 20px;">
+                            <i class="fa-solid fa-image"></i>
+                            <p style="font-size: 13px;">Subir Portada</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Datos -->
+                <div>
+                    <div class="form-group">
+                        <label>Descripción de la Empresa (Acerca de Nosotros)</label>
+                        <textarea class="form-control" rows="5" placeholder="Cuéntale a los estudiantes quiénes son, su cultura laboral y por qué deberían postularse a sus retos..."></textarea>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label>Sitio Web</label>
+                            <input type="url" class="form-control" placeholder="https://www...">
+                        </div>
+                        <div class="form-group">
+                            <label>Correo de Contacto (Público)</label>
+                            <input type="email" class="form-control" placeholder="talento@empresa.com">
+                        </div>
+                    </div>
+                    
+                    <button class="btn-save"><i class="fa-solid fa-floppy-disk"></i> Guardar Cambios del Perfil</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluar Participantes - Portal de Empresa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .corp-header {
+            background: linear-gradient(135deg, #1A365D 0%, #0F172A 100%);
+            border-radius: 16px; padding: 30px; color: white; margin-bottom: 30px;
+        }
+
+        .corp-header h1 { font-size: 24px; color: var(--accent-gold); margin-bottom: 5px; }
+
+        .submission-card {
+            background: white; border-radius: 12px; padding: 25px; margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid var(--gris-claro);
+        }
+
+        .sub-header {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            border-bottom: 1px solid var(--gris-fondo); padding-bottom: 15px; margin-bottom: 15px;
+        }
+
+        .student-info { display: flex; align-items: center; gap: 15px; }
+        .student-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary-blue); }
+        .student-details h3 { font-size: 16px; color: var(--primary-blue); margin-bottom: 2px; }
+        .student-details p { font-size: 12px; color: var(--gris-texto); }
+
+        .reto-tag {
+            background: #EBF4FF; color: var(--primary-blue); padding: 5px 12px;
+            border-radius: 20px; font-size: 11px; font-weight: 700; border: 1px solid #BFDBFE;
+        }
+
+        .sub-content {
+            margin-bottom: 20px;
+        }
+        .sub-content p { font-size: 14px; color: var(--text-dark); line-height: 1.6; margin-bottom: 15px; }
+        
+        .attachment {
+            display: inline-flex; align-items: center; gap: 10px; background: #F8FAFC;
+            padding: 10px 15px; border-radius: 8px; border: 1px solid var(--gris-claro);
+            font-size: 13px; color: var(--primary-blue); font-weight: 600; text-decoration: none;
+        }
+        .attachment:hover { border-color: var(--primary-blue); }
+
+        .feedback-box {
+            background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 8px; padding: 20px;
+        }
+
+        .feedback-box label {
+            display: block; font-size: 13px; font-weight: 700; color: #92400E; margin-bottom: 10px;
+        }
+
+        .feedback-input {
+            width: 100%; padding: 12px; border: 1px solid #FCD34D; border-radius: 8px;
+            font-family: 'Open Sans'; font-size: 13px; margin-bottom: 10px; box-sizing: border-box;
+        }
+        .feedback-input:focus { outline: none; border-color: #D97706; }
+
+        .btn-send {
+            background: var(--accent-gold); color: #92400E; border: none; padding: 10px 20px;
+            border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;
+        }
+        .btn-send:hover { background: #D97706; color: white; }
+
+        .status-sent { color: #059669; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+    </style>
+</head>
+<body class="has-sidebar">
+
+    <aside class="sidebar" style="background: #0F172A;">
+        <div class="logo-container">
+            <i class="fa-solid fa-building" style="color: var(--accent-gold);"></i>
+            <h2>Portal <span>Empresas</span></h2>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="dashboard-aliado.html"><i class="fa-solid fa-id-card"></i> Mi Perfil Corporativo</a>
+            <a href="aliado-retos.html"><i class="fa-solid fa-bullhorn"></i> Publicar Retos</a>
+            <a href="aliado-talentos.html"><i class="fa-solid fa-users-viewfinder"></i> Explorar Talentos</a>
+            <a href="aliado-evaluar.html" class="activo"><i class="fa-solid fa-clipboard-check"></i> Evaluar Participantes</a>
+            
+            <a href="index.html" style="margin-top: auto; color: #f87171;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+        </nav>
+    </aside>
+
+    <div class="top-bar"><span>UBA ViveTalentos - Ecosistema Corporativo</span></div>
+
+    <main class="main-content" style="padding-top: 40px;">
+        
+        <div class="corp-header">
+            <h1>Evaluar Entregas de Retos</h1>
+            <p style="font-size: 14px; opacity: 0.9;">Revisa el trabajo que los estudiantes han subido en respuesta a tus retos. Déjales comentarios constructivos; estas notificaciones les llegarán directamente a su panel personal.</p>
+        </div>
+
+        <!-- Entrega 1 -->
+        <div class="submission-card">
+            <div class="sub-header">
+                <div class="student-info">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=150" alt="Alumno" class="student-avatar">
+                    <div class="student-details">
+                        <h3>Yudresky Parra</h3>
+                        <p>Comunicación Social | 7mo Trim.</p>
+                    </div>
+                </div>
+                <div class="reto-tag"><i class="fa-solid fa-tag"></i> Reto: Campaña de Marketing Digital</div>
+            </div>
+            
+            <div class="sub-content">
+                <p><strong>Descripción de la entrega:</strong> "Adjunto mi propuesta para la campaña de relanzamiento de su producto. He desarrollado un esquema enfocado en TikTok y Reels de Instagram, buscando conectar con la audiencia joven mediante narrativas orgánicas (Storytelling). Pueden revisar la maqueta audiovisual en el enlace."</p>
+                <a href="#" class="attachment"><i class="fa-solid fa-link"></i> Ver Maqueta Audiovisual (Google Drive)</a>
+            </div>
+
+            <div class="feedback-box">
+                <label><i class="fa-solid fa-comment-dots"></i> Dejar un comentario privado para el alumno:</label>
+                <textarea class="feedback-input" rows="3" placeholder="Ej. ¡Excelente propuesta! Nos encantó el enfoque orgánico. Solo te sugerimos ajustar los colores en el segundo reel..."></textarea>
+                <button class="btn-send"><i class="fa-regular fa-paper-plane"></i> Enviar Feedback</button>
+            </div>
+        </div>
+
+        <!-- Entrega 2 -->
+        <div class="submission-card">
+            <div class="sub-header">
+                <div class="student-info">
+                    <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&q=80&w=150" alt="Alumno" class="student-avatar">
+                    <div class="student-details">
+                        <h3>Carlos Márquez</h3>
+                        <p>Ingeniería de Sistemas | 9no Trim.</p>
+                    </div>
+                </div>
+                <div class="reto-tag"><i class="fa-solid fa-tag"></i> Reto: Desarrollo de App Móvil</div>
+            </div>
+            
+            <div class="sub-content">
+                <p><strong>Descripción de la entrega:</strong> "He completado el reto desarrollando un prototipo funcional en Flutter. La base de datos está conectada a Firebase. Adjunto el código fuente y capturas del funcionamiento."</p>
+                <a href="#" class="attachment"><i class="fa-solid fa-file-zipper"></i> prototipo_app.zip (15MB)</a>
+            </div>
+
+            <div class="feedback-box" style="background: white; border: none; padding: 0;">
+                <div class="status-sent"><i class="fa-solid fa-circle-check"></i> Ya has evaluado y enviado comentarios sobre este proyecto.</div>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+</html>

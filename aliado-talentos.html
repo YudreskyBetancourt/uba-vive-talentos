@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorar Talentos - Portal de Empresa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .corp-header {
+            background: linear-gradient(135deg, #1A365D 0%, #0F172A 100%);
+            border-radius: 16px; padding: 30px; color: white; margin-bottom: 30px;
+        }
+
+        .corp-header h1 { font-size: 24px; color: var(--accent-gold); margin-bottom: 5px; }
+        
+        .search-bar {
+            display: flex; gap: 15px; margin-bottom: 30px;
+        }
+        
+        .search-input {
+            flex-grow: 1; padding: 15px 20px; border-radius: 30px; border: 2px solid var(--gris-claro);
+            font-size: 15px; font-family: 'Open Sans';
+        }
+        
+        .btn-filter {
+            background: var(--primary-blue); color: white; border: none; padding: 0 25px;
+            border-radius: 30px; font-weight: 700; cursor: pointer; transition: 0.3s;
+        }
+
+        .talentos-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 50px;
+        }
+
+        .talento-card {
+            background: white; border-radius: 16px; padding: 25px; text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid var(--gris-claro);
+            position: relative; transition: 0.3s;
+        }
+        
+        .talento-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: var(--accent-gold); }
+
+        .t-avatar {
+            width: 100px; height: 100px; border-radius: 50%; object-fit: cover;
+            border: 4px solid var(--primary-blue); margin: 0 auto 15px;
+        }
+
+        .t-name { font-size: 18px; color: var(--text-dark); margin-bottom: 5px; font-weight: 800; }
+        .t-career { font-size: 13px; color: var(--gris-texto); font-weight: 600; margin-bottom: 15px; }
+
+        /* The Giant Badge */
+        .t-badge {
+            position: absolute; top: -15px; right: -15px;
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            color: #92400E; width: 60px; height: 60px; border-radius: 50%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            box-shadow: 0 5px 15px rgba(217, 119, 6, 0.3); border: 2px solid var(--accent-gold);
+            transform: rotate(15deg);
+        }
+        .t-badge .score { font-size: 18px; font-weight: 800; margin-bottom: -2px; }
+        .t-badge .pts { font-size: 10px; font-weight: 700; }
+        
+        .t-stats {
+            display: flex; justify-content: space-around; padding: 15px 0;
+            border-top: 1px solid var(--gris-fondo); border-bottom: 1px solid var(--gris-fondo);
+            margin-bottom: 15px;
+        }
+        .t-stat { text-align: center; }
+        .t-stat h4 { font-size: 16px; color: var(--primary-blue); }
+        .t-stat p { font-size: 11px; color: var(--gris-texto); text-transform: uppercase; }
+
+        .btn-ver-perfil {
+            background: transparent; color: var(--primary-blue); border: 2px solid var(--primary-blue);
+            padding: 10px; width: 100%; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s;
+        }
+        .btn-ver-perfil:hover { background: var(--primary-blue); color: white; }
+    </style>
+</head>
+<body class="has-sidebar">
+
+    <aside class="sidebar" style="background: #0F172A;">
+        <div class="logo-container">
+            <i class="fa-solid fa-building" style="color: var(--accent-gold);"></i>
+            <h2>Portal <span>Empresas</span></h2>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="dashboard-aliado.html"><i class="fa-solid fa-id-card"></i> Mi Perfil Corporativo</a>
+            <a href="aliado-retos.html"><i class="fa-solid fa-bullhorn"></i> Publicar Retos</a>
+            <a href="aliado-talentos.html" class="activo"><i class="fa-solid fa-users-viewfinder"></i> Explorar Talentos</a>
+            <a href="aliado-evaluar.html"><i class="fa-solid fa-clipboard-check"></i> Evaluar Participantes</a>
+            
+            <a href="index.html" style="margin-top: auto; color: #f87171;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+        </nav>
+    </aside>
+
+    <div class="top-bar"><span>UBA ViveTalentos - Ecosistema Corporativo</span></div>
+
+    <main class="main-content" style="padding-top: 40px;">
+        
+        <div class="corp-header">
+            <h1>Base de Datos de Talentos UBA</h1>
+            <p style="font-size: 14px; opacity: 0.9;">Explora los perfiles de los estudiantes. Los promedios de excelencia (18+ pts) están resaltados con una insignia dorada para que encuentres rápidamente a los mejores perfiles.</p>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Buscar por carrera, habilidad o nombre...">
+            <button class="btn-filter"><i class="fa-solid fa-filter"></i> Filtros</button>
+        </div>
+
+        <div class="talentos-grid">
+            
+            <!-- Estudiante 1 (Excelente) -->
+            <div class="talento-card">
+                <div class="t-badge" title="Promedio de Excelencia">
+                    <span class="score">19</span>
+                    <span class="pts">PTS</span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200" alt="Yudresky Parra" class="t-avatar">
+                <div class="t-name">Yudresky Parra</div>
+                <div class="t-career">Comunicación Social | 7mo Trim.</div>
+                
+                <div class="t-stats">
+                    <div class="t-stat"><h4>16</h4><p>Proyectos</p></div>
+                    <div class="t-stat"><h4>4</h4><p>Logros</p></div>
+                </div>
+                
+                <button class="btn-ver-perfil" onclick="window.location.href='perfil.html'"><i class="fa-regular fa-eye"></i> Ver Expediente Completo</button>
+            </div>
+
+            <!-- Estudiante 2 -->
+            <div class="talento-card">
+                <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?auto=format&fit=crop&q=80&w=200" alt="Alumno" class="t-avatar" style="border-color: #CBD5E1;">
+                <div class="t-name">Carlos Márquez</div>
+                <div class="t-career">Ingeniería de Sistemas | 9no Trim.</div>
+                
+                <div class="t-stats">
+                    <div class="t-stat"><h4>12</h4><p>Proyectos</p></div>
+                    <div class="t-stat"><h4>15</h4><p>Promedio</p></div>
+                </div>
+                
+                <button class="btn-ver-perfil"><i class="fa-regular fa-eye"></i> Ver Expediente Completo</button>
+            </div>
+
+            <!-- Estudiante 3 (Excelente) -->
+            <div class="talento-card">
+                <div class="t-badge" title="Promedio de Excelencia">
+                    <span class="score">20</span>
+                    <span class="pts">PTS</span>
+                </div>
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200" alt="Alumna" class="t-avatar">
+                <div class="t-name">Valeria Silva</div>
+                <div class="t-career">Psicología | 8vo Trim.</div>
+                
+                <div class="t-stats">
+                    <div class="t-stat"><h4>8</h4><p>Proyectos</p></div>
+                    <div class="t-stat"><h4>3</h4><p>Logros</p></div>
+                </div>
+                
+                <button class="btn-ver-perfil"><i class="fa-regular fa-eye"></i> Ver Expediente Completo</button>
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
