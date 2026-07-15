@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reto Publicado - UBA Vive Talentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --azul-rey: #003B8E;
+            --azul-marino: #001F4D;
+            --dorado: #C99A2E;
+            --blanco: #FFFFFF;
+            --gris-fondo: #F5F7FA;
+            --gris-texto: #4A4A4A;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', sans-serif; color: var(--gris-texto); background-color: var(--gris-fondo); display: flex; }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-marino); }
+        a { text-decoration: none; }
+
+        /* SIDEBAR */
+        .sidebar { width: 260px; background-color: var(--azul-marino); color: var(--blanco); height: 100vh; position: fixed; display: flex; flex-direction: column; padding: 20px; box-shadow: 4px 0 10px rgba(0,0,0,0.1); z-index: 100; }
+        .logo-container { text-align: center; margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .logo-container i { font-size: 40px; color: var(--blanco); margin-bottom: 10px; }
+        .logo-container h2 { color: var(--blanco); font-size: 20px; }
+        .logo-container h2 span { color: var(--dorado); }
+        .nav-menu { display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
+        .nav-menu a { display: flex; align-items: center; gap: 15px; padding: 12px 20px; color: var(--blanco); font-weight: 600; border-radius: 8px; transition: 0.3s; }
+        .nav-menu a i { font-size: 18px; width: 20px; text-align: center; }
+        .nav-menu a:hover { background-color: rgba(255,255,255,0.1); }
+        .nav-menu a.activo { background-color: var(--dorado); color: var(--azul-marino); }
+
+        /* MAIN CONTENT */
+        .main-content { margin-left: 260px; width: calc(100% - 260px); padding: 30px 50px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+
+        .success-box { background-color: var(--blanco); padding: 60px 40px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; max-width: 600px; border-top: 6px solid #2ecc71; }
+        .success-box i.fa-circle-check { font-size: 80px; color: #2ecc71; margin-bottom: 20px; }
+        .success-box h1 { font-size: 28px; margin-bottom: 15px; color: var(--azul-marino); }
+        .success-box p { font-size: 16px; color: var(--gris-texto); line-height: 1.6; margin-bottom: 30px; }
+        
+        .btn-volver { background-color: var(--azul-marino); color: var(--blanco); padding: 14px 30px; border-radius: 8px; font-weight: bold; font-size: 15px; transition: 0.3s; display: inline-block; }
+        .btn-volver:hover { background-color: var(--azul-rey); }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo-container">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <h2>UBA <span>ViveTalentos</span></h2>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Inicio</a>
+            <a href="que-es.html"><i class="fa-solid fa-circle-info"></i> ¿Qué es?</a>
+            <a href="carreras.html"><i class="fa-solid fa-compass"></i> Explorar carreras</a>
+            <a href="perfil.html"><i class="fa-regular fa-user"></i> Mi Perfil</a>
+            <a href="retos.html"><i class="fa-solid fa-flask"></i> Simulacros y Retos</a>
+            <a href="aliados.html" class="activo"><i class="fa-solid fa-handshake"></i> Empresas Aliadas</a>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <div class="success-box">
+            <i class="fa-solid fa-circle-check"></i>
+            <h1>¡Desafío Publicado con Éxito!</h1>
+            <p>Tu reto corporativo ha sido enviado a la plataforma. El equipo docente de la UBA lo validará en breve y será visible para todos los estudiantes de la facultad seleccionada. ¡Prepárate para recibir propuestas de talento joven!</p>
+            <a href="aliados.html" class="btn-volver">Volver al Directorio de Aliados</a>
+        </div>
+    </main>
+
+</body>
+</html>
