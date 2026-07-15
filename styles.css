@@ -879,7 +879,7 @@ body.dark-mode .notif-item:hover {
     background: transparent;
     border: none;
     font-size: 18px;
-    color: var(--primary-blue);
+    color: white; /* Cambiado a blanco para modo claro */
     cursor: pointer;
     position: relative;
     transition: 0.3s;
@@ -939,7 +939,7 @@ body.dark-mode .notif-badge {
     
     .mobile-toggle-btn {
         display: block;
-        color: var(--primary-blue);
+        color: white; /* Blanco para modo claro */
         margin-right: 15px;
     }
     
