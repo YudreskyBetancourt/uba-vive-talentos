@@ -8,29 +8,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Estilos específicos para la Landing Page Profesional */
-        .landing-navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 80px; background: var(--azul-oscuro); color: var(--blanco); }
-        .nav-links a { color: var(--blanco); margin-left: 25px; font-weight: 600; font-size: 14px; }
+        /* CORRECCIÓN: Sobrescribimos estilos globales para que el Index se vea bien */
+        body { display: block !important; min-height: 100vh; background-color: white !important; }
+        
+        /* Estilos específicos para la Landing Page */
+        .landing-navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 80px; background: #0B1727; color: white; }
+        .logo h2 { color: white; font-size: 20px; }
+        .logo span { color: #C99A2E; }
+        .nav-links a { color: white; margin-left: 25px; font-weight: 600; text-decoration: none; }
         
         .hero-banner { 
-            background: linear-gradient(135deg, var(--azul-oscuro) 0%, var(--azul-rey) 100%); 
-            padding: 80px; color: var(--blanco); text-align: center; 
+            background: linear-gradient(135deg, #0B1727 0%, #003B8E 100%); 
+            padding: 80px 20px; color: white; text-align: center; 
         }
         .hero-banner h1 { font-size: 40px; margin-bottom: 20px; }
-        .hero-banner span { color: var(--dorado); }
+        .hero-banner span { color: #C99A2E; }
         .hero-banner p { font-size: 18px; margin-bottom: 40px; opacity: 0.9; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .btn-dorado { background: #C99A2E; color: #0B1727; padding: 15px 30px; border-radius: 8px; font-weight: 700; text-decoration: none; }
 
-        .stats-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; background: var(--blanco); padding: 40px 80px; border-bottom: 1px solid var(--gris-claro); }
+        .stats-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; background: white; padding: 40px 80px; border-bottom: 1px solid #E2E8F0; }
         .stat-item { text-align: center; }
-        .stat-item h3 { font-size: 28px; color: var(--azul-rey); }
-        .stat-item p { font-size: 12px; font-weight: 700; color: var(--gris-texto); text-transform: uppercase; }
+        .stat-item h3 { font-size: 28px; color: #003B8E; margin: 0; }
+        .stat-item p { font-size: 12px; font-weight: 700; color: #4A5568; text-transform: uppercase; }
 
         .features-grid { padding: 60px 80px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        .feature-card { background: var(--gris-fondo); padding: 30px; border-radius: 12px; border: 1px solid var(--gris-claro); }
+        .feature-card { background: #F8FAFC; padding: 30px; border-radius: 12px; border: 1px solid #E2E8F0; }
         
-        .mission-box { padding: 60px 80px; background: #fdfdfd; text-align: center; border-top: 1px solid var(--gris-claro); }
-        .mission-box h2 { margin-bottom: 20px; }
-        .mission-box p { font-size: 16px; font-style: italic; color: var(--gris-texto); max-width: 900px; margin: 0 auto; line-height: 1.8; }
+        .mission-box { padding: 60px 80px; background: #fdfdfd; text-align: center; border-top: 1px solid #E2E8F0; }
+        .mission-box p { font-size: 16px; font-style: italic; color: #4A5568; max-width: 900px; margin: 0 auto; line-height: 1.8; }
     </style>
 </head>
 <body>
@@ -38,10 +43,10 @@
     <nav class="landing-navbar">
         <div class="logo"><h2>UBA <span>ViveTalentos</span></h2></div>
         <div class="nav-links">
-            <a href="#">Inicio</a>
+            <a href="index.html">Inicio</a>
             <a href="carreras.html">Carreras</a>
             <a href="aliados.html">Empresas</a>
-            <a href="dashboard.html" style="background: var(--dorado); padding: 10px 20px; border-radius: 6px; color: var(--azul-oscuro);">Iniciar sesión</a>
+            <a href="dashboard.html" style="background: #C99A2E; padding: 10px 20px; border-radius: 6px; color: #0B1727;">Iniciar sesión</a>
         </div>
     </nav>
 
@@ -60,19 +65,19 @@
 
     <section class="features-grid">
         <div class="feature-card">
-            <h3><i class="fa-solid fa-compass" style="color:var(--dorado)"></i> Explorar Carreras</h3>
+            <h3><i class="fa-solid fa-compass" style="color:#C99A2E"></i> Explorar Carreras</h3>
             <p>El núcleo de la plataforma donde conectamos tus intereses con proyectos, simulaciones y facultades reales.</p>
         </div>
         <div class="feature-card">
-            <h3><i class="fa-solid fa-flask" style="color:var(--dorado)"></i> Convocatorias Abiertas</h3>
+            <h3><i class="fa-solid fa-flask" style="color:#C99A2E"></i> Convocatorias Abiertas</h3>
             <p>Espacio de participación activa para retos corporativos y proyectos académicos de impacto.</p>
         </div>
         <div class="feature-card">
-            <h3><i class="fa-solid fa-address-card" style="color:var(--dorado)"></i> Portafolio Estudiantil</h3>
+            <h3><i class="fa-solid fa-address-card" style="color:#C99A2E"></i> Portafolio Estudiantil</h3>
             <p>Gestión directa de tus evidencias de aprendizaje y logros académicos para mostrar a reclutadores.</p>
         </div>
         <div class="feature-card">
-            <h3><i class="fa-solid fa-users" style="color:var(--dorado)"></i> Conexión Empresarial</h3>
+            <h3><i class="fa-solid fa-users" style="color:#C99A2E"></i> Conexión Empresarial</h3>
             <p>Acceso directo a la vitrina de oportunidades y contacto con nuestra red de empresas aliadas.</p>
         </div>
     </section>
