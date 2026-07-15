@@ -604,3 +604,15 @@ a {
     font-size: 11px; 
     color: var(--gris-texto); 
 }
+/* Estilos para el nuevo Index */
+.landing-navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 80px; background: #002244; color: white; }
+.hero-banner { background: linear-gradient(135deg, #002244 0%, #004a99 100%); padding: 60px 40px; color: white; text-align: center; }
+.hero-banner h1 { font-size: 36px; margin-bottom: 15px; }
+.hero-banner span { color: #d4af37; }
+.stats-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; background: white; padding: 30px 50px; border-bottom: 1px solid #ddd; }
+.stat-item { text-align: center; }
+.stat-item h3 { font-size: 24px; color: #004a99; margin: 0; }
+.stat-item p { font-size: 11px; color: #666; text-transform: uppercase; margin-top: 5px; }
+.features-grid { padding: 40px 50px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.feature-card { background: #f9f9f9; padding: 25px; border-radius: 10px; border: 1px solid #eee; }
+.mission-box { padding: 50px; text-align: center; background: #fff; }
