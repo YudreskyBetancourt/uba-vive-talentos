@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - UBA Vive Talentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --azul-rey: #003B8E;
+            --azul-marino: #001F4D;
+            --dorado: #C99A2E;
+            --blanco: #FFFFFF;
+            --gris-fondo: #F5F7FA;
+            --gris-texto: #4A4A4A;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', sans-serif; display: flex; height: 100vh; background-color: var(--gris-fondo); }
+        
+        /* Layout igual al registro para coherencia visual */
+        .login-side { width: 40%; background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-rey) 100%); display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; padding: 40px; text-align: center; }
+        .login-side h2 { color: var(--blanco); font-size: 32px; margin-bottom: 20px; }
+        .login-side p { opacity: 0.8; font-size: 16px; }
+
+        .form-side { width: 60%; display: flex; justify-content: center; align-items: center; padding: 40px; }
+        .form-box { background: var(--blanco); padding: 50px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+        input { width: 100%; padding: 12px 15px; border: 1px solid var(--gris-claro); border-radius: 8px; outline: none; }
+        input:focus { border-color: var(--azul-rey); }
+        
+        .btn-login { width: 100%; background: var(--azul-marino); color: white; padding: 14px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+        .btn-login:hover { background: var(--azul-rey); }
+        
+        .footer-link { text-align: center; margin-top: 20px; font-size: 14px; }
+        .footer-link a { color: var(--azul-rey); font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="login-side">
+        <h2>Bienvenido de nuevo</h2>
+        <p>Inicia sesión para continuar construyendo tu futuro profesional en la UBA.</p>
+    </div>
+    <div class="form-side">
+        <div class="form-box">
+            <h2 style="margin-bottom: 20px;">Iniciar Sesión</h2>
+            <form action="perfil.html" method="get">
+                <div class="form-group">
+                    <label>Correo institucional</label>
+                    <input type="email" placeholder="usuario@uba.edu.ve" required>
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-login">Acceder a mi cuenta</button>
+                <div class="footer-link">
+                    ¿Aún no tienes cuenta? <a href="registro.html">Regístrate aquí</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
