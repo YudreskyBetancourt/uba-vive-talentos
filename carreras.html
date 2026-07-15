@@ -29,11 +29,11 @@
     </aside>
 
     <main class="main-content">
-        
         <header class="topbar">
             <div class="search-bar">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Buscar carreras, proyectos...">
+                <input type="text" id="global-search" placeholder="Buscar carreras, proyectos...">
+                <div class="search-results" id="global-search-results"></div>
             </div>
             <div class="user-actions">
                 <div class="notification-icon">
@@ -50,21 +50,11 @@
         <div class="page-header">
             <div class="header-text">
                 <h1>Explora las carreras</h1>
-                <p>Descubre los proyectos, simulaciones y portafolios organizados por área académica. Conecta tu talento con las oportunidades reales que ofrece cada facultad.</p>
+                <p>Descubre los proyectos, simulaciones y portafolios organizados por área académica.</p>
             </div>
             <div class="carreras-stats">
-                <div class="stat-box">
-                    <h3>4,128</h3>
-                    <p>ESTUDIANTES</p>
-                </div>
-                <div class="stat-box">
-                    <h3>1,250</h3>
-                    <p>PROYECTOS</p>
-                </div>
-                <div class="stat-box">
-                    <h3>980</h3>
-                    <p>PORTAFOLIOS</p>
-                </div>
+                <div class="stat-box"><h3>7</h3><p>CARRERAS</p></div>
+                <div class="stat-box"><h3>+1.2k</h3><p>PROYECTOS</p></div>
             </div>
         </div>
 
@@ -77,73 +67,38 @@
         </section>
 
         <section class="carreras-grid">
-            
             <div class="carrera-card">
-                <div class="carrera-header">
-                    <i class="fa-solid fa-microphone-lines"></i>
-                    <h3>Comunicación Social</h3>
-                </div>
-                <div class="carrera-body">
-                    <p>Comunica ideas que inspiran y generan impacto en la sociedad mediante formatos multimedia avanzados.</p>
-                    <div class="carrera-meta">
-                        <div class="meta-data"><span>342</span><small>Alumnos</small></div>
-                        <div class="meta-data"><span>15</span><small>Retos</small></div>
-                        <div class="meta-data"><span>420</span><small>Proyectos</small></div>
-                    </div>
-                    <a href="retos.html" class="btn-ver-carrera">Ver actividades <i class="fa-solid fa-angle-right"></i></a>
-                </div>
+                <div class="carrera-header"><i class="fa-solid fa-microphone-lines"></i><h3>Comunicación Social</h3></div>
+                <div class="carrera-body"><p>Redacta noticias, crea guiones para podcast o video, diseña campañas comunicacionales.</p><a href="retos.html" class="btn-ver-carrera">Ver actividades</a></div>
             </div>
-
-            <div class="carrera-card">
-                <div class="carrera-header">
-                    <i class="fa-solid fa-scale-balanced"></i>
-                    <h3>Derecho</h3>
-                </div>
-                <div class="carrera-body">
-                    <p>Defiende la justicia y transforma realidades desde el análisis de casos reales y debates jurídicos simulados.</p>
-                    <div class="carrera-meta">
-                        <div class="meta-data"><span>280</span><small>Alumnos</small></div>
-                        <div class="meta-data"><span>8</span><small>Retos</small></div>
-                        <div class="meta-data"><span>315</span><small>Proyectos</small></div>
-                    </div>
-                    <a href="retos.html" class="btn-ver-carrera">Ver actividades <i class="fa-solid fa-angle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="carrera-card">
-                <div class="carrera-header">
-                    <i class="fa-solid fa-calculator"></i>
-                    <h3>Contaduría Pública</h3>
-                </div>
-                <div class="carrera-body">
-                    <p>Interpreta datos financieros, estructura presupuestos y apoya la toma de decisiones estratégicas.</p>
-                    <div class="carrera-meta">
-                        <div class="meta-data"><span>195</span><small>Alumnos</small></div>
-                        <div class="meta-data"><span>12</span><small>Retos</small></div>
-                        <div class="meta-data"><span>210</span><small>Proyectos</small></div>
-                    </div>
-                    <a href="retos.html" class="btn-ver-carrera">Ver actividades <i class="fa-solid fa-angle-right"></i></a>
-                </div>
-            </div>
-
-            <div class="carrera-card">
-                <div class="carrera-header">
-                    <i class="fa-solid fa-chart-pie"></i>
-                    <h3>Administración</h3>
-                </div>
-                <div class="carrera-body">
-                    <p>Diseña modelos de negocio sólidos, optimiza recursos y lidera proyectos de gestión empresarial.</p>
-                    <div class="carrera-meta">
-                        <div class="meta-data"><span>250</span><small>Alumnos</small></div>
-                        <div class="meta-data"><span>10</span><small>Retos</small></div>
-                        <div class="meta-data"><span>285</span><small>Proyectos</small></div>
-                    </div>
-                    <a href="retos.html" class="btn-ver-carrera">Ver actividades <i class="fa-solid fa-angle-right"></i></a>
-                </div>
-            </div>
-
-        </section>
+            </section>
     </main>
 
+    <script>
+        const baseDeDatos = [
+            { nombre: "Comunicación Social", url: "carreras.html", icono: "fa-microphone-lines" },
+            { nombre: "Derecho", url: "carreras.html", icono: "fa-scale-balanced" },
+            { nombre: "Simulacros y Retos", url: "retos.html", icono: "fa-flask" },
+            { nombre: "Empresas Aliadas", url: "aliados.html", icono: "fa-handshake" },
+            { nombre: "Mi Perfil", url: "perfil.html", icono: "fa-user" }
+        ];
+
+        const input = document.getElementById('global-search');
+        const results = document.getElementById('global-search-results');
+
+        input.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            results.innerHTML = '';
+            if(query.length > 0) {
+                const filtered = baseDeDatos.filter(i => i.nombre.toLowerCase().includes(query));
+                filtered.forEach(item => {
+                    results.innerHTML += `<a href="${item.url}" class="search-item"><i class="fa-solid ${item.icono}"></i><div><h4>${item.nombre}</h4></div></a>`;
+                });
+                results.classList.add('active');
+            } else {
+                results.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
