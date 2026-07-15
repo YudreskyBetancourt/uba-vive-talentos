@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Qué es? - UBA Vive Talentos</title>
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --azul-rey: #003B8E;
+            --azul-marino: #001F4D;
+            --dorado: #C99A2E;
+            --blanco: #FFFFFF;
+            --gris-claro: #F5F7FA;
+            --gris-texto: #4A4A4A;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', sans-serif; color: var(--gris-texto); background-color: var(--blanco); line-height: 1.6; }
+        h1, h2, h3 { font-family: 'Montserrat', sans-serif; color: var(--azul-marino); }
+        a { text-decoration: none; }
+
+        /* Navegación (Igual a la de inicio) */
+        header { background-color: var(--blanco); padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        .logo { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 700; color: var(--azul-rey); }
+        .logo span { color: var(--dorado); }
+        .nav-links a { margin: 0 15px; color: var(--gris-texto); font-weight: 600; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--dorado); }
+        /* Resaltar la página activa */
+        .nav-links a.activo { color: var(--azul-rey); border-bottom: 2px solid var(--dorado); padding-bottom: 5px; }
+        .btn-login { color: var(--azul-rey); font-weight: 600; margin-right: 15px; }
+        .btn-register { background-color: var(--dorado); color: var(--blanco); padding: 10px 20px; border-radius: 8px; font-weight: 600; transition: 0.3s; }
+        .btn-register:hover { background-color: #b58925; }
+
+        /* Sección Header de la Página */
+        .page-header { background-color: var(--azul-marino); color: var(--blanco); padding: 60px 50px; text-align: center; }
+        .page-header h1 { color: var(--dorado); font-size: 40px; margin-bottom: 15px; }
+        .page-header p { font-size: 18px; max-width: 800px; margin: 0 auto; color: var(--blanco); opacity: 0.9; }
+
+        /* Sección ¿Qué es? */
+        .que-es { display: flex; align-items: center; justify-content: space-between; padding: 80px 50px; background-color: var(--blanco); }
+        .que-es-texto { max-width: 50%; }
+        .que-es-texto h2 { color: var(--azul-rey); font-size: 32px; margin-bottom: 20px; }
+        .que-es-texto p { font-size: 16px; margin-bottom: 20px; }
+        .que-es-texto ul { list-style: none; margin-top: 20px; }
+        .que-es-texto ul li { margin-bottom: 15px; font-size: 16px; display: flex; align-items: center; }
+        .que-es-texto ul li i { color: var(--dorado); font-size: 20px; margin-right: 15px; }
+        .que-es-imagen { max-width: 45%; text-align: center; }
+        .que-es-imagen i { font-size: 250px; color: var(--azul-rey); opacity: 0.8; }
+
+        /* Sección ¿Cómo funciona? (Línea de tiempo) */
+        .como-funciona { padding: 80px 50px; background-color: var(--gris-claro); text-align: center; }
+        .como-funciona h2 { color: var(--azul-rey); font-size: 32px; margin-bottom: 50px; }
+        .pasos-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; }
+        .paso-card { background: var(--blanco); padding: 30px; border-radius: 12px; width: 250px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); position: relative; border-bottom: 4px solid var(--azul-rey); transition: transform 0.3s;}
+        .paso-card:hover { transform: translateY(-5px); border-bottom-color: var(--dorado); }
+        .paso-numero { background-color: var(--dorado); color: var(--blanco); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-family: 'Montserrat', sans-serif;}
+        .paso-card i { font-size: 40px; color: var(--azul-marino); margin: 30px 0 15px 0; }
+        .paso-card h3 { font-size: 18px; margin-bottom: 10px; color: var(--azul-rey); }
+        .paso-card p { font-size: 14px; }
+
+        /* Llamado a la acción */
+        .cta { text-align: center; padding: 60px 50px; background-color: var(--blanco); }
+        .cta h2 { color: var(--azul-marino); margin-bottom: 20px; }
+        .btn-cta { background-color: var(--dorado); color: var(--blanco); padding: 15px 30px; border-radius: 8px; font-weight: 600; font-size: 18px; display: inline-block; transition: 0.3s; margin-top: 10px;}
+        .btn-cta:hover { background-color: #b58925; }
+
+        footer { background-color: var(--azul-marino); color: white; padding: 30px; text-align: center; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">UBA<span>ViveTalentos</span></div>
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <!-- Le añadimos la clase 'activo' para que se marque en dorado -->
+            <a href="que-es.html" class="activo">¿Qué es?</a>
+            <a href="#">Carreras</a>
+            <a href="#">Actividades</a>
+            <a href="#">Portafolios</a>
+        </div>
+        <div>
+            <a href="#" class="btn-login">Iniciar Sesión</a>
+            <a href="registro.html" class="btn-register">Registrarme</a>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Transformando la Educación Virtual</h1>
+        <p>Porque estudiar a distancia no significa estar solo. Descubre cómo tu talento forma parte de la universidad.</p>
+    </div>
+
+    <section class="que-es">
+        <div class="que-es-texto">
+            <h2>¿Qué es UBA Vive Talentos?</h2>
+            <p>Es una plataforma digital universitaria creada específicamente para fortalecer la participación activa de los estudiantes de modalidad virtual.</p>
+            <p>Creemos que la educación virtual debe ser práctica, humana y colaborativa. Por eso, hemos diseñado un espacio donde no solo consumes información, sino que demuestras de lo que eres capaz.</p>
+            <ul>
+                <li><i class="fa-solid fa-check-circle"></i> Muestra tus habilidades y talentos al mundo.</li>
+                <li><i class="fa-solid fa-check-circle"></i> Participa en retos, talleres y proyectos reales.</li>
+                <li><i class="fa-solid fa-check-circle"></i> Crea un portafolio digital profesional.</li>
+                <li><i class="fa-solid fa-check-circle"></i> Conecta con compañeros, docentes y oportunidades profesionales.</li>
+            </ul>
+        </div>
+        <div class="que-es-imagen">
+            <!-- Icono decorativo de comunidad/redes -->
+            <i class="fa-solid fa-network-wired"></i>
+        </div>
+    </section>
+
+    <section class="como-funciona">
+        <h2>¿Cómo funciona?</h2>
+        <div class="pasos-grid">
+            <div class="paso-card">
+                <div class="paso-numero">1</div>
+                <i class="fa-solid fa-id-card"></i>
+                <h3>Regístrate</h3>
+                <p>Crea tu perfil académico y selecciona tu carrera o área de talento.</p>
+            </div>
+            <div class="paso-card">
+                <div class="paso-numero">2</div>
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <h3>Explora</h3>
+                <p>Descubre las actividades, retos y simulaciones disponibles para tu área.</p>
+            </div>
+            <div class="paso-card">
+                <div class="paso-numero">3</div>
+                <i class="fa-solid fa-laptop-file"></i>
+                <h3>Participa</h3>
+                <p>Resuelve los retos y sube tus evidencias a tu portafolio digital.</p>
+            </div>
+            <div class="paso-card">
+                <div class="paso-numero">4</div>
+                <i class="fa-solid fa-medal"></i>
+                <h3>Destaca</h3>
+                <p>Recibe reconocimiento, insignias y conecta con oportunidades reales.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <h2>¿Listo para mostrar tu talento?</h2>
+        <p>Únete a la comunidad de estudiantes que están construyendo su futuro hoy.</p>
+        <a href="registro.html" class="btn-cta">Crear mi portafolio ahora</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 UBA Vive Talentos. Proyecto Académico.</p>
+    </footer>
+
+</body>
+</html>
