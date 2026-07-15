@@ -2,29 +2,32 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Empresas Aliadas - UBA Vive Talentos</title>
+    <title>Aliados - UBA Vive Talentos</title>
+    <!-- Usa el mismo estilo CSS y Script que pusimos arriba en retos.html -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --azul-marino: #001F4D; --dorado: #C99A2E; }
+        /* Mismos estilos que en retos.html para mantener coherencia */
+        :root { --azul-rey: #003B8E; --azul-marino: #001F4D; --dorado: #C99A2E; }
         body { font-family: sans-serif; display: flex; background: #F5F7FA; }
         .sidebar { width: 260px; background-color: var(--azul-marino); height: 100vh; position: fixed; padding: 20px; color: white; }
         .main-content { margin-left: 260px; width: 100%; padding: 30px; }
-        /* Dropdown */
         .user-profile-container { position: relative; cursor: pointer; }
-        .dropdown-menu { display: none; position: absolute; right: 0; background: white; width: 220px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 10px; z-index: 1000; }
+        .dropdown-menu { display: none; position: absolute; right: 0; top: 110%; background: white; width: 220px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); padding: 10px; z-index: 1000; }
         .dropdown-menu.show { display: block; }
+        .dropdown-menu a { display: block; padding: 10px; color: #444; text-decoration: none; }
     </style>
 </head>
 <body>
     <aside class="sidebar">
-        <nav>
-            <a href="index.html" style="color:white; text-decoration:none;">Inicio</a><br>
-            <a href="aliados.html" style="color:var(--dorado); text-decoration:none;">Empresas Aliadas</a>
+        <h2>UBA <span>ViveTalentos</span></h2>
+        <nav class="nav-menu">
+            <a href="index.html">Inicio</a>
+            <a href="aliados.html" class="activo">Empresas Aliadas</a>
         </nav>
     </aside>
     <main class="main-content">
         <header style="display: flex; justify-content: flex-end;">
-            <div class="user-profile-container" onclick="document.getElementById('userDropdown').classList.toggle('show')">
+            <div class="user-profile-container" onclick="toggleMenu()">
                 <div style="background:white; padding:10px 20px; border-radius:30px;">Yudresky P. <i class="fa-solid fa-angle-down"></i></div>
                 <div class="dropdown-menu" id="userDropdown">
                     <a href="perfil.html">Mi Perfil</a>
@@ -35,12 +38,8 @@
         <h1>Empresas Aliadas</h1>
     </main>
     <script>
-        window.onclick = function(event) {
-            if (!event.target.matches('.user-profile-container') && !event.target.matches('.fa-angle-down')) {
-                var dropdowns = document.getElementsByClassName("dropdown-menu");
-                for (var i = 0; i < dropdowns.length; i++) { dropdowns[i].classList.remove('show'); }
-            }
-        }
+        function toggleMenu() { document.getElementById("userDropdown").classList.toggle("show"); }
+        window.onclick = function(event) { if (!event.target.matches('.user-profile-container') && !event.target.matches('.fa-angle-down')) { var dropdowns = document.getElementsByClassName("dropdown-menu"); for (var i = 0; i < dropdowns.length; i++) { dropdowns[i].classList.remove('show'); } } }
     </script>
 </body>
 </html>
