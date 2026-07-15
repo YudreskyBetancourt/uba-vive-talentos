@@ -3,95 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Directorio de Empresas - UBA Vive Talentos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Aliados Comerciales - UBA Vive Talentos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Estilos específicos para el Directorio de Empresas (Vista Estudiante) */
-        .page-header { margin-bottom: 30px; }
-        .page-header h1 { font-size: 32px; margin-bottom: 10px; color: var(--azul-oscuro); display: flex; align-items: center; gap: 15px; }
-        .page-header h1 i { color: var(--dorado); }
-        .page-header p { font-size: 16px; color: var(--gris-texto); max-width: 800px; line-height: 1.6; }
-
-        .filters-container {
-            background: var(--blanco);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: var(--sombra-tarjeta);
-            margin-bottom: 30px;
+        .hero-aliados {
+            background-image: linear-gradient(135deg, rgba(0, 43, 94, 0.9) 0%, rgba(0, 26, 56, 0.9) 100%), url('https://images.unsplash.com/photo-1556761175-5973dc0f32d7?auto=format&fit=crop&q=80&w=1200');
+            background-size: cover;
+            background-position: center;
+            border-radius: 16px;
+            padding: 50px 20px;
             display: flex;
-            gap: 15px;
-            border: 1px solid var(--gris-claro);
+            flex-direction: column;
             align-items: center;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0,59,142,0.15);
         }
-        .filter-group { flex-grow: 1; display: flex; flex-direction: column; }
-        .filter-group label { font-size: 12px; font-weight: 700; color: var(--azul-oscuro); margin-bottom: 8px; }
-        .filter-group select, .filter-group input { 
-            padding: 12px; border: 1px solid var(--gris-claro); border-radius: 8px; font-family: 'Open Sans'; font-size: 13px; color: var(--gris-texto); outline: none; background: #FAFCFF;
-        }
-        .filter-group input:focus, .filter-group select:focus { border-color: var(--azul-rey); }
 
-        .companies-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
-        
+        .category-section {
+            margin-bottom: 50px;
+        }
+
+        .category-title {
+            font-size: 22px;
+            color: var(--primary-blue);
+            border-bottom: 2px solid var(--gris-claro);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
         .company-card {
             background: var(--blanco);
             border-radius: 16px;
-            padding: 25px;
             border: 1px solid var(--gris-claro);
-            box-shadow: var(--sombra-tarjeta);
-            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
             display: flex;
             flex-direction: column;
-            animation: fadeInGrid 0.4s ease-out;
-        }
-        .company-card:hover { transform: translateY(-5px); box-shadow: var(--sombra-hover); border-color: var(--azul-rey); }
-        
-        @keyframes fadeInGrid {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            transition: all 0.3s ease;
+            overflow: hidden;
         }
 
-        .company-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
-        .company-logo {
-            width: 60px;
-            height: 60px;
+        .company-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,43,94,0.1);
+            border-color: var(--accent-gold);
+        }
+
+        .cc-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            border-bottom: 1px solid var(--gris-fondo);
+        }
+
+        .cc-logo {
+            width: 50px;
+            height: 50px;
             border-radius: 12px;
-            background: var(--gris-fondo);
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 28px;
-            color: var(--azul-rey);
-            border: 1px solid var(--gris-claro);
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-        .company-info h3 { font-size: 18px; color: var(--azul-oscuro); margin-bottom: 4px; }
-        .company-info p { font-size: 12px; font-weight: 600; color: var(--dorado); }
-        
-        .company-desc { font-size: 13px; color: var(--gris-texto); line-height: 1.5; margin-bottom: 20px; flex-grow: 1; }
-        
-        .company-stats {
+
+        .cc-header h3 {
+            font-size: 17px;
+            color: var(--primary-blue);
+            margin-bottom: 3px;
+        }
+
+        .cc-header p {
+            font-size: 12px;
+            color: var(--gris-texto);
+            font-weight: 600;
+        }
+
+        .cc-body {
+            padding: 15px 20px;
+            font-size: 13px;
+            color: var(--gris-texto);
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .cc-vacancies {
+            background: #F8FAFC;
+            padding: 15px 20px;
+            border-top: 1px solid var(--gris-claro);
+        }
+
+        .cc-vacancies h4 {
+            font-size: 13px;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .vacancy-item {
+            background: var(--blanco);
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 8px;
+        }
+        .vacancy-item:last-child { margin-bottom: 0; }
+
+        .vac-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .vac-details {
             display: flex;
             justify-content: space-between;
-            border-top: 1px solid var(--gris-fondo);
-            border-bottom: 1px solid var(--gris-fondo);
-            padding: 12px 0;
-            margin-bottom: 20px;
+            font-size: 11px;
+            color: var(--gris-texto);
+            font-weight: 600;
         }
-        .c-stat { text-align: center; }
-        .c-stat span { display: block; font-size: 16px; font-weight: 700; color: var(--azul-oscuro); }
-        .c-stat small { font-size: 10px; color: var(--gris-texto); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
-        
-        .company-actions { display: flex; gap: 10px; }
-        .btn-ver-empresa { flex: 1; text-align: center; padding: 12px 10px; border-radius: 8px; font-size: 13px; font-weight: 600; background: var(--gris-fondo); color: var(--azul-oscuro); border: none; cursor: pointer; transition: 0.3s; }
-        .btn-ver-empresa:hover { background: var(--gris-claro); }
-        .btn-ver-retos { flex: 1; text-align: center; padding: 12px 10px; border-radius: 8px; font-size: 13px; font-weight: 700; background: var(--azul-oscuro); color: var(--blanco); border: none; cursor: pointer; transition: 0.3s; font-family: 'Open Sans'; }
-        .btn-ver-retos:hover { background: var(--azul-rey); box-shadow: 0 4px 10px rgba(0,59,142,0.2); }
-        
-        #no-results { display: none; text-align: center; padding: 40px; background: var(--blanco); border-radius: 12px; border: 1px dashed var(--gris-claro); width: 100%; grid-column: span 3; }
+
+        .vac-salary {
+            color: var(--verde-exito);
+            background: #D1FAE5;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .cc-footer {
+            padding: 15px 20px;
+            background: var(--blanco);
+            border-top: 1px solid var(--gris-claro);
+            text-align: center;
+        }
+
+        .cc-footer button {
+            width: 100%;
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            padding: 8px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cc-footer button:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
     </style>
 </head>
-<body>
+<body class="has-sidebar">
+
+    <aside class="sidebar">
+        <div class="logo-container">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <h2>UBA <span>ViveTalentos</span></h2>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="index.html" style="margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;"><i class="fa-solid fa-house"></i> Volver al Inicio</a>
+
+            <a href="dashboard.html"><i class="fa-solid fa-chart-pie"></i> Mi Portafolio</a>
+            <a href="retos.html"><i class="fa-solid fa-rocket"></i> Retos Académicos</a>
+            <a href="aliados.html" class="activo"><i class="fa-solid fa-handshake"></i> Aliados Comerciales</a>
+            <a href="perfil.html"><i class="fa-solid fa-user"></i> Mi Perfil</a>
+            
+            <a href="login.html" style="margin-top: auto; color: #f87171;"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</a>
+        </nav>
+    </aside>
 
     <div class="top-bar">
         <span>San Joaquín de Turmero</span>
@@ -110,194 +210,267 @@
         <div class="nav-links">
             <a href="index.html">Inicio</a>
             <a href="carreras.html">Carreras</a>
-            <a href="aliados.html">Empresas</a>
-            <a href="login.html" class="btn-login">Mi Plataforma</a>
+            <a href="aliados.html" class="btn-login" style="background: transparent; color: var(--primary-blue); border: none; font-weight: 600;">Empresas</a>
         </div>
     </nav>
 
-
-    
-
     <main class="main-content">
         
-
-        <div class="page-header">
-            <h1><i class="fa-solid fa-building"></i> Directorio de Empresas Aliadas</h1>
-            <p>Conoce las agencias, firmas y corporaciones que confían en el talento UBA. Explora sus perfiles, descubre su cultura organizacional y postúlate a los retos que tienen disponibles para tu carrera.</p>
-        </div>
-
-        <!-- FILTROS CON ID PARA JAVASCRIPT -->
-        <div class="filters-container">
-            <div class="filter-group" style="flex-grow: 2;">
-                <label>Buscar por nombre</label>
-                <input type="text" id="name-filter" placeholder="Ej. Agencia Impacto, LexCorp...">
-            </div>
-            <div class="filter-group">
-                <label>Sector de la Empresa</label>
-                <select id="sector-filter">
-                    <option value="todos">Todos los sectores</option>
-                    <option value="marketing">Marketing y Publicidad</option>
-                    <option value="legal">Servicios Legales</option>
-                    <option value="tecnologia">Tecnología y Software</option>
-                    <option value="finanzas">Finanzas y Contabilidad</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="companies-grid" id="companies-container">
+        <!-- Hero de Aliados Comerciales -->
+        <section class="hero-aliados">
+            <h1 style="color: var(--dorado); font-size: 38px; margin-bottom: 15px;"><i class="fa-solid fa-building-user"></i> Red de Aliados Comerciales</h1>
+            <p style="color: var(--blanco); font-size: 16px; max-width: 700px; opacity: 0.9; margin-bottom: 25px; line-height: 1.6;">
+                Descubre las empresas de primer nivel que confían en el talento ubaísta. Explora sus perfiles corporativos, cultura organizacional y las vacantes salariales exclusivas disponibles para ti.
+            </p>
             
-            <!-- Mensaje de no resultados oculto por defecto -->
-            <div id="no-results">
-                <i class="fa-solid fa-building-circle-xmark" style="font-size: 40px; color: var(--gris-texto); margin-bottom: 10px;"></i>
-                <h4>No se encontraron empresas aliadas con esos criterios.</h4>
+            <div style="display: flex; gap: 10px; width: 100%; max-width: 600px;">
+                <input type="text" placeholder="Buscar empresa, bufete, clínica o agencia..." style="flex-grow: 1; padding: 15px 25px; border-radius: 30px; border: none; font-size: 15px; outline: none; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <button style="background: var(--dorado); color: var(--primary-blue); border: none; border-radius: 30px; padding: 0 35px; font-weight: 800; font-size: 15px; cursor: pointer;"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
             </div>
-            
-            <!-- Tarjeta 1: Agencia de Marketing (Con data-attributes) -->
-            <div class="company-card" data-nombre="agencia impacto digital" data-sector="marketing">
-                <div class="company-header">
-                    <div class="company-logo" style="color: #E1306C;"><i class="fa-solid fa-bullhorn"></i></div>
-                    <div class="company-info">
-                        <h3>Agencia Impacto Digital</h3>
-                        <p>Marketing y Publicidad</p>
-                    </div>
-                </div>
-                <p class="company-desc">Agencia especializada en estrategias de conversión, gestión de redes sociales y branding para marcas en crecimiento a nivel nacional e internacional.</p>
-                <div class="company-stats">
-                    <div class="c-stat"><span>2</span><small>Retos Activos</small></div>
-                    <div class="c-stat"><span>1</span><small>Vacante</small></div>
-                    <div class="c-stat"><span>8</span><small>UBA Contratados</small></div>
-                </div>
-                <div class="company-actions">
-                    <button class="btn-ver-empresa" onclick="window.location.href='perfil.html'"><i class="fa-regular fa-building"></i> Perfil</button>
-                    <button class="btn-ver-retos" onclick="window.location.href='retos.html?empresa=marketing'"><i class="fa-solid fa-flask"></i> Ver Retos</button>
-                </div>
-            </div>
+        </section>
 
-            <!-- Tarjeta 2: Servicios Legales -->
-            <div class="company-card" data-nombre="lexcorp abogados" data-sector="legal">
-                <div class="company-header">
-                    <div class="company-logo" style="color: #2C3E50;"><i class="fa-solid fa-scale-unbalanced"></i></div>
-                    <div class="company-info">
-                        <h3>LexCorp Abogados</h3>
-                        <p>Servicios Legales y Jurídicos</p>
+        <!-- CATEGORÍA 1: Comunicación, Medios y Audiovisual -->
+        <section class="category-section">
+            <h2 class="category-title"><i class="fa-solid fa-video" style="color: var(--accent-gold);"></i> Comunicación, Medios y Agencias</h2>
+            <div class="companies-grid">
+                
+                <!-- Empresa 1 -->
+                <div class="company-card">
+                    <div class="cc-header">
+                        <div class="cc-logo" style="background: #003B8E;">VV</div>
+                        <div><h3>Venevisión</h3><p>Televisión y Entretenimiento</p></div>
                     </div>
+                    <div class="cc-body">La principal cadena de televisión abierta de Venezuela. Buscamos talento dinámico y creativo para nuestras producciones audiovisuales.</div>
+                    <div class="cc-vacancies">
+                        <h4><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h4>
+                        <div class="vacancy-item"><div class="vac-title">Productor Audiovisual Jr.</div><div class="vac-details"><span>Presencial</span> <span class="vac-salary">$300 - $450</span></div></div>
+                        <div class="vacancy-item"><div class="vac-title">Asistente de Cámara</div><div class="vac-details"><span>Presencial</span> <span class="vac-salary">$200 - $280</span></div></div>
+                    </div>
+                    <div class="cc-footer"><button>Ver Perfil Completo</button></div>
                 </div>
-                <p class="company-desc">Firma legal con más de 15 años de experiencia en derecho penal, civil y corporativo. Participamos activamente en simulacros de juicios orales.</p>
-                <div class="company-stats">
-                    <div class="c-stat"><span>1</span><small>Retos Activos</small></div>
-                    <div class="c-stat"><span>0</span><small>Vacantes</small></div>
-                    <div class="c-stat"><span>12</span><small>UBA Contratados</small></div>
+
+                <!-- Empresa 2 -->
+                <div class="company-card">
+                    <div class="cc-header">
+                        <div class="cc-logo" style="background: #E53E3E;">TL</div>
+                        <div><h3>Televen</h3><p>Radiodifusión y Medios</p></div>
+                    </div>
+                    <div class="cc-body">Canal de TV líder en innovación informativa. Fomentamos un ambiente acelerado ideal para periodistas audaces y proactivos.</div>
+                    <div class="cc-vacancies">
+                        <h4><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h4>
+                        <div class="vacancy-item"><div class="vac-title">Periodista de Sucesos</div><div class="vac-details"><span>Presencial</span> <span class="vac-salary">$350 - $500</span></div></div>
+                        <div class="vacancy-item"><div class="vac-title">Redactor Digital (Web)</div><div class="vac-details"><span>Híbrido</span> <span class="vac-salary">$250 - $320</span></div></div>
+                    </div>
+                    <div class="cc-footer"><button>Ver Perfil Completo</button></div>
                 </div>
-                <div class="company-actions">
-                    <button class="btn-ver-empresa" onclick="window.location.href='perfil.html'"><i class="fa-regular fa-building"></i> Perfil</button>
-                    <button class="btn-ver-retos" onclick="window.location.href='retos.html?empresa=derecho'"><i class="fa-solid fa-flask"></i> Ver Retos</button>
+
+                <!-- Empresa 3 -->
+                <div class="company-card">
+                    <div class="cc-header">
+                        <div class="cc-logo" style="background: #2D3748;">EN</div>
+                        <div><h3>El Nacional</h3><p>Prensa y Medios Digitales</p></div>
+                    </div>
+                    <div class="cc-body">Medio de comunicación impreso y digital con décadas de trayectoria, enfocado en el periodismo de investigación de alto nivel.</div>
+                    <div class="cc-vacancies">
+                        <h4><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h4>
+                        <div class="vacancy-item"><div class="vac-title">Periodista de Investigación</div><div class="vac-details"><span>Remoto</span> <span class="vac-salary">$400 - $600</span></div></div>
+                    </div>
+                    <div class="cc-footer"><button>Ver Perfil Completo</button></div>
+                </div>
+
+                <!-- Empresa 4 -->
+                <div class="company-card">
+                    <div class="cc-header">
+                        <div class="cc-logo" style="background: #DD6B20;">GV</div>
+                        <div><h3>Globovisión</h3><p>Canal de Noticias</p></div>
+                    </div>
+                    <div class="cc-body">Especialistas en noticias 24 horas. Ideal para estudiantes que buscan formarse en el periodismo en vivo y análisis de entorno.</div>
+                    <div class="cc-vacancies">
+                        <h4><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h4>
+                        <div class="vacancy-item"><div class="vac-title">Productor de Piso</div><div class="vac-details"><span>Presencial</span> <span class="vac-salary">$280 - $350</span></div></div>
+                        <div class="vacancy-item"><div class="vac-title">Editor de Emisión</div><div class="vac-details"><span>Turnos Rotativos</span> <span class="vac-salary">$320 - $420</span></div></div>
+                    </div>
+                    <div class="cc-footer"><button>Ver Perfil Completo</button></div>
+                </div>
+
+                <!-- Empresa 5 -->
+                <div class="company-card">
+                    <div class="cc-header">
+                        <div class="cc-logo" style="background: #1A202C;">UR</div>
+                        <div><h3>Unión Radio</h3><p>Circuito Radial</p></div>
+                    </div>
+                    <div class="cc-body">El circuito radial más importante del país. Únete a nuestro equipo para transformar el sonido de la noticia y el entretenimiento.</div>
+                    <div class="cc-vacancies">
+                        <h4><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h4>
+                        <div class="vacancy-item"><div class="vac-title">Locutor Comercial Junior</div><div class="vac-details"><span>Remoto</span> <span class="vac-salary">$200 - $400</span></div></div>
+                        <div class="vacancy-item"><div class="vac-title">Operador de Audio</div><div class="vac-details"><span>Presencial</span> <span class="vac-salary">$250 - $300</span></div></div>
+                    </div>
+                    <div class="cc-footer"><button>Ver Perfil Completo</button></div>
                 </div>
             </div>
+        </section>
 
-            <!-- Tarjeta 3: Contabilidad -->
-            <div class="company-card" data-nombre="ecoclean soluciones" data-sector="finanzas">
-                <div class="company-header">
-                    <div class="company-logo" style="color: #27AE60;"><i class="fa-solid fa-chart-line"></i></div>
-                    <div class="company-info">
-                        <h3>EcoClean Soluciones</h3>
-                        <p>Administración y Finanzas</p>
+        <!-- CATEGORÍA 2: Psicología y Salud -->
+        <section class="category-section">
+            <h2 class="category-title"><i class="fa-solid fa-brain" style="color: var(--accent-gold);"></i> Clínicas y Centros Psicológicos</h2>
+            <div class="companies-grid">
+                
+                <!-- Empresa 1 -->
+                <div class="company-card">
+                    <div class="cc-header">
+                        <div class="cc-logo" style="background: #319795;">CA</div>
+                        <div><h3>Clínica El Ávila</h3><p>Salud e Investigación</p></div>
                     </div>
+                    <div class="cc-body">Centro de salud integral con un departamento avanzado de salud mental y apoyo psicológico a pacientes crónicos.</div>
+                    <div class="cc-vacancies">
+                        <h4><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h4>
+                        <div class="vacancy-item"><div class="vac-title">Psicólogo Clínico Jr.</div><div class="vac-details"><span>Presencial</span> <span class="vac-salary">$400 - $600</span></div></div>
+                        <div class="vacancy-item"><div class="vac-title">Asistente Terapéutico</div><div class="vac-details"><span>Medio Tiempo</span> <span class="vac-salary">$200 - $300</span></div></div>
+                    </div>
+                    <div class="cc-footer"><button>Ver Perfil Completo</button></div>
                 </div>
-                <p class="company-desc">Empresa líder en productos ecológicos. Buscamos talento joven para optimizar nuestros procesos contables y modelos de negocios sustentables.</p>
-                <div class="company-stats">
-                    <div class="c-stat"><span>1</span><small>Retos Activos</small></div>
-                    <div class="c-stat"><span>2</span><small>Vacantes</small></div>
-                    <div class="c-stat"><span>5</span><small>UBA Contratados</small></div>
+
+                <!-- Empresa 2 -->
+                <div class="company-card">
+                    <div class="cc-header">
+                        <div class="cc-logo" style="background: #805AD5;">CP</div>
+                        <div><h3>Centro Psicológico Integra</h3><p>Terapia y Consultoría</p></div>
+                    </div>
+                    <div class="cc-body">Clínica privada dedicada a la evaluación y terapia conductual para jóvenes y adultos. Ambiente de alto aprendizaje académico.</div>
+                    <div class="cc-vacancies">
+                        <h4><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h4>
+                        <div class="vacancy-item"><div class="vac-title">Terapista Conductual</div><div class="vac-details"><span>Híbrido</span> <span class="vac-salary">$350 - $550</span></div></div>
+                    </div>
+                    <div class="cc-footer"><button>Ver Perfil Completo</button></div>
                 </div>
-                <div class="company-actions">
-                    <button class="btn-ver-empresa" onclick="window.location.href='perfil.html'"><i class="fa-regular fa-building"></i> Perfil</button>
-                    <button class="btn-ver-retos" onclick="window.location.href='retos.html?empresa=finanzas'"><i class="fa-solid fa-flask"></i> Ver Retos</button>
+
+                <!-- Empresa 3 -->
+                <div class="company-card">
+                    <div class="cc-header">
+                        <div class="cc-logo" style="background: #D53F8C;">FA</div>
+                        <div><h3>Fundación Niños con Alas</h3><p>ONG Psicología Infantil</p></div>
+                    </div>
+                    <div class="cc-body">Organización no gubernamental dedicada a la intervención temprana y apoyo psicoeducativo para poblaciones vulnerables.</div>
+                    <div class="cc-vacancies">
+                        <h4><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h4>
+                        <div class="vacancy-item"><div class="vac-title">Psicopedagogo/a</div><div class="vac-details"><span>Presencial</span> <span class="vac-salary">$280 - $400</span></div></div>
+                        <div class="vacancy-item"><div class="vac-title">Pasantía Psicología Infantil</div><div class="vac-details"><span>Medio Tiempo</span> <span class="vac-salary">$150 (Ayuda)</span></div></div>
+                    </div>
+                    <div class="cc-footer"><button>Ver Perfil Completo</button></div>
+                </div>
+
+                <!-- Empresa 4 -->
+                <div class="company-card">
+                    <div class="cc-header">
+                        <div class="cc-logo" style="background: #00B5D8;">HC</div>
+                        <div><h3>Hospital de Clínicas Ccs</h3><p>Salud Privada</p></div>
+                    </div>
+                    <div class="cc-body">La institución hospitalaria privada con mayores recursos tecnológicos y áreas especializadas de psiquiatría y psicología.</div>
+                    <div class="cc-vacancies">
+                        <h4><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h4>
+                        <div class="vacancy-item"><div class="vac-title">Evaluador Psicométrico</div><div class="vac-details"><span>Presencial</span> <span class="vac-salary">$450 - $650</span></div></div>
+                    </div>
+                    <div class="cc-footer"><button>Ver Perfil Completo</button></div>
+                </div>
+
+                <!-- Empresa 5 -->
+                <div class="company-card">
+                    <div class="cc-header">
+                        <div class="cc-logo" style="background: #38A169;">SM</div>
+                        <div><h3>Centro de Salud Mental</h3><p>Rehabilitación Integral</p></div>
+                    </div>
+                    <div class="cc-body">Especializados en desintoxicación, trastornos de ansiedad y depresión severa. Buscamos profesionales éticos y empáticos.</div>
+                    <div class="cc-vacancies">
+                        <h4><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h4>
+                        <div class="vacancy-item"><div class="vac-title">Acompañante Terapéutico</div><div class="vac-details"><span>Presencial (Guardias)</span> <span class="vac-salary">$300 - $400</span></div></div>
+                    </div>
+                    <div class="cc-footer"><button>Ver Perfil Completo</button></div>
                 </div>
             </div>
+        </section>
 
-            <!-- Tarjeta 4: Tecnología -->
-            <div class="company-card" data-nombre="novatech innovacion" data-sector="tecnologia">
-                <div class="company-header">
-                    <div class="company-logo" style="color: #2980B9;"><i class="fa-solid fa-code"></i></div>
-                    <div class="company-info">
-                        <h3>NovaTech Innovación</h3>
-                        <p>Tecnología y Software</p>
+        <!-- CATEGORÍA 3: Derecho, Administración y Contaduría -->
+        <section class="category-section">
+            <h2 class="category-title"><i class="fa-solid fa-scale-balanced" style="color: var(--accent-gold);"></i> Firmas, Bancos y Corporaciones</h2>
+            <div class="companies-grid">
+                
+                <!-- Empresa 1 -->
+                <div class="company-card">
+                    <div class="cc-header">
+                        <div class="cc-logo" style="background: #38A169;">BA</div>
+                        <div><h3>Banesco</h3><p>Banca y Finanzas</p></div>
                     </div>
+                    <div class="cc-body">Institución financiera líder que busca talento en administración, contabilidad e innovación de procesos corporativos.</div>
+                    <div class="cc-vacancies">
+                        <h4><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h4>
+                        <div class="vacancy-item"><div class="vac-title">Analista Financiero</div><div class="vac-details"><span>Híbrido</span> <span class="vac-salary">$350 - $550</span></div></div>
+                        <div class="vacancy-item"><div class="vac-title">Especialista en Riesgo</div><div class="vac-details"><span>Presencial</span> <span class="vac-salary">$400 - $600</span></div></div>
+                    </div>
+                    <div class="cc-footer"><button>Ver Perfil Completo</button></div>
                 </div>
-                <p class="company-desc">Desarrolladora de software y aplicaciones móviles. Ofrecemos retos de lógica de programación y diseño de interfaces para estudiantes de sistemas.</p>
-                <div class="company-stats">
-                    <div class="c-stat"><span>3</span><small>Retos Activos</small></div>
-                    <div class="c-stat"><span>1</span><small>Vacante</small></div>
-                    <div class="c-stat"><span>14</span><small>UBA Contratados</small></div>
+
+                <!-- Empresa 2 -->
+                <div class="company-card">
+                    <div class="cc-header">
+                        <div class="cc-logo" style="background: #2B6CB0;">KP</div>
+                        <div><h3>KPMG Venezuela</h3><p>Firma de Contadores</p></div>
+                    </div>
+                    <div class="cc-body">Una de las "Big Four" de auditoría y consultoría a nivel mundial. Inicia tu carrera contable y de auditoría con nosotros.</div>
+                    <div class="cc-vacancies">
+                        <h4><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h4>
+                        <div class="vacancy-item"><div class="vac-title">Auditor Externo Junior</div><div class="vac-details"><span>Híbrido</span> <span class="vac-salary">$400 - $650</span></div></div>
+                        <div class="vacancy-item"><div class="vac-title">Asistente Tributario</div><div class="vac-details"><span>Presencial</span> <span class="vac-salary">$300 - $450</span></div></div>
+                    </div>
+                    <div class="cc-footer"><button>Ver Perfil Completo</button></div>
                 </div>
-                <div class="company-actions">
-                    <button class="btn-ver-empresa" onclick="window.location.href='perfil.html'"><i class="fa-regular fa-building"></i> Perfil</button>
-                    <button class="btn-ver-retos" onclick="window.location.href='retos.html?empresa=tecnologia'"><i class="fa-solid fa-flask"></i> Ver Retos</button>
+
+                <!-- Empresa 3 -->
+                <div class="company-card">
+                    <div class="cc-header">
+                        <div class="cc-logo" style="background: #C53030;">BM</div>
+                        <div><h3>Baker McKenzie</h3><p>Firma de Abogados</p></div>
+                    </div>
+                    <div class="cc-body">Prestigiosa firma legal internacional. Ofrecemos oportunidades únicas para estudiantes de Derecho en litigios corporativos.</div>
+                    <div class="cc-vacancies">
+                        <h4><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h4>
+                        <div class="vacancy-item"><div class="vac-title">Asistente Legal Corporativo</div><div class="vac-details"><span>Presencial</span> <span class="vac-salary">$450 - $700</span></div></div>
+                        <div class="vacancy-item"><div class="vac-title">Paralegal</div><div class="vac-details"><span>Híbrido</span> <span class="vac-salary">$300 - $450</span></div></div>
+                    </div>
+                    <div class="cc-footer"><button>Ver Perfil Completo</button></div>
+                </div>
+
+                <!-- Empresa 4 -->
+                <div class="company-card">
+                    <div class="cc-header">
+                        <div class="cc-logo" style="background: #2C5282;">EP</div>
+                        <div><h3>Empresas Polar</h3><p>Consumo Masivo / Industrial</p></div>
+                    </div>
+                    <div class="cc-body">El conglomerado industrial más importante de Venezuela. Únete a nuestra gran gerencia de administración y talento humano.</div>
+                    <div class="cc-vacancies">
+                        <h4><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h4>
+                        <div class="vacancy-item"><div class="vac-title">Analista de Talento Humano</div><div class="vac-details"><span>Presencial</span> <span class="vac-salary">$350 - $550</span></div></div>
+                        <div class="vacancy-item"><div class="vac-title">Coordinador de Logística</div><div class="vac-details"><span>Presencial</span> <span class="vac-salary">$400 - $600</span></div></div>
+                    </div>
+                    <div class="cc-footer"><button>Ver Perfil Completo</button></div>
+                </div>
+
+                <!-- Empresa 5 -->
+                <div class="company-card">
+                    <div class="cc-header">
+                        <div class="cc-logo" style="background: #2F855A;">FT</div>
+                        <div><h3>Farmatodo</h3><p>Retail y Farmacia</p></div>
+                    </div>
+                    <div class="cc-body">Red líder de farmacias de autoservicio. Innovación constante que requiere analistas y administradores altamente calificados.</div>
+                    <div class="cc-vacancies">
+                        <h4><i class="fa-solid fa-briefcase"></i> Vacantes Disponibles</h4>
+                        <div class="vacancy-item"><div class="vac-title">Especialista en Nómina</div><div class="vac-details"><span>Híbrido</span> <span class="vac-salary">$320 - $480</span></div></div>
+                    </div>
+                    <div class="cc-footer"><button>Ver Perfil Completo</button></div>
                 </div>
             </div>
+        </section>
 
-            <!-- Tarjeta 5: Audiovisual -->
-            <div class="company-card" data-nombre="cinearts producciones" data-sector="marketing">
-                <div class="company-header">
-                    <div class="company-logo" style="color: #8E44AD;"><i class="fa-solid fa-video"></i></div>
-                    <div class="company-info">
-                        <h3>CineArts Producciones</h3>
-                        <p>Producción Audiovisual</p>
-                    </div>
-                </div>
-                <p class="company-desc">Productora independiente en búsqueda de mentes creativas para la redacción de guiones, dirección de arte y edición de documentales cortos.</p>
-                <div class="company-stats">
-                    <div class="c-stat"><span>1</span><small>Retos Activos</small></div>
-                    <div class="c-stat"><span>0</span><small>Vacantes</small></div>
-                    <div class="c-stat"><span>3</span><small>UBA Contratados</small></div>
-                </div>
-                <div class="company-actions">
-                    <button class="btn-ver-empresa" onclick="window.location.href='perfil.html'"><i class="fa-regular fa-building"></i> Perfil</button>
-                    <button class="btn-ver-retos" onclick="window.location.href='retos.html?empresa=marketing'"><i class="fa-solid fa-flask"></i> Ver Retos</button>
-                </div>
-            </div>
-
-        </div>
     </main>
 
-    <!-- MOTOR DE FILTRADO EN TIEMPO REAL (JavaScript) -->
-    <script>
-        const nameFilter = document.getElementById('name-filter');
-        const sectorFilter = document.getElementById('sector-filter');
-        const companyCards = document.querySelectorAll('.company-card');
-        const noResults = document.getElementById('no-results');
-
-        function filterCompanies() {
-            const textValue = nameFilter.value.toLowerCase().trim();
-            const sectorValue = sectorFilter.value;
-            let visibleCardsCount = 0;
-
-            companyCards.forEach(card => {
-                const cardName = card.getAttribute('data-nombre');
-                const cardSector = card.getAttribute('data-sector');
-
-                const matchesName = cardName.includes(textValue);
-                const matchesSector = (sectorValue === 'todos' || cardSector === sectorValue);
-
-                if (matchesName && matchesSector) {
-                    card.style.display = 'flex';
-                    visibleCardsCount++;
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            // Mostrar aviso si no hay coincidencias
-            if (visibleCardsCount === 0) {
-                noResults.style.display = 'block';
-            } else {
-                noResults.style.display = 'none';
-            }
-        }
-
-        // Escuchar eventos de teclado y cambio de selector
-        nameFilter.addEventListener('input', filterCompanies);
-        sectorFilter.addEventListener('change', filterCompanies);
-    </script>
 </body>
 </html>
