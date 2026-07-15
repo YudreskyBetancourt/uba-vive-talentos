@@ -34,7 +34,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     color: var(--gris-texto);
     background-color: var(--gris-fondo);
-    display: flex;
+    display: block;
     min-height: 100vh;
 }
 
