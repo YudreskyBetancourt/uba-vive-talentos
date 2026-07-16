@@ -79,6 +79,13 @@
         }
         .btn-certify:hover { box-shadow: 0 5px 15px rgba(217, 119, 6, 0.3); transform: translateY(-2px); }
 
+        @media (max-width: 768px) {
+            .eval-card { flex-direction: column; }
+            .student-col { border-right: none; border-bottom: 1px solid var(--gris-fondo); padding-right: 0; padding-bottom: 20px; margin-bottom: 20px; }
+            .btn-action-group { flex-direction: column; }
+            .form-row { flex-direction: column; }
+            .prof-header { max-width: 100%; box-sizing: border-box; overflow: hidden; }
+        }
     </style>
 </head>
 <body class="has-sidebar">
