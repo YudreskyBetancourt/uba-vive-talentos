@@ -267,6 +267,9 @@
         }
         footer p { margin: 0; }
 
+        /* Hamburger Button */
+        .hamburger-btn { display: none; }
+
         @media(max-width: 992px) {
             .hero-banner { flex-direction: column; text-align: center; padding-top: 60px; min-height: auto; }
             .hero-content { align-items: center; display: flex; flex-direction: column; margin-bottom: 40px; }
@@ -275,10 +278,40 @@
             .stat-item { border-right: none; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px; }
             .stat-item:last-child { border-bottom: none; padding-bottom: 0; }
             .features-grid { grid-template-columns: 1fr; }
-            .landing-navbar { flex-direction: column; gap: 20px; padding-top: 25px; }
-            .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
-            .nav-links a { margin: 0; }
-            .logo-shield { margin-top: 0; border-radius: 8px; border-top: 2px solid white; padding: 10px 15px; }
+            
+            /* Responsive Navbar */
+            .landing-navbar { flex-direction: row; justify-content: space-between; align-items: center; padding: 15px 5%; }
+            .hamburger-btn { 
+                display: block; 
+                background: none; 
+                border: none; 
+                color: var(--primary-blue); 
+                font-size: 28px; 
+                cursor: pointer; 
+                z-index: 1001;
+            }
+            .nav-links { 
+                position: absolute; 
+                top: 100%; 
+                left: 0; 
+                width: 100%; 
+                background: white; 
+                flex-direction: column; 
+                padding: 10px 0; 
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                display: none; /* Oculto por defecto */
+                z-index: 1000;
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { 
+                margin: 0; 
+                padding: 15px 5%; 
+                text-align: center; 
+                width: 100%;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            .nav-links a:last-child { border-bottom: none; }
+            .logo-shield { margin-top: 0; border-radius: 8px; border-top: 2px solid var(--primary-blue); padding: 8px 12px; font-size: 14px; }
         }
     </style>
 </head>
@@ -298,7 +331,10 @@
                 <h2>UBA <span>ViveTalentos</span></h2>
             </div>
         </div>
-        <div class="nav-links">
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="nav-links" id="nav-links">
             <a href="index.html">Inicio</a>
             <a href="carreras.html">Carreras</a>
             <a href="login-aliado.html">Aliados</a>
@@ -386,5 +422,26 @@
         <p style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 5px;">Derechos de autor Yudresky Betancourt</p>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const navLinks = document.getElementById('nav-links');
+            
+            if (hamburgerBtn && navLinks) {
+                hamburgerBtn.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    // Cambiar icono
+                    const icon = hamburgerBtn.querySelector('i');
+                    if (navLinks.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-xmark');
+                    } else {
+                        icon.classList.remove('fa-xmark');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
